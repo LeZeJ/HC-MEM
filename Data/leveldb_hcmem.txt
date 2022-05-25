@@ -1,0 +1,1396 @@
+find . -name "*.[od]" -delete
+rm -f ycsb
+  CC       leveldb/leveldb_db.o
+  CC       core/basic_db.o
+  CC       core/db_factory.o
+  CC       core/measurements.o
+  CC       core/ycsbc.o
+  CC       core/acknowledged_counter_generator.o
+  CC       core/core_workload.o
+  LD       ycsb
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++执行优化前的代码+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#######################################ZIPFIAN模式#####################################
+***********************This is test for workloada*****************************
+2022-05-24 16:18:21 0 sec: 0 operations;
+2022-05-24 16:18:31 10 sec: 843015 operations; [INSERT: Count=843015 Max=24406.19 Min=2.02 Avg=8.35]
+2022-05-24 16:18:32 11 sec: 1000000 operations; [INSERT: Count=1000000 Max=24406.19 Min=1.99 Avg=7.62]
+Load runtime(sec): 11.31
+Load operations(ops): 1000000
+Load throughput(ops/sec): 88417.3
+==================第 0 次测试=================
+2022-05-24 16:18:32 0 sec: 0 operations;
+2022-05-24 16:18:42 10 sec: 662557 operations; [UPDATE: Count=662557 Max=22516.83 Min=3.26 Avg=13.72]
+2022-05-24 16:18:52 20 sec: 1141868 operations; [UPDATE: Count=1141868 Max=24867.26 Min=3.17 Avg=16.35]
+2022-05-24 16:19:02 30 sec: 1590200 operations; [UPDATE: Count=1590200 Max=24867.26 Min=3.17 Avg=17.78]
+2022-05-24 16:19:12 40 sec: 2150331 operations; [UPDATE: Count=2150331 Max=24867.26 Min=3.11 Avg=17.57]
+2022-05-24 16:19:22 50 sec: 2768666 operations; [UPDATE: Count=2768666 Max=25518.31 Min=2.94 Avg=17.07]
+2022-05-24 16:19:32 60 sec: 3391671 operations; [UPDATE: Count=3391671 Max=25518.31 Min=2.94 Avg=16.73]
+2022-05-24 16:19:42 70 sec: 3838067 operations; [UPDATE: Count=3838067 Max=25518.31 Min=2.94 Avg=17.29]
+2022-05-24 16:19:52 80 sec: 4276312 operations; [UPDATE: Count=4276312 Max=29869.01 Min=2.94 Avg=17.76]
+2022-05-24 16:20:02 90 sec: 4807402 operations; [UPDATE: Count=4807402 Max=29869.01 Min=2.94 Avg=17.78]
+2022-05-24 16:20:12 100 sec: 5488945 operations; [UPDATE: Count=5488945 Max=29869.01 Min=2.94 Avg=17.30]
+2022-05-24 16:20:22 110 sec: 6067564 operations; [UPDATE: Count=6067564 Max=29869.01 Min=2.94 Avg=17.21]
+2022-05-24 16:20:32 120 sec: 6505965 operations; [UPDATE: Count=6505965 Max=29869.01 Min=2.94 Avg=17.53]
+2022-05-24 16:20:42 130 sec: 6955564 operations; [UPDATE: Count=6955564 Max=142519.68 Min=2.94 Avg=17.78]
+2022-05-24 16:20:52 140 sec: 7407157 operations; [UPDATE: Count=7407157 Max=142519.68 Min=2.94 Avg=17.99]
+2022-05-24 16:21:02 150 sec: 7972903 operations; [UPDATE: Count=7972903 Max=142519.68 Min=2.94 Avg=17.91]
+2022-05-24 16:21:12 160 sec: 8664237 operations; [UPDATE: Count=8664237 Max=142519.68 Min=2.94 Avg=17.57]
+2022-05-24 16:21:22 170 sec: 9191709 operations; [UPDATE: Count=9191709 Max=142519.68 Min=2.94 Avg=17.60]
+2022-05-24 16:21:32 180 sec: 9644818 operations; [UPDATE: Count=9644818 Max=142519.68 Min=2.94 Avg=17.77]
+2022-05-24 16:21:38 186 sec: 10000000 operations; [UPDATE: Count=10000000 Max=142519.68 Min=2.94 Avg=17.72]
+Run runtime(sec): 186.295
+Run operations(ops): 10000000
+Run throughput(ops/sec): 53678.2
+==================第 1 次测试=================
+2022-05-24 16:21:38 0 sec: 0 operations;
+2022-05-24 16:21:48 10 sec: 526257 operations; [UPDATE: Count=526257 Max=36545.54 Min=3.25 Avg=17.49]
+2022-05-24 16:21:58 20 sec: 974615 operations; [UPDATE: Count=974615 Max=36545.54 Min=3.22 Avg=19.32]
+2022-05-24 16:22:08 30 sec: 1428626 operations; [UPDATE: Count=1428626 Max=36545.54 Min=3.13 Avg=19.91]
+2022-05-24 16:22:18 40 sec: 2012472 operations; [UPDATE: Count=2012472 Max=36545.54 Min=3.13 Avg=18.88]
+2022-05-24 16:22:28 50 sec: 2473791 operations; [UPDATE: Count=2473791 Max=36545.54 Min=3.13 Avg=19.24]
+2022-05-24 16:22:38 60 sec: 3154612 operations; [UPDATE: Count=3154612 Max=36545.54 Min=3.13 Avg=18.09]
+2022-05-24 16:22:48 70 sec: 3652904 operations; [UPDATE: Count=3652904 Max=36545.54 Min=3.13 Avg=18.25]
+2022-05-24 16:22:58 80 sec: 4108235 operations; [UPDATE: Count=4108235 Max=36545.54 Min=3.13 Avg=18.57]
+2022-05-24 16:23:08 90 sec: 4614737 operations; [UPDATE: Count=4614737 Max=36545.54 Min=3.13 Avg=18.61]
+2022-05-24 16:23:18 100 sec: 5135433 operations; [UPDATE: Count=5135433 Max=36545.54 Min=3.13 Avg=18.59]
+2022-05-24 16:23:28 110 sec: 5835046 operations; [UPDATE: Count=5835046 Max=36545.54 Min=3.13 Avg=17.98]
+2022-05-24 16:23:38 120 sec: 6349305 operations; [UPDATE: Count=6349305 Max=36545.54 Min=3.13 Avg=18.04]
+2022-05-24 16:23:48 130 sec: 6801698 operations; [UPDATE: Count=6801698 Max=36545.54 Min=3.13 Avg=18.25]
+2022-05-24 16:23:58 140 sec: 7312694 operations; [UPDATE: Count=7312694 Max=36545.54 Min=3.13 Avg=18.29]
+2022-05-24 16:24:08 150 sec: 7800284 operations; [UPDATE: Count=7800284 Max=36545.54 Min=3.13 Avg=18.38]
+2022-05-24 16:24:18 160 sec: 8513709 operations; [UPDATE: Count=8513709 Max=36545.54 Min=3.13 Avg=17.95]
+2022-05-24 16:24:28 170 sec: 9030388 operations; [UPDATE: Count=9030388 Max=36545.54 Min=3.13 Avg=17.98]
+2022-05-24 16:24:38 180 sec: 9480203 operations; [UPDATE: Count=9480203 Max=36545.54 Min=3.13 Avg=18.15]
+2022-05-24 16:24:48 190 sec: 9935956 operations; [UPDATE: Count=9935956 Max=36545.54 Min=3.13 Avg=18.28]
+2022-05-24 16:24:49 190 sec: 10000000 operations; [UPDATE: Count=10000000 Max=36545.54 Min=3.13 Avg=18.22]
+Run runtime(sec): 190.787
+Run operations(ops): 10000000
+Run throughput(ops/sec): 52414.6
+==================第 2 次测试=================
+2022-05-24 16:24:49 0 sec: 0 operations;
+2022-05-24 16:24:59 10 sec: 473692 operations; [UPDATE: Count=473692 Max=34900.17 Min=3.24 Avg=19.48]
+2022-05-24 16:25:09 20 sec: 1200571 operations; [UPDATE: Count=1200571 Max=34900.17 Min=3.18 Avg=15.54]
+2022-05-24 16:25:19 30 sec: 1699515 operations; [UPDATE: Count=1699515 Max=34900.17 Min=3.18 Avg=16.61]
+2022-05-24 16:25:29 40 sec: 2152948 operations; [UPDATE: Count=2152948 Max=34900.17 Min=3.18 Avg=17.58]
+2022-05-24 16:25:39 50 sec: 2610870 operations; [UPDATE: Count=2610870 Max=34900.17 Min=3.13 Avg=18.17]
+2022-05-24 16:25:49 60 sec: 3147246 operations; [UPDATE: Count=3147246 Max=34900.17 Min=3.13 Avg=18.11]
+2022-05-24 16:25:59 70 sec: 3702239 operations; [UPDATE: Count=3702239 Max=34900.17 Min=3.13 Avg=17.97]
+2022-05-24 16:26:09 80 sec: 4339979 operations; [UPDATE: Count=4339979 Max=34900.17 Min=3.13 Avg=17.52]
+2022-05-24 16:26:19 90 sec: 4829611 operations; [UPDATE: Count=4829611 Max=34900.17 Min=3.13 Avg=17.73]
+2022-05-24 16:26:29 100 sec: 5300075 operations; [UPDATE: Count=5300075 Max=34900.17 Min=3.13 Avg=17.97]
+2022-05-24 16:26:39 110 sec: 5727254 operations; [UPDATE: Count=5727254 Max=34900.17 Min=3.10 Avg=18.31]
+2022-05-24 16:26:49 120 sec: 6290745 operations; [UPDATE: Count=6290745 Max=58552.81 Min=3.10 Avg=18.18]
+2022-05-24 16:26:59 130 sec: 6951160 operations; [UPDATE: Count=6951160 Max=58552.81 Min=3.10 Avg=17.82]
+2022-05-24 16:27:09 140 sec: 7521634 operations; [UPDATE: Count=7521634 Max=58552.81 Min=3.10 Avg=17.73]
+2022-05-24 16:27:19 150 sec: 7963249 operations; [UPDATE: Count=7963249 Max=58552.81 Min=3.10 Avg=17.96]
+2022-05-24 16:27:29 160 sec: 8424190 operations; [UPDATE: Count=8424190 Max=58552.81 Min=3.10 Avg=18.11]
+2022-05-24 16:27:39 170 sec: 8968918 operations; [UPDATE: Count=8968918 Max=58552.81 Min=3.10 Avg=18.08]
+2022-05-24 16:27:49 180 sec: 9614470 operations; [UPDATE: Count=9614470 Max=58552.81 Min=3.10 Avg=17.85]
+2022-05-24 16:27:56 187 sec: 10000000 operations; [UPDATE: Count=10000000 Max=58552.81 Min=3.10 Avg=17.86]
+Run runtime(sec): 187.335
+Run operations(ops): 10000000
+Run throughput(ops/sec): 53380.2
+==================第 3 次测试=================
+2022-05-24 16:27:56 0 sec: 0 operations;
+2022-05-24 16:28:06 10 sec: 574462 operations; [UPDATE: Count=574462 Max=37915.85 Min=3.23 Avg=15.96]
+2022-05-24 16:28:16 20 sec: 1086981 operations; [UPDATE: Count=1086981 Max=37915.85 Min=3.23 Avg=17.25]
+2022-05-24 16:28:26 30 sec: 1539588 operations; [UPDATE: Count=1539588 Max=37915.85 Min=3.22 Avg=18.42]
+2022-05-24 16:28:36 40 sec: 1982806 operations; [UPDATE: Count=1982806 Max=37915.85 Min=3.22 Avg=19.16]
+2022-05-24 16:28:46 50 sec: 2463087 operations; [UPDATE: Count=2463087 Max=111038.98 Min=3.22 Avg=19.32]
+2022-05-24 16:28:56 60 sec: 3150104 operations; [UPDATE: Count=3150104 Max=111038.98 Min=3.22 Avg=18.10]
+2022-05-24 16:29:06 70 sec: 3759255 operations; [UPDATE: Count=3759255 Max=111038.98 Min=3.22 Avg=17.70]
+2022-05-24 16:29:16 80 sec: 4214964 operations; [UPDATE: Count=4214964 Max=111038.98 Min=3.22 Avg=18.07]
+2022-05-24 16:29:26 90 sec: 4664249 operations; [UPDATE: Count=4664249 Max=111038.98 Min=3.22 Avg=18.39]
+2022-05-24 16:29:36 100 sec: 5120354 operations; [UPDATE: Count=5120354 Max=111038.98 Min=3.22 Avg=18.63]
+2022-05-24 16:29:46 110 sec: 5809385 operations; [UPDATE: Count=5809385 Max=111038.98 Min=3.21 Avg=18.05]
+2022-05-24 16:29:56 120 sec: 6383667 operations; [UPDATE: Count=6383667 Max=111038.98 Min=3.21 Avg=17.92]
+2022-05-24 16:30:06 130 sec: 6900420 operations; [UPDATE: Count=6900420 Max=111038.98 Min=3.21 Avg=17.96]
+2022-05-24 16:30:16 140 sec: 7356417 operations; [UPDATE: Count=7356417 Max=111038.98 Min=3.18 Avg=18.16]
+2022-05-24 16:30:26 150 sec: 7792991 operations; [UPDATE: Count=7792991 Max=111038.98 Min=3.16 Avg=18.37]
+2022-05-24 16:30:36 160 sec: 8371685 operations; [UPDATE: Count=8371685 Max=111038.98 Min=3.16 Avg=18.24]
+2022-05-24 16:30:46 170 sec: 8952760 operations; [UPDATE: Count=8952760 Max=111038.98 Min=3.16 Avg=18.12]
+2022-05-24 16:30:56 180 sec: 9441596 operations; [UPDATE: Count=9441596 Max=111038.98 Min=3.16 Avg=18.20]
+2022-05-24 16:31:05 188 sec: 10000000 operations; [UPDATE: Count=10000000 Max=111038.98 Min=3.16 Avg=17.97]
+Run runtime(sec): 188.39
+Run operations(ops): 10000000
+Run throughput(ops/sec): 53081.4
+==================第 4 次测试=================
+2022-05-24 16:31:05 0 sec: 0 operations;
+2022-05-24 16:31:15 10 sec: 473505 operations; [UPDATE: Count=473505 Max=31741.01 Min=3.11 Avg=19.44]
+2022-05-24 16:31:25 20 sec: 925263 operations; [UPDATE: Count=925263 Max=31741.01 Min=3.11 Avg=20.31]
+2022-05-24 16:31:35 30 sec: 1368451 operations; [UPDATE: Count=1368451 Max=31741.01 Min=3.11 Avg=20.74]
+2022-05-24 16:31:45 40 sec: 1817669 operations; [UPDATE: Count=1817669 Max=43959.95 Min=3.11 Avg=20.89]
+2022-05-24 16:31:55 50 sec: 2515352 operations; [UPDATE: Count=2515352 Max=43959.95 Min=3.11 Avg=18.83]
+2022-05-24 16:32:05 60 sec: 3130307 operations; [UPDATE: Count=3130307 Max=43959.95 Min=3.11 Avg=18.15]
+2022-05-24 16:32:15 70 sec: 3610508 operations; [UPDATE: Count=3610508 Max=43959.95 Min=3.11 Avg=18.38]
+2022-05-24 16:32:25 80 sec: 4057740 operations; [UPDATE: Count=4057740 Max=43959.95 Min=3.11 Avg=18.72]
+2022-05-24 16:32:35 90 sec: 4499623 operations; [UPDATE: Count=4499623 Max=43959.95 Min=3.11 Avg=19.01]
+2022-05-24 16:32:45 100 sec: 5179528 operations; [UPDATE: Count=5179528 Max=43959.95 Min=3.11 Avg=18.33]
+2022-05-24 16:32:55 110 sec: 5735592 operations; [UPDATE: Count=5735592 Max=43959.95 Min=3.11 Avg=18.21]
+2022-05-24 16:33:05 120 sec: 6250192 operations; [UPDATE: Count=6250192 Max=104931.71 Min=3.11 Avg=18.24]
+2022-05-24 16:33:15 130 sec: 6742744 operations; [UPDATE: Count=6742744 Max=104931.71 Min=3.11 Avg=18.32]
+2022-05-24 16:33:25 140 sec: 7178838 operations; [UPDATE: Count=7178838 Max=104931.71 Min=3.11 Avg=18.55]
+2022-05-24 16:33:35 150 sec: 7653101 operations; [UPDATE: Count=7653101 Max=104931.71 Min=3.11 Avg=18.65]
+2022-05-24 16:33:45 160 sec: 8339864 operations; [UPDATE: Count=8339864 Max=104931.71 Min=3.11 Avg=18.24]
+2022-05-24 16:33:55 170 sec: 8965564 operations; [UPDATE: Count=8965564 Max=104931.71 Min=3.11 Avg=18.02]
+2022-05-24 16:34:05 180 sec: 9414882 operations; [UPDATE: Count=9414882 Max=104931.71 Min=3.11 Avg=18.18]
+2022-05-24 16:34:15 190 sec: 9866682 operations; [UPDATE: Count=9866682 Max=104931.71 Min=3.11 Avg=18.32]
+2022-05-24 16:34:18 193 sec: 10000000 operations; [UPDATE: Count=10000000 Max=104931.71 Min=3.11 Avg=18.37]
+Run runtime(sec): 193.128
+Run operations(ops): 10000000
+Run throughput(ops/sec): 51779.2
+==================第 5 次测试=================
+2022-05-24 16:34:18 0 sec: 0 operations;
+2022-05-24 16:34:28 10 sec: 606623 operations; [UPDATE: Count=606623 Max=27628.04 Min=3.09 Avg=14.98]
+2022-05-24 16:34:38 20 sec: 1197094 operations; [UPDATE: Count=1197094 Max=135612.42 Min=3.06 Avg=15.53]
+2022-05-24 16:34:48 30 sec: 1644468 operations; [UPDATE: Count=1644468 Max=135612.42 Min=3.06 Avg=17.14]
+2022-05-24 16:34:58 40 sec: 2093408 operations; [UPDATE: Count=2093408 Max=135612.42 Min=3.06 Avg=18.05]
+2022-05-24 16:35:08 50 sec: 2553202 operations; [UPDATE: Count=2553202 Max=135612.42 Min=3.06 Avg=18.55]
+2022-05-24 16:35:18 60 sec: 3256848 operations; [UPDATE: Count=3256848 Max=135612.42 Min=3.06 Avg=17.43]
+2022-05-24 16:35:28 70 sec: 3885277 operations; [UPDATE: Count=3885277 Max=135612.42 Min=3.06 Avg=17.05]
+2022-05-24 16:35:38 80 sec: 4326748 operations; [UPDATE: Count=4326748 Max=135612.42 Min=3.06 Avg=17.53]
+2022-05-24 16:35:48 90 sec: 4790106 operations; [UPDATE: Count=4790106 Max=135612.42 Min=3.06 Avg=17.84]
+2022-05-24 16:35:58 100 sec: 5228332 operations; [UPDATE: Count=5228332 Max=135612.42 Min=3.06 Avg=18.18]
+2022-05-24 16:36:08 110 sec: 5851830 operations; [UPDATE: Count=5851830 Max=135612.42 Min=3.06 Avg=17.86]
+2022-05-24 16:36:18 120 sec: 6435756 operations; [UPDATE: Count=6435756 Max=135612.42 Min=3.06 Avg=17.72]
+2022-05-24 16:36:28 130 sec: 6917182 operations; [UPDATE: Count=6917182 Max=135612.42 Min=3.06 Avg=17.87]
+2022-05-24 16:36:38 140 sec: 7472663 operations; [UPDATE: Count=7472663 Max=135612.42 Min=3.06 Avg=17.81]
+2022-05-24 16:36:48 150 sec: 7919042 operations; [UPDATE: Count=7919042 Max=135612.42 Min=3.06 Avg=18.02]
+2022-05-24 16:36:58 160 sec: 8394227 operations; [UPDATE: Count=8394227 Max=135612.42 Min=3.06 Avg=18.14]
+2022-05-24 16:37:08 170 sec: 8978781 operations; [UPDATE: Count=8978781 Max=135612.42 Min=3.06 Avg=18.02]
+2022-05-24 16:37:18 180 sec: 9461241 operations; [UPDATE: Count=9461241 Max=135612.42 Min=3.06 Avg=18.11]
+2022-05-24 16:37:26 188 sec: 10000000 operations; [UPDATE: Count=10000000 Max=135612.42 Min=3.06 Avg=17.93]
+Run runtime(sec): 188.495
+Run operations(ops): 10000000
+Run throughput(ops/sec): 53051.8
+==================第 6 次测试=================
+2022-05-24 16:37:26 0 sec: 0 operations;
+2022-05-24 16:37:36 10 sec: 582530 operations; [UPDATE: Count=582530 Max=37250.32 Min=3.12 Avg=15.64]
+2022-05-24 16:37:46 20 sec: 1034427 operations; [UPDATE: Count=1034427 Max=37250.32 Min=3.12 Avg=18.10]
+2022-05-24 16:37:56 30 sec: 1489890 operations; [UPDATE: Count=1489890 Max=37250.32 Min=3.12 Avg=19.00]
+2022-05-24 16:38:06 40 sec: 1928105 operations; [UPDATE: Count=1928105 Max=37250.32 Min=3.12 Avg=19.66]
+2022-05-24 16:38:16 50 sec: 2584575 operations; [UPDATE: Count=2584575 Max=37250.32 Min=3.12 Avg=18.33]
+2022-05-24 16:38:26 60 sec: 3213141 operations; [UPDATE: Count=3213141 Max=37250.32 Min=3.08 Avg=17.70]
+2022-05-24 16:38:36 70 sec: 3711632 operations; [UPDATE: Count=3711632 Max=37250.32 Min=3.08 Avg=17.90]
+2022-05-24 16:38:46 80 sec: 4160089 operations; [UPDATE: Count=4160089 Max=37250.32 Min=3.08 Avg=18.28]
+2022-05-24 16:38:56 90 sec: 4620916 operations; [UPDATE: Count=4620916 Max=37250.32 Min=3.08 Avg=18.54]
+2022-05-24 16:39:06 100 sec: 5125668 operations; [UPDATE: Count=5125668 Max=37250.32 Min=3.08 Avg=18.58]
+2022-05-24 16:39:16 110 sec: 5781548 operations; [UPDATE: Count=5781548 Max=37250.32 Min=3.08 Avg=18.11]
+2022-05-24 16:39:26 120 sec: 6281267 operations; [UPDATE: Count=6281267 Max=37250.32 Min=3.08 Avg=18.19]
+2022-05-24 16:39:36 130 sec: 6848870 operations; [UPDATE: Count=6848870 Max=37250.32 Min=3.08 Avg=18.08]
+2022-05-24 16:39:46 140 sec: 7288967 operations; [UPDATE: Count=7288967 Max=37250.32 Min=3.08 Avg=18.30]
+2022-05-24 16:39:56 150 sec: 7830385 operations; [UPDATE: Count=7830385 Max=37250.32 Min=3.08 Avg=18.26]
+2022-05-24 16:40:06 160 sec: 8423936 operations; [UPDATE: Count=8423936 Max=37250.32 Min=3.08 Avg=18.10]
+2022-05-24 16:40:16 170 sec: 8931937 operations; [UPDATE: Count=8931937 Max=37250.32 Min=3.08 Avg=18.14]
+2022-05-24 16:40:26 180 sec: 9548021 operations; [UPDATE: Count=9548021 Max=37250.32 Min=3.08 Avg=17.97]
+2022-05-24 16:40:36 190 sec: 9978419 operations; [UPDATE: Count=9978419 Max=37250.32 Min=3.08 Avg=18.16]
+2022-05-24 16:40:39 192 sec: 10000000 operations; [UPDATE: Count=10000000 Max=37250.32 Min=3.08 Avg=18.31]
+Run runtime(sec): 192.107
+Run operations(ops): 10000000
+Run throughput(ops/sec): 52054.3
+==================第 7 次测试=================
+2022-05-24 16:40:39 0 sec: 0 operations;
+2022-05-24 16:40:49 10 sec: 524517 operations; [UPDATE: Count=524517 Max=29704.49 Min=3.13 Avg=17.55]
+2022-05-24 16:40:59 20 sec: 1233352 operations; [UPDATE: Count=1233352 Max=30240.29 Min=3.13 Avg=15.13]
+2022-05-24 16:41:09 30 sec: 1769431 operations; [UPDATE: Count=1769431 Max=30240.29 Min=3.12 Avg=15.95]
+2022-05-24 16:41:19 40 sec: 2214644 operations; [UPDATE: Count=2214644 Max=30240.29 Min=3.12 Avg=17.09]
+2022-05-24 16:41:29 50 sec: 2665730 operations; [UPDATE: Count=2665730 Max=30240.29 Min=3.12 Avg=17.81]
+2022-05-24 16:41:39 60 sec: 3142457 operations; [UPDATE: Count=3142457 Max=30240.29 Min=3.12 Avg=18.16]
+2022-05-24 16:41:49 70 sec: 3807304 operations; [UPDATE: Count=3807304 Max=90028.81 Min=3.12 Avg=17.48]
+2022-05-24 16:41:59 80 sec: 4444540 operations; [UPDATE: Count=4444540 Max=90028.81 Min=3.12 Avg=17.11]
+2022-05-24 16:42:09 90 sec: 4906818 operations; [UPDATE: Count=4906818 Max=90028.81 Min=3.12 Avg=17.46]
+2022-05-24 16:42:19 100 sec: 5334747 operations; [UPDATE: Count=5334747 Max=90028.81 Min=3.12 Avg=17.87]
+2022-05-24 16:42:29 110 sec: 5882131 operations; [UPDATE: Count=5882131 Max=90028.81 Min=3.12 Avg=17.83]
+2022-05-24 16:42:39 120 sec: 6497508 operations; [UPDATE: Count=6497508 Max=90028.81 Min=3.12 Avg=17.60]
+2022-05-24 16:42:49 130 sec: 7002260 operations; [UPDATE: Count=7002260 Max=90028.81 Min=3.12 Avg=17.70]
+2022-05-24 16:42:59 140 sec: 7567830 operations; [UPDATE: Count=7567830 Max=90028.81 Min=3.12 Avg=17.64]
+2022-05-24 16:43:09 150 sec: 8032455 operations; [UPDATE: Count=8032455 Max=90028.81 Min=3.12 Avg=17.82]
+2022-05-24 16:43:19 160 sec: 8559712 operations; [UPDATE: Count=8559712 Max=90028.81 Min=3.12 Avg=17.84]
+2022-05-24 16:43:29 170 sec: 9125415 operations; [UPDATE: Count=9125415 Max=90028.81 Min=3.12 Avg=17.78]
+2022-05-24 16:43:39 180 sec: 9621785 operations; [UPDATE: Count=9621785 Max=90028.81 Min=3.12 Avg=17.86]
+2022-05-24 16:43:45 186 sec: 10000000 operations; [UPDATE: Count=10000000 Max=90028.81 Min=3.12 Avg=17.81]
+Run runtime(sec): 186.626
+Run operations(ops): 10000000
+Run throughput(ops/sec): 53583.1
+==================第 8 次测试=================
+2022-05-24 16:43:45 0 sec: 0 operations;
+2022-05-24 16:43:55 10 sec: 538224 operations; [UPDATE: Count=538224 Max=27936.19 Min=3.23 Avg=16.81]
+2022-05-24 16:44:05 20 sec: 1057572 operations; [UPDATE: Count=1057572 Max=27936.19 Min=3.23 Avg=17.58]
+2022-05-24 16:44:15 30 sec: 1588261 operations; [UPDATE: Count=1588261 Max=27936.19 Min=3.23 Avg=17.71]
+2022-05-24 16:44:25 40 sec: 2052713 operations; [UPDATE: Count=2052713 Max=27936.19 Min=3.23 Avg=18.37]
+2022-05-24 16:44:35 50 sec: 2531404 operations; [UPDATE: Count=2531404 Max=31820.47 Min=3.17 Avg=18.68]
+2022-05-24 16:44:45 60 sec: 3158274 operations; [UPDATE: Count=3158274 Max=31820.47 Min=3.17 Avg=17.97]
+2022-05-24 16:44:55 70 sec: 3664789 operations; [UPDATE: Count=3664789 Max=31820.47 Min=3.17 Avg=18.09]
+2022-05-24 16:45:05 80 sec: 4275921 operations; [UPDATE: Count=4275921 Max=31820.47 Min=3.17 Avg=17.72]
+2022-05-24 16:45:15 90 sec: 4730204 operations; [UPDATE: Count=4730204 Max=31820.47 Min=3.17 Avg=18.05]
+2022-05-24 16:45:25 100 sec: 5198549 operations; [UPDATE: Count=5198549 Max=31820.47 Min=3.17 Avg=18.27]
+2022-05-24 16:45:35 110 sec: 5824729 operations; [UPDATE: Count=5824729 Max=31820.47 Min=3.12 Avg=17.93]
+2022-05-24 16:45:45 120 sec: 6293092 operations; [UPDATE: Count=6293092 Max=38863.12 Min=3.12 Avg=18.12]
+2022-05-24 16:45:55 130 sec: 6966347 operations; [UPDATE: Count=6966347 Max=65203.35 Min=3.12 Avg=17.72]
+2022-05-24 16:46:05 140 sec: 7400258 operations; [UPDATE: Count=7400258 Max=65203.35 Min=3.12 Avg=17.98]
+2022-05-24 16:46:15 150 sec: 7858395 operations; [UPDATE: Count=7858395 Max=65203.35 Min=3.12 Avg=18.15]
+2022-05-24 16:46:25 160 sec: 8300334 operations; [UPDATE: Count=8300334 Max=65203.35 Min=3.12 Avg=18.34]
+2022-05-24 16:46:35 170 sec: 8844705 operations; [UPDATE: Count=8844705 Max=65203.35 Min=3.12 Avg=18.29]
+2022-05-24 16:46:45 180 sec: 9555858 operations; [UPDATE: Count=9555858 Max=65203.35 Min=3.12 Avg=17.91]
+2022-05-24 16:46:54 188 sec: 10000000 operations; [UPDATE: Count=10000000 Max=65203.35 Min=3.12 Avg=17.94]
+Run runtime(sec): 188.766
+Run operations(ops): 10000000
+Run throughput(ops/sec): 52975.7
+==================第 9 次测试=================
+2022-05-24 16:46:54 0 sec: 0 operations;
+2022-05-24 16:47:04 10 sec: 438118 operations; [UPDATE: Count=438118 Max=36525.76 Min=3.19 Avg=21.04]
+2022-05-24 16:47:14 20 sec: 987084 operations; [UPDATE: Count=987084 Max=64854.82 Min=3.15 Avg=19.03]
+2022-05-24 16:47:24 30 sec: 1435673 operations; [UPDATE: Count=1435673 Max=64854.82 Min=3.07 Avg=19.79]
+2022-05-24 16:47:34 40 sec: 1940004 operations; [UPDATE: Count=1940004 Max=64854.82 Min=3.07 Avg=19.59]
+2022-05-24 16:47:44 50 sec: 2532624 operations; [UPDATE: Count=2532624 Max=64854.82 Min=3.07 Avg=18.77]
+2022-05-24 16:47:54 60 sec: 3052371 operations; [UPDATE: Count=3052371 Max=64854.82 Min=3.07 Avg=18.72]
+2022-05-24 16:48:04 70 sec: 3656264 operations; [UPDATE: Count=3656264 Max=64854.82 Min=3.07 Avg=18.23]
+2022-05-24 16:48:14 80 sec: 4103832 operations; [UPDATE: Count=4103832 Max=64854.82 Min=3.07 Avg=18.59]
+2022-05-24 16:48:24 90 sec: 4560135 operations; [UPDATE: Count=4560135 Max=64854.82 Min=3.07 Avg=18.84]
+2022-05-24 16:48:34 100 sec: 5077229 operations; [UPDATE: Count=5077229 Max=64854.82 Min=3.07 Avg=18.81]
+2022-05-24 16:48:44 110 sec: 5565888 operations; [UPDATE: Count=5565888 Max=64854.82 Min=3.07 Avg=18.88]
+2022-05-24 16:48:54 120 sec: 6259758 operations; [UPDATE: Count=6259758 Max=64854.82 Min=3.07 Avg=18.30]
+2022-05-24 16:49:04 130 sec: 6785230 operations; [UPDATE: Count=6785230 Max=64854.82 Min=3.07 Avg=18.30]
+2022-05-24 16:49:14 140 sec: 7243534 operations; [UPDATE: Count=7243534 Max=64854.82 Min=3.07 Avg=18.47]
+2022-05-24 16:49:24 150 sec: 7690458 operations; [UPDATE: Count=7690458 Max=64854.82 Min=3.07 Avg=18.65]
+2022-05-24 16:49:34 160 sec: 8147940 operations; [UPDATE: Count=8147940 Max=64854.82 Min=3.06 Avg=18.78]
+2022-05-24 16:49:44 170 sec: 8864746 operations; [UPDATE: Count=8864746 Max=107542.19 Min=3.06 Avg=18.33]
+2022-05-24 16:49:54 180 sec: 9406928 operations; [UPDATE: Count=9406928 Max=107542.19 Min=3.06 Avg=18.29]
+2022-05-24 16:50:04 190 sec: 9916460 operations; [UPDATE: Count=9916460 Max=107542.19 Min=3.06 Avg=18.32]
+2022-05-24 16:50:08 193 sec: 10000000 operations; [UPDATE: Count=10000000 Max=107542.19 Min=3.06 Avg=18.51]
+Run runtime(sec): 193.637
+Run operations(ops): 10000000
+Run throughput(ops/sec): 51643.1
+***********************This is test for workloadb*****************************
+2022-05-24 16:50:08 0 sec: 0 operations;
+2022-05-24 16:50:18 10 sec: 818108 operations; [INSERT: Count=818108 Max=37967.40 Min=2.02 Avg=8.69]
+2022-05-24 16:50:19 11 sec: 1000000 operations; [INSERT: Count=1000000 Max=37967.40 Min=2.02 Avg=7.96]
+Load runtime(sec): 11.5512
+Load operations(ops): 1000000
+Load throughput(ops/sec): 86570.8
+==================第 0 次测试=================
+2022-05-24 16:50:19 0 sec: 0 operations;
+2022-05-24 16:50:29 10 sec: 675848 operations; [READ: Count=67506 Max=104.98 Min=1.15 Avg=5.89] [UPDATE: Count=608342 Max=25983.94 Min=3.20 Avg=13.79]
+2022-05-24 16:50:39 20 sec: 1236021 operations; [READ: Count=123829 Max=3383.42 Min=1.15 Avg=6.04] [UPDATE: Count=1112192 Max=31111.58 Min=3.11 Avg=15.83]
+2022-05-24 16:50:49 30 sec: 1771850 operations; [READ: Count=177302 Max=3383.42 Min=1.15 Avg=6.12] [UPDATE: Count=1594548 Max=31111.58 Min=3.11 Avg=16.83]
+2022-05-24 16:50:59 40 sec: 2263568 operations; [READ: Count=226468 Max=3383.42 Min=1.15 Avg=6.13] [UPDATE: Count=2037100 Max=31111.58 Min=3.11 Avg=17.74]
+2022-05-24 16:51:09 50 sec: 2974547 operations; [READ: Count=297490 Max=3383.42 Min=1.12 Avg=6.02] [UPDATE: Count=2677057 Max=31111.58 Min=3.11 Avg=16.89]
+2022-05-24 16:51:19 60 sec: 3651280 operations; [READ: Count=365323 Max=4752.95 Min=1.12 Avg=6.02] [UPDATE: Count=3285957 Max=31111.58 Min=3.11 Avg=16.52]
+2022-05-24 16:51:29 70 sec: 4197708 operations; [READ: Count=419696 Max=14663.80 Min=1.12 Avg=6.07] [UPDATE: Count=3778012 Max=31111.58 Min=3.11 Avg=16.81]
+2022-05-24 16:51:39 80 sec: 4748060 operations; [READ: Count=474554 Max=14663.80 Min=1.12 Avg=6.08] [UPDATE: Count=4273506 Max=31111.58 Min=3.11 Avg=17.02]
+2022-05-24 16:51:49 90 sec: 5244156 operations; [READ: Count=523905 Max=14663.80 Min=1.12 Avg=6.08] [UPDATE: Count=4720251 Max=31111.58 Min=3.11 Avg=17.38]
+2022-05-24 16:51:59 100 sec: 5924804 operations; [READ: Count=592137 Max=14663.80 Min=1.12 Avg=6.03] [UPDATE: Count=5332667 Max=31111.58 Min=3.11 Avg=17.09]
+2022-05-24 16:52:09 110 sec: 6586365 operations; [READ: Count=658098 Max=14663.80 Min=1.12 Avg=6.02] [UPDATE: Count=5928267 Max=31111.58 Min=3.11 Avg=16.91]
+2022-05-24 16:52:19 120 sec: 7167527 operations; [READ: Count=716281 Max=14663.80 Min=1.12 Avg=6.03] [UPDATE: Count=6451246 Max=31111.58 Min=3.11 Avg=16.96]
+2022-05-24 16:52:29 130 sec: 7724210 operations; [READ: Count=772067 Max=14663.80 Min=1.12 Avg=6.04] [UPDATE: Count=6952143 Max=31111.58 Min=3.11 Avg=17.07]
+2022-05-24 16:52:39 140 sec: 8232791 operations; [READ: Count=822943 Max=14663.80 Min=1.12 Avg=6.05] [UPDATE: Count=7409848 Max=31111.58 Min=3.11 Avg=17.27]
+2022-05-24 16:52:49 150 sec: 8847054 operations; [READ: Count=884679 Max=14663.80 Min=1.12 Avg=6.03] [UPDATE: Count=7962375 Max=31111.58 Min=3.11 Avg=17.22]
+2022-05-24 16:52:59 160 sec: 9504568 operations; [READ: Count=950391 Max=14663.80 Min=1.12 Avg=6.03] [UPDATE: Count=8554177 Max=31111.58 Min=3.11 Avg=17.09]
+2022-05-24 16:53:09 169 sec: 10000000 operations; [READ: Count=1000388 Max=14663.80 Min=1.12 Avg=6.03] [UPDATE: Count=8999612 Max=31111.58 Min=3.11 Avg=17.24]
+Run runtime(sec): 169.94
+Run operations(ops): 10000000
+Run throughput(ops/sec): 58844.4
+==================第 1 次测试=================
+2022-05-24 16:53:09 0 sec: 0 operations;
+2022-05-24 16:53:19 10 sec: 658560 operations; [READ: Count=65979 Max=103.08 Min=1.12 Avg=6.28] [UPDATE: Count=592581 Max=38195.41 Min=3.14 Avg=14.55]
+2022-05-24 16:53:29 20 sec: 1145653 operations; [READ: Count=114658 Max=6116.65 Min=1.12 Avg=6.29] [UPDATE: Count=1030995 Max=38195.41 Min=3.14 Avg=17.38]
+2022-05-24 16:53:39 30 sec: 1646751 operations; [READ: Count=164680 Max=6116.65 Min=1.12 Avg=6.31] [UPDATE: Count=1482071 Max=38195.41 Min=3.14 Avg=18.36]
+2022-05-24 16:53:49 40 sec: 2429231 operations; [READ: Count=242749 Max=6116.65 Min=1.12 Avg=6.12] [UPDATE: Count=2186482 Max=38195.41 Min=3.14 Avg=16.54]
+2022-05-24 16:53:59 50 sec: 3038172 operations; [READ: Count=303749 Max=29767.50 Min=1.12 Avg=6.23] [UPDATE: Count=2734423 Max=38195.41 Min=3.14 Avg=16.56]
+2022-05-24 16:54:09 60 sec: 3635909 operations; [READ: Count=363537 Max=29767.50 Min=1.12 Avg=6.28] [UPDATE: Count=3272372 Max=38195.41 Min=3.14 Avg=16.64]
+2022-05-24 16:54:19 70 sec: 4122108 operations; [READ: Count=411559 Max=29767.50 Min=1.12 Avg=6.29] [UPDATE: Count=3710549 Max=38195.41 Min=3.14 Avg=17.18]
+2022-05-24 16:54:29 80 sec: 4635220 operations; [READ: Count=462932 Max=29767.50 Min=1.12 Avg=6.28] [UPDATE: Count=4172288 Max=38195.41 Min=3.14 Avg=17.50]
+2022-05-24 16:54:39 90 sec: 5334147 operations; [READ: Count=532560 Max=29767.50 Min=1.12 Avg=6.22] [UPDATE: Count=4801587 Max=38195.41 Min=3.14 Avg=17.09]
+2022-05-24 16:54:49 100 sec: 6009857 operations; [READ: Count=600029 Max=29767.50 Min=1.12 Avg=6.20] [UPDATE: Count=5409828 Max=38195.41 Min=3.14 Avg=16.85]
+2022-05-24 16:54:59 110 sec: 6557359 operations; [READ: Count=654859 Max=29767.50 Min=1.12 Avg=6.22] [UPDATE: Count=5902500 Max=38195.41 Min=3.14 Avg=17.00]
+2022-05-24 16:55:09 120 sec: 7102904 operations; [READ: Count=709352 Max=29767.50 Min=1.12 Avg=6.22] [UPDATE: Count=6393552 Max=38195.41 Min=3.14 Avg=17.14]
+2022-05-24 16:55:19 130 sec: 7601307 operations; [READ: Count=759321 Max=29767.50 Min=1.12 Avg=6.22] [UPDATE: Count=6841986 Max=38195.41 Min=3.14 Avg=17.38]
+2022-05-24 16:55:29 140 sec: 8282427 operations; [READ: Count=827268 Max=29767.50 Min=1.12 Avg=6.19] [UPDATE: Count=7455159 Max=38195.41 Min=3.14 Avg=17.16]
+2022-05-24 16:55:39 150 sec: 8904969 operations; [READ: Count=889812 Max=29767.50 Min=1.12 Avg=6.17] [UPDATE: Count=8015157 Max=38195.41 Min=3.14 Avg=17.11]
+2022-05-24 16:55:49 160 sec: 9485341 operations; [READ: Count=947905 Max=29767.50 Min=1.12 Avg=6.17] [UPDATE: Count=8537436 Max=38195.41 Min=3.14 Avg=17.14]
+2022-05-24 16:55:58 168 sec: 10000000 operations; [READ: Count=999232 Max=29767.50 Min=1.12 Avg=6.17] [UPDATE: Count=9000768 Max=38195.41 Min=3.14 Avg=17.05]
+Run runtime(sec): 168.173
+Run operations(ops): 10000000
+Run throughput(ops/sec): 59462.7
+==================第 2 次测试=================
+2022-05-24 16:55:58 0 sec: 0 operations;
+2022-05-24 16:56:08 10 sec: 519305 operations; [READ: Count=51837 Max=4954.59 Min=1.14 Avg=6.25] [UPDATE: Count=467468 Max=33132.72 Min=3.29 Avg=18.86]
+2022-05-24 16:56:18 20 sec: 1030352 operations; [READ: Count=103056 Max=4954.59 Min=1.04 Avg=6.16] [UPDATE: Count=927296 Max=33132.72 Min=3.25 Avg=19.52]
+2022-05-24 16:56:28 30 sec: 1524093 operations; [READ: Count=152447 Max=4954.59 Min=1.04 Avg=6.16] [UPDATE: Count=1371646 Max=33132.72 Min=3.25 Avg=19.98]
+2022-05-24 16:56:38 40 sec: 2105256 operations; [READ: Count=210012 Max=4954.59 Min=1.04 Avg=6.13] [UPDATE: Count=1895244 Max=33132.72 Min=3.25 Avg=19.31]
+2022-05-24 16:56:48 50 sec: 2674010 operations; [READ: Count=266611 Max=4954.59 Min=1.04 Avg=6.12] [UPDATE: Count=2407399 Max=35125.41 Min=3.25 Avg=19.03]
+2022-05-24 16:56:58 60 sec: 3449447 operations; [READ: Count=343725 Max=24005.53 Min=1.04 Avg=6.20] [UPDATE: Count=3105722 Max=35125.41 Min=3.23 Avg=17.62]
+2022-05-24 16:57:08 70 sec: 4006082 operations; [READ: Count=399272 Max=24005.53 Min=1.04 Avg=6.20] [UPDATE: Count=3606810 Max=35125.41 Min=3.19 Avg=17.73]
+2022-05-24 16:57:18 80 sec: 4496321 operations; [READ: Count=448468 Max=24005.53 Min=1.04 Avg=6.21] [UPDATE: Count=4047853 Max=35125.41 Min=3.18 Avg=18.10]
+2022-05-24 16:57:28 90 sec: 5006795 operations; [READ: Count=499173 Max=24005.53 Min=1.04 Avg=6.21] [UPDATE: Count=4507622 Max=35125.41 Min=3.18 Avg=18.30]
+2022-05-24 16:57:38 100 sec: 5619549 operations; [READ: Count=560562 Max=25219.32 Min=1.04 Avg=6.23] [UPDATE: Count=5058987 Max=35125.41 Min=3.14 Avg=18.12]
+2022-05-24 16:57:48 110 sec: 6342654 operations; [READ: Count=633108 Max=25219.32 Min=1.04 Avg=6.19] [UPDATE: Count=5709546 Max=35125.41 Min=3.14 Avg=17.64]
+2022-05-24 16:57:58 120 sec: 7019768 operations; [READ: Count=700951 Max=25219.32 Min=1.04 Avg=6.20] [UPDATE: Count=6318817 Max=35125.41 Min=3.14 Avg=17.37]
+2022-05-24 16:58:08 130 sec: 7534970 operations; [READ: Count=752528 Max=25219.32 Min=1.04 Avg=6.21] [UPDATE: Count=6782442 Max=35125.41 Min=3.14 Avg=17.55]
+2022-05-24 16:58:18 140 sec: 8034861 operations; [READ: Count=802296 Max=25219.32 Min=1.04 Avg=6.20] [UPDATE: Count=7232565 Max=35125.41 Min=3.14 Avg=17.74]
+2022-05-24 16:58:28 150 sec: 8533305 operations; [READ: Count=851740 Max=25219.32 Min=1.04 Avg=6.19] [UPDATE: Count=7681565 Max=35125.41 Min=3.14 Avg=17.91]
+2022-05-24 16:58:38 160 sec: 9273220 operations; [READ: Count=925605 Max=25219.32 Min=1.04 Avg=6.17] [UPDATE: Count=8347615 Max=91904.00 Min=3.14 Avg=17.56]
+2022-05-24 16:58:48 170 sec: 9902117 operations; [READ: Count=988626 Max=25219.32 Min=1.04 Avg=6.17] [UPDATE: Count=8913491 Max=91904.00 Min=3.14 Avg=17.47]
+2022-05-24 16:58:49 171 sec: 10000000 operations; [READ: Count=998605 Max=25219.32 Min=1.04 Avg=6.18] [UPDATE: Count=9001395 Max=91904.00 Min=3.14 Avg=17.40]
+Run runtime(sec): 171.335
+Run operations(ops): 10000000
+Run throughput(ops/sec): 58365.1
+==================第 3 次测试=================
+2022-05-24 16:58:49 0 sec: 0 operations;
+2022-05-24 16:58:59 10 sec: 528417 operations; [READ: Count=52741 Max=139.60 Min=1.15 Avg=6.22] [UPDATE: Count=475676 Max=40325.42 Min=3.15 Avg=18.55]
+2022-05-24 16:59:09 20 sec: 1031402 operations; [READ: Count=103010 Max=139.60 Min=1.13 Avg=6.29] [UPDATE: Count=928392 Max=40325.42 Min=3.15 Avg=19.50]
+2022-05-24 16:59:19 30 sec: 1535123 operations; [READ: Count=153454 Max=3310.02 Min=1.13 Avg=6.31] [UPDATE: Count=1381669 Max=40325.42 Min=3.15 Avg=19.82]
+2022-05-24 16:59:29 40 sec: 2318696 operations; [READ: Count=231557 Max=3310.02 Min=1.13 Avg=6.17] [UPDATE: Count=2087139 Max=40325.42 Min=3.15 Avg=17.41]
+2022-05-24 16:59:39 50 sec: 2983542 operations; [READ: Count=297415 Max=4872.64 Min=1.13 Avg=6.22] [UPDATE: Count=2686127 Max=40325.42 Min=3.13 Avg=16.90]
+2022-05-24 16:59:49 60 sec: 3500032 operations; [READ: Count=349218 Max=4872.64 Min=1.13 Avg=6.25] [UPDATE: Count=3150814 Max=40325.42 Min=3.13 Avg=17.35]
+2022-05-24 16:59:59 70 sec: 4005854 operations; [READ: Count=399726 Max=4872.64 Min=1.13 Avg=6.26] [UPDATE: Count=3606128 Max=40325.42 Min=3.13 Avg=17.73]
+2022-05-24 17:00:09 80 sec: 4498166 operations; [READ: Count=448918 Max=4872.64 Min=1.13 Avg=6.27] [UPDATE: Count=4049248 Max=40325.42 Min=3.13 Avg=18.08]
+2022-05-24 17:00:19 90 sec: 5220731 operations; [READ: Count=521204 Max=4872.64 Min=1.13 Avg=6.21] [UPDATE: Count=4699527 Max=40325.42 Min=3.13 Avg=17.50]
+2022-05-24 17:00:29 100 sec: 5831811 operations; [READ: Count=582325 Max=4872.64 Min=1.13 Avg=6.21] [UPDATE: Count=5249486 Max=40325.42 Min=3.13 Avg=17.41]
+2022-05-24 17:00:39 110 sec: 6412953 operations; [READ: Count=640446 Max=4872.64 Min=1.13 Avg=6.21] [UPDATE: Count=5772507 Max=40325.42 Min=3.13 Avg=17.42]
+2022-05-24 17:00:49 120 sec: 6987137 operations; [READ: Count=698056 Max=4872.64 Min=1.13 Avg=6.22] [UPDATE: Count=6289081 Max=79136.99 Min=3.13 Avg=17.45]
+2022-05-24 17:00:59 130 sec: 7477212 operations; [READ: Count=747045 Max=4872.64 Min=1.13 Avg=6.23] [UPDATE: Count=6730167 Max=79136.99 Min=3.13 Avg=17.69]
+2022-05-24 17:01:09 140 sec: 8105057 operations; [READ: Count=809980 Max=4872.64 Min=1.13 Avg=6.21] [UPDATE: Count=7295077 Max=79136.99 Min=3.13 Avg=17.57]
+2022-05-24 17:01:19 150 sec: 8728125 operations; [READ: Count=872365 Max=8786.13 Min=1.13 Avg=6.21] [UPDATE: Count=7855760 Max=79136.99 Min=3.13 Avg=17.48]
+2022-05-24 17:01:29 160 sec: 9270008 operations; [READ: Count=927077 Max=8786.13 Min=1.11 Avg=6.21] [UPDATE: Count=8342931 Max=79136.99 Min=3.13 Avg=17.57]
+2022-05-24 17:01:39 170 sec: 9972549 operations; [READ: Count=997186 Max=18183.78 Min=1.11 Avg=6.23] [UPDATE: Count=8975363 Max=79136.99 Min=3.13 Avg=17.33]
+2022-05-24 17:01:42 173 sec: 10000000 operations; [READ: Count=999929 Max=18183.78 Min=1.11 Avg=6.24] [UPDATE: Count=9000071 Max=79136.99 Min=3.13 Avg=17.65]
+Run runtime(sec): 173.466
+Run operations(ops): 10000000
+Run throughput(ops/sec): 57648
+==================第 4 次测试=================
+2022-05-24 17:01:42 0 sec: 0 operations;
+2022-05-24 17:01:52 10 sec: 481842 operations; [READ: Count=48341 Max=3776.76 Min=1.16 Avg=6.31] [UPDATE: Count=433501 Max=32603.95 Min=3.22 Avg=20.52]
+2022-05-24 17:02:02 20 sec: 1346322 operations; [READ: Count=134659 Max=3776.76 Min=1.14 Avg=6.08] [UPDATE: Count=1211663 Max=32603.95 Min=3.17 Avg=14.65]
+2022-05-24 17:02:12 30 sec: 1897104 operations; [READ: Count=189989 Max=3835.13 Min=1.14 Avg=6.14] [UPDATE: Count=1707115 Max=32603.95 Min=3.14 Avg=15.80]
+2022-05-24 17:02:22 40 sec: 2398413 operations; [READ: Count=240009 Max=3902.73 Min=1.13 Avg=6.18] [UPDATE: Count=2158404 Max=32603.95 Min=3.14 Avg=16.80]
+2022-05-24 17:02:32 50 sec: 2892578 operations; [READ: Count=289622 Max=3902.73 Min=1.13 Avg=6.20] [UPDATE: Count=2602956 Max=32603.95 Min=3.14 Avg=17.50]
+2022-05-24 17:02:42 60 sec: 3451567 operations; [READ: Count=345515 Max=3902.73 Min=1.13 Avg=6.18] [UPDATE: Count=3106052 Max=32603.95 Min=3.14 Avg=17.63]
+2022-05-24 17:02:52 70 sec: 4247473 operations; [READ: Count=425513 Max=3902.73 Min=1.13 Avg=6.10] [UPDATE: Count=3821960 Max=32603.95 Min=3.14 Avg=16.67]
+2022-05-24 17:03:02 80 sec: 4869922 operations; [READ: Count=487920 Max=3902.73 Min=1.13 Avg=6.11] [UPDATE: Count=4382002 Max=32603.95 Min=3.14 Avg=16.63]
+2022-05-24 17:03:12 90 sec: 5371222 operations; [READ: Count=538227 Max=3902.73 Min=1.13 Avg=6.11] [UPDATE: Count=4832995 Max=32603.95 Min=3.14 Avg=17.00]
+2022-05-24 17:03:22 100 sec: 5870077 operations; [READ: Count=588180 Max=3902.73 Min=1.13 Avg=6.12] [UPDATE: Count=5281897 Max=32603.95 Min=3.14 Avg=17.31]
+2022-05-24 17:03:32 110 sec: 6366084 operations; [READ: Count=637789 Max=3902.73 Min=1.13 Avg=6.12] [UPDATE: Count=5728295 Max=32603.95 Min=3.14 Avg=17.58]
+2022-05-24 17:03:42 120 sec: 7079465 operations; [READ: Count=709311 Max=3902.73 Min=1.13 Avg=6.08] [UPDATE: Count=6370154 Max=32603.95 Min=3.14 Avg=17.24]
+2022-05-24 17:03:52 130 sec: 7688073 operations; [READ: Count=770150 Max=3902.73 Min=1.13 Avg=6.07] [UPDATE: Count=6917923 Max=58561.20 Min=3.14 Avg=17.20]
+2022-05-24 17:04:02 140 sec: 8267239 operations; [READ: Count=828103 Max=15204.05 Min=1.13 Avg=6.09] [UPDATE: Count=7439136 Max=58561.20 Min=3.14 Avg=17.23]
+2022-05-24 17:04:12 150 sec: 8854826 operations; [READ: Count=886834 Max=15204.05 Min=1.13 Avg=6.12] [UPDATE: Count=7967992 Max=58561.20 Min=3.14 Avg=17.23]
+2022-05-24 17:04:22 160 sec: 9354573 operations; [READ: Count=936918 Max=15204.05 Min=1.13 Avg=6.13] [UPDATE: Count=8417655 Max=58561.20 Min=3.14 Avg=17.41]
+2022-05-24 17:04:32 169 sec: 10000000 operations; [READ: Count=1001887 Max=15204.05 Min=1.13 Avg=6.11] [UPDATE: Count=8998113 Max=58561.20 Min=3.14 Avg=17.28]
+Run runtime(sec): 169.948
+Run operations(ops): 10000000
+Run throughput(ops/sec): 58841.6
+==================第 5 次测试=================
+2022-05-24 17:04:32 0 sec: 0 operations;
+2022-05-24 17:04:42 10 sec: 631659 operations; [READ: Count=63346 Max=115.56 Min=1.14 Avg=6.17] [UPDATE: Count=568313 Max=31254.36 Min=3.14 Avg=15.39]
+2022-05-24 17:04:52 20 sec: 1255397 operations; [READ: Count=125523 Max=121.94 Min=1.14 Avg=6.22] [UPDATE: Count=1129874 Max=31254.36 Min=3.14 Avg=15.83]
+2022-05-24 17:05:02 30 sec: 1769541 operations; [READ: Count=176736 Max=3333.98 Min=1.14 Avg=6.23] [UPDATE: Count=1592805 Max=31254.36 Min=3.14 Avg=17.05]
+2022-05-24 17:05:12 40 sec: 2264682 operations; [READ: Count=226132 Max=3333.98 Min=1.13 Avg=6.21] [UPDATE: Count=2038550 Max=31254.36 Min=3.14 Avg=17.88]
+2022-05-24 17:05:22 50 sec: 2855895 operations; [READ: Count=285395 Max=3333.98 Min=1.13 Avg=6.15] [UPDATE: Count=2570500 Max=31254.36 Min=3.14 Avg=17.76]
+2022-05-24 17:05:32 60 sec: 3529400 operations; [READ: Count=352948 Max=3333.98 Min=1.13 Avg=6.12] [UPDATE: Count=3176452 Max=31254.36 Min=3.14 Avg=17.23]
+2022-05-24 17:05:42 70 sec: 4117573 operations; [READ: Count=411548 Max=3492.08 Min=1.13 Avg=6.14] [UPDATE: Count=3706025 Max=31254.36 Min=3.14 Avg=17.25]
+2022-05-24 17:05:52 80 sec: 4741987 operations; [READ: Count=473053 Max=3492.08 Min=1.13 Avg=6.17] [UPDATE: Count=4268934 Max=31254.36 Min=3.14 Avg=17.11]
+2022-05-24 17:06:02 90 sec: 5244134 operations; [READ: Count=523483 Max=3492.08 Min=1.13 Avg=6.16] [UPDATE: Count=4720651 Max=31254.36 Min=3.14 Avg=17.44]
+2022-05-24 17:06:12 100 sec: 5737745 operations; [READ: Count=572985 Max=3492.08 Min=1.13 Avg=6.16] [UPDATE: Count=5164760 Max=31254.36 Min=3.14 Avg=17.74]
+2022-05-24 17:06:22 110 sec: 6291858 operations; [READ: Count=628643 Max=3492.08 Min=1.13 Avg=6.16] [UPDATE: Count=5663215 Max=31254.36 Min=3.14 Avg=17.81]
+2022-05-24 17:06:32 120 sec: 7031860 operations; [READ: Count=702785 Max=3492.08 Min=1.13 Avg=6.13] [UPDATE: Count=6329075 Max=31254.36 Min=3.14 Avg=17.36]
+2022-05-24 17:06:42 130 sec: 7633579 operations; [READ: Count=762667 Max=3492.08 Min=1.13 Avg=6.13] [UPDATE: Count=6870912 Max=31254.36 Min=3.14 Avg=17.33]
+2022-05-24 17:06:52 140 sec: 8233484 operations; [READ: Count=822636 Max=3492.08 Min=1.13 Avg=6.14] [UPDATE: Count=7410848 Max=31254.36 Min=3.14 Avg=17.30]
+2022-05-24 17:07:02 150 sec: 8717966 operations; [READ: Count=871138 Max=3492.08 Min=1.13 Avg=6.14] [UPDATE: Count=7846828 Max=35542.28 Min=3.14 Avg=17.52]
+2022-05-24 17:07:12 160 sec: 9218523 operations; [READ: Count=921280 Max=3492.08 Min=1.13 Avg=6.15] [UPDATE: Count=8297243 Max=73681.20 Min=3.14 Avg=17.69]
+2022-05-24 17:07:22 170 sec: 9874696 operations; [READ: Count=986669 Max=13353.42 Min=1.13 Avg=6.14] [UPDATE: Count=8888027 Max=73681.20 Min=3.14 Avg=17.54]
+2022-05-24 17:07:24 171 sec: 10000000 operations; [READ: Count=999000 Max=13353.42 Min=1.13 Avg=6.13] [UPDATE: Count=9001000 Max=73681.20 Min=3.14 Avg=17.43]
+Run runtime(sec): 171.456
+Run operations(ops): 10000000
+Run throughput(ops/sec): 58323.9
+==================第 6 次测试=================
+2022-05-24 17:07:24 0 sec: 0 operations;
+2022-05-24 17:07:34 10 sec: 454991 operations; [READ: Count=45381 Max=145.96 Min=1.13 Avg=6.36] [UPDATE: Count=409610 Max=40378.70 Min=3.23 Avg=21.71]
+2022-05-24 17:07:44 20 sec: 1159070 operations; [READ: Count=115894 Max=4053.23 Min=1.13 Avg=6.27] [UPDATE: Count=1043176 Max=40378.70 Min=3.22 Avg=17.16]
+2022-05-24 17:07:54 30 sec: 1649249 operations; [READ: Count=164817 Max=4053.23 Min=1.13 Avg=6.27] [UPDATE: Count=1484432 Max=40378.70 Min=3.22 Avg=18.32]
+2022-05-24 17:08:04 40 sec: 2173781 operations; [READ: Count=217299 Max=10911.20 Min=1.13 Avg=6.30] [UPDATE: Count=1956482 Max=40378.70 Min=3.22 Avg=18.61]
+2022-05-24 17:08:14 50 sec: 2964541 operations; [READ: Count=296780 Max=10911.20 Min=1.13 Avg=6.19] [UPDATE: Count=2667761 Max=40378.70 Min=3.22 Avg=17.00]
+2022-05-24 17:08:24 60 sec: 3572461 operations; [READ: Count=357477 Max=10911.20 Min=1.13 Avg=6.18] [UPDATE: Count=3214984 Max=40378.70 Min=3.22 Avg=16.94]
+2022-05-24 17:08:34 70 sec: 4109159 operations; [READ: Count=411005 Max=10911.20 Min=1.13 Avg=6.18] [UPDATE: Count=3698154 Max=40378.70 Min=3.22 Avg=17.22]
+2022-05-24 17:08:44 80 sec: 4625535 operations; [READ: Count=462907 Max=10911.20 Min=1.13 Avg=6.18] [UPDATE: Count=4162628 Max=40378.70 Min=3.22 Avg=17.53]
+2022-05-24 17:08:54 90 sec: 5133537 operations; [READ: Count=513816 Max=10911.20 Min=1.13 Avg=6.19] [UPDATE: Count=4619721 Max=40378.70 Min=3.22 Avg=17.79]
+2022-05-24 17:09:04 100 sec: 5920175 operations; [READ: Count=592617 Max=10911.20 Min=1.13 Avg=6.13] [UPDATE: Count=5327558 Max=62517.59 Min=3.22 Avg=17.11]
+2022-05-24 17:09:14 110 sec: 6460094 operations; [READ: Count=646404 Max=10911.20 Min=1.10 Avg=6.13] [UPDATE: Count=5813690 Max=62517.59 Min=3.22 Avg=17.26]
+2022-05-24 17:09:24 120 sec: 7122254 operations; [READ: Count=713077 Max=10911.20 Min=1.10 Avg=6.14] [UPDATE: Count=6409177 Max=62517.59 Min=3.22 Avg=17.07]
+2022-05-24 17:09:34 130 sec: 7615462 operations; [READ: Count=762493 Max=10911.20 Min=1.10 Avg=6.14] [UPDATE: Count=6852969 Max=62517.59 Min=3.22 Avg=17.32]
+2022-05-24 17:09:44 140 sec: 8102016 operations; [READ: Count=811227 Max=10911.20 Min=1.10 Avg=6.17] [UPDATE: Count=7290789 Max=62517.59 Min=3.22 Avg=17.55]
+2022-05-24 17:09:54 150 sec: 8765681 operations; [READ: Count=877096 Max=10911.20 Min=1.10 Avg=6.14] [UPDATE: Count=7888585 Max=62517.59 Min=3.22 Avg=17.37]
+2022-05-24 17:10:04 160 sec: 9341605 operations; [READ: Count=934531 Max=15725.99 Min=1.10 Avg=6.15] [UPDATE: Count=8407074 Max=62517.59 Min=3.22 Avg=17.39]
+2022-05-24 17:10:13 169 sec: 10000000 operations; [READ: Count=1000248 Max=15725.99 Min=1.10 Avg=6.16] [UPDATE: Count=8999752 Max=62517.59 Min=3.22 Avg=17.19]
+Run runtime(sec): 169.675
+Run operations(ops): 10000000
+Run throughput(ops/sec): 58936.3
+==================第 7 次测试=================
+2022-05-24 17:10:13 0 sec: 0 operations;
+2022-05-24 17:10:23 10 sec: 477717 operations; [READ: Count=47553 Max=267.39 Min=1.16 Avg=6.19] [UPDATE: Count=430164 Max=58386.67 Min=3.19 Avg=20.67]
+2022-05-24 17:10:33 20 sec: 1035703 operations; [READ: Count=103094 Max=15648.82 Min=1.14 Avg=6.40] [UPDATE: Count=932609 Max=58386.67 Min=3.19 Avg=19.40]
+2022-05-24 17:10:43 30 sec: 1588919 operations; [READ: Count=158092 Max=15648.82 Min=1.14 Avg=6.34] [UPDATE: Count=1430827 Max=58386.67 Min=3.19 Avg=19.09]
+2022-05-24 17:10:53 40 sec: 2116241 operations; [READ: Count=211072 Max=15648.82 Min=1.14 Avg=6.28] [UPDATE: Count=1905169 Max=58386.67 Min=3.19 Avg=19.20]
+2022-05-24 17:11:03 50 sec: 2917788 operations; [READ: Count=291346 Max=23221.15 Min=1.14 Avg=6.25] [UPDATE: Count=2626442 Max=58386.67 Min=3.19 Avg=17.32]
+2022-05-24 17:11:13 60 sec: 3518736 operations; [READ: Count=351441 Max=23221.15 Min=1.14 Avg=6.27] [UPDATE: Count=3167295 Max=58386.67 Min=3.19 Avg=17.25]
+2022-05-24 17:11:23 70 sec: 3999042 operations; [READ: Count=399551 Max=23221.15 Min=1.14 Avg=6.27] [UPDATE: Count=3599491 Max=58386.67 Min=3.19 Avg=17.77]
+2022-05-24 17:11:33 80 sec: 4505013 operations; [READ: Count=449725 Max=23221.15 Min=1.14 Avg=6.28] [UPDATE: Count=4055288 Max=58386.67 Min=3.19 Avg=18.05]
+2022-05-24 17:11:43 90 sec: 5082180 operations; [READ: Count=507426 Max=23221.15 Min=1.14 Avg=6.25] [UPDATE: Count=4574754 Max=58386.67 Min=3.15 Avg=18.02]
+2022-05-24 17:11:53 100 sec: 5868415 operations; [READ: Count=586103 Max=23221.15 Min=1.14 Avg=6.18] [UPDATE: Count=5282312 Max=58386.67 Min=3.14 Avg=17.30]
+2022-05-24 17:12:03 110 sec: 6488998 operations; [READ: Count=648606 Max=23221.15 Min=1.11 Avg=6.20] [UPDATE: Count=5840392 Max=58386.67 Min=3.14 Avg=17.21]
+2022-05-24 17:12:13 120 sec: 6983845 operations; [READ: Count=698165 Max=23221.15 Min=1.11 Avg=6.20] [UPDATE: Count=6285680 Max=58386.67 Min=3.14 Avg=17.47]
+2022-05-24 17:12:23 130 sec: 7480437 operations; [READ: Count=747822 Max=23221.15 Min=1.11 Avg=6.20] [UPDATE: Count=6732615 Max=58386.67 Min=3.13 Avg=17.69]
+2022-05-24 17:12:33 140 sec: 7974849 operations; [READ: Count=797287 Max=23221.15 Min=1.11 Avg=6.20] [UPDATE: Count=7177562 Max=58386.67 Min=3.13 Avg=17.89]
+2022-05-24 17:12:43 150 sec: 8798621 operations; [READ: Count=879117 Max=23221.15 Min=1.11 Avg=6.15] [UPDATE: Count=7919504 Max=58386.67 Min=3.13 Avg=17.34]
+2022-05-24 17:12:53 160 sec: 9435546 operations; [READ: Count=942671 Max=23221.15 Min=1.11 Avg=6.16] [UPDATE: Count=8492875 Max=58386.67 Min=3.13 Avg=17.25]
+2022-05-24 17:13:03 170 sec: 9955146 operations; [READ: Count=994518 Max=23221.15 Min=1.11 Avg=6.16] [UPDATE: Count=8960628 Max=58386.67 Min=3.13 Avg=17.38]
+2022-05-24 17:13:07 173 sec: 10000000 operations; [READ: Count=999049 Max=23221.15 Min=1.11 Avg=6.17] [UPDATE: Count=9000951 Max=58386.67 Min=3.13 Avg=17.62]
+Run runtime(sec): 173.101
+Run operations(ops): 10000000
+Run throughput(ops/sec): 57769.6
+==================第 8 次测试=================
+2022-05-24 17:13:07 0 sec: 0 operations;
+2022-05-24 17:13:17 10 sec: 613509 operations; [READ: Count=61250 Max=3334.57 Min=1.14 Avg=6.10] [UPDATE: Count=552259 Max=31794.15 Min=3.24 Avg=15.74]
+2022-05-24 17:13:27 20 sec: 1251252 operations; [READ: Count=124887 Max=3334.57 Min=1.14 Avg=6.11] [UPDATE: Count=1126365 Max=31794.15 Min=3.24 Avg=15.81]
+2022-05-24 17:13:37 30 sec: 1877590 operations; [READ: Count=187722 Max=3334.57 Min=1.12 Avg=6.18] [UPDATE: Count=1689868 Max=31794.15 Min=3.18 Avg=15.93]
+2022-05-24 17:13:47 40 sec: 2386933 operations; [READ: Count=238581 Max=3351.99 Min=1.12 Avg=6.22] [UPDATE: Count=2148352 Max=31794.15 Min=3.18 Avg=16.84]
+2022-05-24 17:13:57 50 sec: 2882401 operations; [READ: Count=288314 Max=8787.75 Min=1.12 Avg=6.24] [UPDATE: Count=2594087 Max=31794.15 Min=3.18 Avg=17.52]
+2022-05-24 17:14:07 60 sec: 3381753 operations; [READ: Count=338288 Max=8930.51 Min=1.12 Avg=6.27] [UPDATE: Count=3043465 Max=31794.15 Min=3.18 Avg=17.98]
+2022-05-24 17:14:17 70 sec: 4144791 operations; [READ: Count=414557 Max=8930.51 Min=1.12 Avg=6.17] [UPDATE: Count=3730234 Max=31794.15 Min=3.18 Avg=17.08]
+2022-05-24 17:14:27 80 sec: 4820799 operations; [READ: Count=482638 Max=24313.72 Min=1.12 Avg=6.20] [UPDATE: Count=4338161 Max=31794.15 Min=3.18 Avg=16.77]
+2022-05-24 17:14:37 90 sec: 5366994 operations; [READ: Count=537165 Max=24313.72 Min=1.10 Avg=6.20] [UPDATE: Count=4829829 Max=31794.15 Min=3.18 Avg=16.97]
+2022-05-24 17:14:47 100 sec: 5863318 operations; [READ: Count=586873 Max=24313.72 Min=1.10 Avg=6.19] [UPDATE: Count=5276445 Max=31794.15 Min=3.18 Avg=17.30]
+2022-05-24 17:14:57 110 sec: 6368038 operations; [READ: Count=637181 Max=24313.72 Min=1.10 Avg=6.19] [UPDATE: Count=5730857 Max=31794.15 Min=3.18 Avg=17.54]
+2022-05-24 17:15:07 120 sec: 6979745 operations; [READ: Count=698141 Max=24313.72 Min=1.10 Avg=6.16] [UPDATE: Count=6281604 Max=31794.15 Min=3.18 Avg=17.46]
+2022-05-24 17:15:17 130 sec: 7681826 operations; [READ: Count=768683 Max=24313.72 Min=1.10 Avg=6.13] [UPDATE: Count=6913143 Max=31794.15 Min=3.18 Avg=17.18]
+2022-05-24 17:15:27 140 sec: 8355723 operations; [READ: Count=836321 Max=24313.72 Min=1.10 Avg=6.15] [UPDATE: Count=7519402 Max=76914.62 Min=3.18 Avg=16.99]
+2022-05-24 17:15:37 150 sec: 8848481 operations; [READ: Count=885757 Max=24313.72 Min=1.06 Avg=6.15] [UPDATE: Count=7962724 Max=76914.62 Min=3.18 Avg=17.21]
+2022-05-24 17:15:47 160 sec: 9425855 operations; [READ: Count=943422 Max=24313.72 Min=1.06 Avg=6.14] [UPDATE: Count=8482433 Max=76914.62 Min=3.18 Avg=17.24]
+2022-05-24 17:15:57 170 sec: 9990024 operations; [READ: Count=999669 Max=24313.72 Min=1.06 Avg=6.14] [UPDATE: Count=8990355 Max=76914.62 Min=3.18 Avg=17.29]
+2022-05-24 17:15:57 170 sec: 10000000 operations; [READ: Count=1000657 Max=24313.72 Min=1.06 Avg=6.14] [UPDATE: Count=8999343 Max=76914.62 Min=3.18 Avg=17.28]
+Run runtime(sec): 170.201
+Run operations(ops): 10000000
+Run throughput(ops/sec): 58754
+==================第 9 次测试=================
+2022-05-24 17:15:57 0 sec: 0 operations;
+2022-05-24 17:16:07 10 sec: 736750 operations; [READ: Count=73918 Max=15182.32 Min=1.14 Avg=6.52] [UPDATE: Count=662832 Max=31083.69 Min=3.23 Avg=12.94]
+2022-05-24 17:16:17 20 sec: 1287795 operations; [READ: Count=129191 Max=15182.32 Min=1.10 Avg=6.37] [UPDATE: Count=1158604 Max=31083.69 Min=3.23 Avg=15.37]
+2022-05-24 17:16:27 30 sec: 1784701 operations; [READ: Count=179078 Max=15182.32 Min=1.10 Avg=6.33] [UPDATE: Count=1605623 Max=31083.69 Min=3.16 Avg=16.88]
+2022-05-24 17:16:37 40 sec: 2308691 operations; [READ: Count=231687 Max=15182.32 Min=1.10 Avg=6.28] [UPDATE: Count=2077004 Max=31083.69 Min=3.16 Avg=17.51]
+2022-05-24 17:16:47 50 sec: 2941850 operations; [READ: Count=295102 Max=15182.32 Min=1.10 Avg=6.21] [UPDATE: Count=2646748 Max=31083.69 Min=3.16 Avg=17.19]
+2022-05-24 17:16:57 60 sec: 3639875 operations; [READ: Count=364809 Max=24910.81 Min=1.10 Avg=6.26] [UPDATE: Count=3275066 Max=31083.69 Min=3.16 Avg=16.65]
+2022-05-24 17:17:07 70 sec: 4247025 operations; [READ: Count=425755 Max=24910.81 Min=1.10 Avg=6.26] [UPDATE: Count=3821270 Max=31083.69 Min=3.16 Avg=16.67]
+2022-05-24 17:17:17 80 sec: 4754544 operations; [READ: Count=476525 Max=24910.81 Min=1.10 Avg=6.25] [UPDATE: Count=4278019 Max=31083.69 Min=3.16 Avg=17.06]
+2022-05-24 17:17:27 90 sec: 5249054 operations; [READ: Count=525803 Max=24910.81 Min=1.10 Avg=6.24] [UPDATE: Count=4723251 Max=31083.69 Min=3.16 Avg=17.42]
+2022-05-24 17:17:37 100 sec: 5834010 operations; [READ: Count=584545 Max=24910.81 Min=1.10 Avg=6.21] [UPDATE: Count=5249465 Max=31083.69 Min=3.16 Avg=17.42]
+2022-05-24 17:17:47 110 sec: 6581490 operations; [READ: Count=659462 Max=24910.81 Min=1.09 Avg=6.16] [UPDATE: Count=5922028 Max=49616.55 Min=3.16 Avg=16.97]
+2022-05-24 17:17:57 120 sec: 7177092 operations; [READ: Count=719192 Max=24910.81 Min=1.09 Avg=6.18] [UPDATE: Count=6457900 Max=49616.55 Min=3.16 Avg=16.98]
+2022-05-24 17:18:07 130 sec: 7724488 operations; [READ: Count=773940 Max=24910.81 Min=1.09 Avg=6.19] [UPDATE: Count=6950548 Max=49616.55 Min=3.16 Avg=17.10]
+2022-05-24 17:18:17 140 sec: 8229450 operations; [READ: Count=824326 Max=24910.81 Min=1.09 Avg=6.19] [UPDATE: Count=7405124 Max=49616.55 Min=3.16 Avg=17.31]
+2022-05-24 17:18:27 150 sec: 8723355 operations; [READ: Count=873288 Max=24910.81 Min=1.09 Avg=6.21] [UPDATE: Count=7850067 Max=49616.55 Min=3.16 Avg=17.51]
+2022-05-24 17:18:37 160 sec: 9510980 operations; [READ: Count=951851 Max=24910.81 Min=1.09 Avg=6.17] [UPDATE: Count=8559129 Max=49616.55 Min=3.16 Avg=17.11]
+2022-05-24 17:18:45 168 sec: 10000000 operations; [READ: Count=1000903 Max=24910.81 Min=1.09 Avg=6.17] [UPDATE: Count=8999097 Max=49616.55 Min=3.16 Avg=17.11]
+Run runtime(sec): 168.407
+Run operations(ops): 10000000
+Run throughput(ops/sec): 59380
+***********************This is test for workloadc*****************************
+2022-05-24 17:18:45 0 sec: 0 operations;
+2022-05-24 17:18:55 10 sec: 833543 operations; [INSERT: Count=833543 Max=67101.36 Min=2.01 Avg=8.47]
+2022-05-24 17:18:57 11 sec: 1000000 operations; [INSERT: Count=1000000 Max=67101.36 Min=2.01 Avg=7.87]
+Load runtime(sec): 11.5669
+Load operations(ops): 1000000
+Load throughput(ops/sec): 86453.5
+==================第 0 次测试=================
+2022-05-24 17:18:57 0 sec: 0 operations;
+2022-05-24 17:19:07 10 sec: 1012684 operations; [READ: Count=506376 Max=4451.71 Min=1.06 Avg=5.41] [UPDATE: Count=506308 Max=30840.49 Min=3.14 Avg=12.40]
+2022-05-24 17:19:17 20 sec: 2033761 operations; [READ: Count=1017848 Max=5419.78 Min=1.03 Avg=5.48] [UPDATE: Count=1015913 Max=30840.49 Min=3.14 Avg=12.62]
+2022-05-24 17:19:27 30 sec: 3153387 operations; [READ: Count=1576371 Max=5419.78 Min=1.03 Avg=5.52] [UPDATE: Count=1577016 Max=30840.49 Min=3.14 Avg=12.06]
+2022-05-24 17:19:37 40 sec: 4075408 operations; [READ: Count=2036784 Max=16709.40 Min=1.03 Avg=5.54] [UPDATE: Count=2038624 Max=30840.49 Min=3.14 Avg=12.69]
+2022-05-24 17:19:47 50 sec: 5306998 operations; [READ: Count=2651977 Max=21037.09 Min=1.03 Avg=5.48] [UPDATE: Count=2655021 Max=30840.49 Min=3.13 Avg=12.01]
+2022-05-24 17:19:57 60 sec: 6303655 operations; [READ: Count=3150446 Max=21037.09 Min=1.03 Avg=5.48] [UPDATE: Count=3153209 Max=30840.49 Min=3.13 Avg=12.22]
+2022-05-24 17:20:07 70 sec: 7402838 operations; [READ: Count=3699738 Max=21037.09 Min=1.03 Avg=5.52] [UPDATE: Count=3703100 Max=30840.49 Min=3.13 Avg=12.07]
+2022-05-24 17:20:17 80 sec: 8405595 operations; [READ: Count=4201000 Max=21037.09 Min=1.03 Avg=5.51] [UPDATE: Count=4204595 Max=30840.49 Min=3.13 Avg=12.22]
+2022-05-24 17:20:27 90 sec: 9401363 operations; [READ: Count=4698202 Max=21037.09 Min=1.03 Avg=5.49] [UPDATE: Count=4703161 Max=31570.73 Min=3.13 Avg=12.35]
+2022-05-24 17:20:32 94 sec: 10000000 operations; [READ: Count=4997418 Max=21037.09 Min=1.03 Avg=5.50] [UPDATE: Count=5002582 Max=31570.73 Min=3.13 Avg=12.14]
+Run runtime(sec): 94.8024
+Run operations(ops): 10000000
+Run throughput(ops/sec): 105483
+==================第 1 次测试=================
+2022-05-24 17:20:32 0 sec: 0 operations;
+2022-05-24 17:20:42 10 sec: 938797 operations; [READ: Count=469277 Max=8078.83 Min=1.06 Avg=5.55] [UPDATE: Count=469520 Max=42304.72 Min=3.24 Avg=14.09]
+2022-05-24 17:20:52 20 sec: 2041770 operations; [READ: Count=1021086 Max=29806.56 Min=0.99 Avg=5.39] [UPDATE: Count=1020684 Max=42304.72 Min=3.21 Avg=12.79]
+2022-05-24 17:21:02 30 sec: 3147721 operations; [READ: Count=1574375 Max=29806.56 Min=0.99 Avg=5.38] [UPDATE: Count=1573346 Max=42304.72 Min=3.21 Avg=12.34]
+2022-05-24 17:21:12 40 sec: 4328969 operations; [READ: Count=2165395 Max=29806.56 Min=0.99 Avg=5.47] [UPDATE: Count=2163574 Max=42304.72 Min=3.19 Avg=11.72]
+2022-05-24 17:21:22 50 sec: 5303027 operations; [READ: Count=2652427 Max=29806.56 Min=0.99 Avg=5.49] [UPDATE: Count=2650600 Max=42304.72 Min=3.19 Avg=12.09]
+2022-05-24 17:21:32 60 sec: 6501066 operations; [READ: Count=3252019 Max=29806.56 Min=0.99 Avg=5.46] [UPDATE: Count=3249047 Max=42304.72 Min=3.17 Avg=11.73]
+2022-05-24 17:21:42 70 sec: 7520085 operations; [READ: Count=3761753 Max=29806.56 Min=0.99 Avg=5.47] [UPDATE: Count=3758332 Max=42304.72 Min=3.17 Avg=11.89]
+2022-05-24 17:21:52 80 sec: 8638660 operations; [READ: Count=4321738 Max=29806.56 Min=0.99 Avg=5.48] [UPDATE: Count=4316922 Max=42304.72 Min=3.17 Avg=11.79]
+2022-05-24 17:22:02 90 sec: 9634268 operations; [READ: Count=4819960 Max=29806.56 Min=0.99 Avg=5.50] [UPDATE: Count=4814308 Max=42304.72 Min=3.17 Avg=11.94]
+2022-05-24 17:22:06 94 sec: 10000000 operations; [READ: Count=5002252 Max=29806.56 Min=0.99 Avg=5.48] [UPDATE: Count=4997748 Max=42304.72 Min=3.17 Avg=12.15]
+Run runtime(sec): 94.4316
+Run operations(ops): 10000000
+Run throughput(ops/sec): 105897
+==================第 2 次测试=================
+2022-05-24 17:22:06 0 sec: 0 operations;
+2022-05-24 17:22:16 10 sec: 1082852 operations; [READ: Count=541350 Max=4249.24 Min=1.07 Avg=5.74] [UPDATE: Count=541502 Max=36695.55 Min=3.22 Avg=11.15]
+2022-05-24 17:22:26 20 sec: 2053226 operations; [READ: Count=1026256 Max=4249.24 Min=1.00 Avg=5.79] [UPDATE: Count=1026970 Max=36695.55 Min=3.22 Avg=12.27]
+2022-05-24 17:22:36 30 sec: 3142512 operations; [READ: Count=1570627 Max=23278.64 Min=1.00 Avg=5.63] [UPDATE: Count=1571885 Max=36695.55 Min=3.22 Avg=12.11]
+2022-05-24 17:22:46 40 sec: 4229873 operations; [READ: Count=2115396 Max=23278.64 Min=1.00 Avg=5.56] [UPDATE: Count=2114477 Max=36695.55 Min=3.22 Avg=12.04]
+2022-05-24 17:22:56 50 sec: 5340191 operations; [READ: Count=2670506 Max=23278.64 Min=1.00 Avg=5.54] [UPDATE: Count=2669685 Max=36695.55 Min=3.17 Avg=11.89]
+2022-05-24 17:23:06 60 sec: 6410612 operations; [READ: Count=3206246 Max=23278.64 Min=1.00 Avg=5.60] [UPDATE: Count=3204366 Max=36695.55 Min=3.17 Avg=11.84]
+2022-05-24 17:23:16 70 sec: 7409530 operations; [READ: Count=3704631 Max=23278.64 Min=1.00 Avg=5.58] [UPDATE: Count=3704899 Max=36695.55 Min=3.17 Avg=12.03]
+2022-05-24 17:23:26 80 sec: 8522343 operations; [READ: Count=4260995 Max=23278.64 Min=1.00 Avg=5.55] [UPDATE: Count=4261348 Max=36695.55 Min=3.17 Avg=11.94]
+2022-05-24 17:23:36 90 sec: 9627181 operations; [READ: Count=4812794 Max=27677.57 Min=1.00 Avg=5.55] [UPDATE: Count=4814387 Max=36695.55 Min=3.17 Avg=11.87]
+2022-05-24 17:23:41 95 sec: 10000000 operations; [READ: Count=4999265 Max=27677.57 Min=1.00 Avg=5.57] [UPDATE: Count=5000735 Max=36695.55 Min=3.17 Avg=12.14]
+Run runtime(sec): 95.0347
+Run operations(ops): 10000000
+Run throughput(ops/sec): 105225
+==================第 3 次测试=================
+2022-05-24 17:23:41 0 sec: 0 operations;
+2022-05-24 17:23:51 10 sec: 1166888 operations; [READ: Count=583584 Max=27032.43 Min=1.04 Avg=5.64] [UPDATE: Count=583304 Max=19903.27 Min=3.28 Avg=9.97]
+2022-05-24 17:24:01 20 sec: 2188526 operations; [READ: Count=1094164 Max=27032.43 Min=1.04 Avg=5.62] [UPDATE: Count=1094362 Max=29694.03 Min=3.23 Avg=11.27]
+2022-05-24 17:24:11 30 sec: 3160528 operations; [READ: Count=1580201 Max=27032.43 Min=1.04 Avg=5.70] [UPDATE: Count=1580327 Max=29694.03 Min=3.23 Avg=11.94]
+2022-05-24 17:24:21 40 sec: 4267395 operations; [READ: Count=2133695 Max=27032.43 Min=1.04 Avg=5.61] [UPDATE: Count=2133700 Max=29694.03 Min=3.23 Avg=11.83]
+2022-05-24 17:24:31 50 sec: 5343501 operations; [READ: Count=2671479 Max=27032.43 Min=1.04 Avg=5.59] [UPDATE: Count=2672022 Max=29694.03 Min=3.18 Avg=11.83]
+2022-05-24 17:24:41 60 sec: 6421000 operations; [READ: Count=3210753 Max=27032.43 Min=1.04 Avg=5.59] [UPDATE: Count=3210247 Max=29694.03 Min=3.18 Avg=11.82]
+2022-05-24 17:24:51 70 sec: 7535860 operations; [READ: Count=3768175 Max=27032.43 Min=1.04 Avg=5.63] [UPDATE: Count=3767685 Max=29694.03 Min=3.18 Avg=11.67]
+2022-05-24 17:25:01 80 sec: 8414410 operations; [READ: Count=4207164 Max=27032.43 Min=1.03 Avg=5.63] [UPDATE: Count=4207246 Max=31613.87 Min=3.18 Avg=12.11]
+2022-05-24 17:25:11 90 sec: 9618266 operations; [READ: Count=4808642 Max=27032.43 Min=1.03 Avg=5.60] [UPDATE: Count=4809624 Max=31613.87 Min=3.18 Avg=11.85]
+2022-05-24 17:25:15 93 sec: 10000000 operations; [READ: Count=4999686 Max=27032.43 Min=1.03 Avg=5.61] [UPDATE: Count=5000314 Max=31613.87 Min=3.18 Avg=11.76]
+Run runtime(sec): 93.2587
+Run operations(ops): 10000000
+Run throughput(ops/sec): 107229
+==================第 4 次测试=================
+2022-05-24 17:25:15 0 sec: 0 operations;
+2022-05-24 17:25:25 10 sec: 935533 operations; [READ: Count=467773 Max=25445.36 Min=1.08 Avg=5.72] [UPDATE: Count=467760 Max=40052.60 Min=3.23 Avg=14.02]
+2022-05-24 17:25:35 20 sec: 1962152 operations; [READ: Count=980975 Max=25957.32 Min=1.05 Avg=5.60] [UPDATE: Count=981177 Max=40052.60 Min=3.22 Avg=13.37]
+2022-05-24 17:25:45 30 sec: 3070343 operations; [READ: Count=1534863 Max=25957.32 Min=1.05 Avg=5.56] [UPDATE: Count=1535480 Max=40052.60 Min=3.22 Avg=12.65]
+2022-05-24 17:25:55 40 sec: 4174681 operations; [READ: Count=2086206 Max=25957.32 Min=1.05 Avg=5.56] [UPDATE: Count=2088475 Max=40052.60 Min=3.22 Avg=12.31]
+2022-05-24 17:26:05 50 sec: 5223542 operations; [READ: Count=2611197 Max=25957.32 Min=1.04 Avg=5.57] [UPDATE: Count=2612345 Max=40052.60 Min=3.18 Avg=12.31]
+2022-05-24 17:26:15 60 sec: 6246303 operations; [READ: Count=3122610 Max=25957.32 Min=1.04 Avg=5.57] [UPDATE: Count=3123693 Max=40052.60 Min=3.18 Avg=12.38]
+2022-05-24 17:26:25 70 sec: 7362083 operations; [READ: Count=3680433 Max=25957.32 Min=1.04 Avg=5.55] [UPDATE: Count=3681650 Max=40052.60 Min=3.18 Avg=12.22]
+2022-05-24 17:26:35 80 sec: 8353748 operations; [READ: Count=4176565 Max=25957.32 Min=1.04 Avg=5.56] [UPDATE: Count=4177183 Max=40052.60 Min=3.18 Avg=12.35]
+2022-05-24 17:26:45 90 sec: 9489945 operations; [READ: Count=4744860 Max=25957.32 Min=1.04 Avg=5.59] [UPDATE: Count=4745085 Max=40052.60 Min=3.18 Avg=12.14]
+2022-05-24 17:26:50 95 sec: 10000000 operations; [READ: Count=5000447 Max=25957.32 Min=1.04 Avg=5.57] [UPDATE: Count=4999553 Max=40052.60 Min=3.18 Avg=12.31]
+Run runtime(sec): 95.5902
+Run operations(ops): 10000000
+Run throughput(ops/sec): 104613
+==================第 5 次测试=================
+2022-05-24 17:26:50 0 sec: 0 operations;
+2022-05-24 17:27:00 10 sec: 1018033 operations; [READ: Count=509044 Max=3272.80 Min=1.05 Avg=5.61] [UPDATE: Count=508989 Max=37712.66 Min=3.21 Avg=12.33]
+2022-05-24 17:27:10 20 sec: 2118047 operations; [READ: Count=1059591 Max=3272.80 Min=1.05 Avg=5.61] [UPDATE: Count=1058456 Max=37712.66 Min=3.21 Avg=11.80]
+2022-05-24 17:27:20 30 sec: 3091281 operations; [READ: Count=1547472 Max=6045.98 Min=1.05 Avg=5.61] [UPDATE: Count=1543809 Max=37712.66 Min=3.21 Avg=12.39]
+2022-05-24 17:27:30 40 sec: 4247494 operations; [READ: Count=2126292 Max=25247.77 Min=1.05 Avg=5.55] [UPDATE: Count=2121202 Max=37712.66 Min=3.21 Avg=11.91]
+2022-05-24 17:27:40 50 sec: 5235248 operations; [READ: Count=2620957 Max=25247.77 Min=1.05 Avg=5.56] [UPDATE: Count=2614291 Max=37712.66 Min=3.21 Avg=12.19]
+2022-05-24 17:27:50 60 sec: 6387042 operations; [READ: Count=3196741 Max=25247.77 Min=1.04 Avg=5.60] [UPDATE: Count=3190301 Max=37712.66 Min=3.21 Avg=11.85]
+2022-05-24 17:28:00 70 sec: 7413677 operations; [READ: Count=3709830 Max=25247.77 Min=1.04 Avg=5.60] [UPDATE: Count=3703847 Max=37712.66 Min=3.21 Avg=11.95]
+2022-05-24 17:28:10 80 sec: 8409112 operations; [READ: Count=4207988 Max=25247.77 Min=1.04 Avg=5.57] [UPDATE: Count=4201124 Max=37712.66 Min=3.21 Avg=12.13]
+2022-05-24 17:28:20 90 sec: 9532625 operations; [READ: Count=4769227 Max=25247.77 Min=1.04 Avg=5.54] [UPDATE: Count=4763398 Max=37712.66 Min=3.21 Avg=12.02]
+2022-05-24 17:28:24 93 sec: 10000000 operations; [READ: Count=5002525 Max=25247.77 Min=1.04 Avg=5.55] [UPDATE: Count=4997475 Max=37712.66 Min=3.21 Avg=11.88]
+Run runtime(sec): 93.9683
+Run operations(ops): 10000000
+Run throughput(ops/sec): 106419
+==================第 6 次测试=================
+2022-05-24 17:28:24 0 sec: 0 operations;
+2022-05-24 17:28:34 10 sec: 924066 operations; [READ: Count=461300 Max=24629.79 Min=1.02 Avg=5.65] [UPDATE: Count=462766 Max=24268.17 Min=3.25 Avg=14.29]
+2022-05-24 17:28:44 20 sec: 2121930 operations; [READ: Count=1060293 Max=24629.79 Min=1.00 Avg=5.46] [UPDATE: Count=1061637 Max=34904.65 Min=3.17 Avg=11.96]
+2022-05-24 17:28:54 30 sec: 3236078 operations; [READ: Count=1617331 Max=26942.66 Min=1.00 Avg=5.56] [UPDATE: Count=1618747 Max=34904.65 Min=3.17 Avg=11.62]
+2022-05-24 17:29:04 40 sec: 4276456 operations; [READ: Count=2137931 Max=26942.66 Min=1.00 Avg=5.59] [UPDATE: Count=2138525 Max=34904.65 Min=3.17 Avg=11.78]
+2022-05-24 17:29:14 50 sec: 5223684 operations; [READ: Count=2612073 Max=26942.66 Min=1.00 Avg=5.59] [UPDATE: Count=2611611 Max=34904.65 Min=3.17 Avg=12.24]
+2022-05-24 17:29:24 60 sec: 6252653 operations; [READ: Count=3125826 Max=26942.66 Min=1.00 Avg=5.57] [UPDATE: Count=3126827 Max=34904.65 Min=3.17 Avg=12.31]
+2022-05-24 17:29:34 70 sec: 7358178 operations; [READ: Count=3679024 Max=26942.66 Min=1.00 Avg=5.56] [UPDATE: Count=3679154 Max=34904.65 Min=3.17 Avg=12.17]
+2022-05-24 17:29:44 80 sec: 8502369 operations; [READ: Count=4251347 Max=26942.66 Min=1.00 Avg=5.59] [UPDATE: Count=4251022 Max=34904.65 Min=3.17 Avg=11.95]
+2022-05-24 17:29:54 90 sec: 9428325 operations; [READ: Count=4714887 Max=26942.66 Min=1.00 Avg=5.59] [UPDATE: Count=4713438 Max=34904.65 Min=3.17 Avg=12.22]
+2022-05-24 17:29:59 94 sec: 10000000 operations; [READ: Count=5001015 Max=26942.66 Min=1.00 Avg=5.55] [UPDATE: Count=4998985 Max=34904.65 Min=3.17 Avg=12.04]
+Run runtime(sec): 94.4217
+Run operations(ops): 10000000
+Run throughput(ops/sec): 105908
+==================第 7 次测试=================
+2022-05-24 17:29:59 0 sec: 0 operations;
+2022-05-24 17:30:09 10 sec: 1050992 operations; [READ: Count=525678 Max=30094.31 Min=0.99 Avg=5.75] [UPDATE: Count=525314 Max=31664.51 Min=3.27 Avg=11.70]
+2022-05-24 17:30:19 20 sec: 2069027 operations; [READ: Count=1033992 Max=30094.31 Min=0.99 Avg=5.69] [UPDATE: Count=1035035 Max=31664.51 Min=3.26 Avg=12.23]
+2022-05-24 17:30:29 30 sec: 3189289 operations; [READ: Count=1593908 Max=30094.31 Min=0.99 Avg=5.60] [UPDATE: Count=1595381 Max=31664.51 Min=3.21 Avg=11.87]
+2022-05-24 17:30:39 40 sec: 4231902 operations; [READ: Count=2114745 Max=30094.31 Min=0.99 Avg=5.58] [UPDATE: Count=2117157 Max=31664.51 Min=3.21 Avg=12.00]
+2022-05-24 17:30:49 50 sec: 5281920 operations; [READ: Count=2639652 Max=30094.31 Min=0.99 Avg=5.65] [UPDATE: Count=2642268 Max=31664.51 Min=3.21 Avg=11.98]
+2022-05-24 17:30:59 60 sec: 6215331 operations; [READ: Count=3106687 Max=30094.31 Min=0.99 Avg=5.65] [UPDATE: Count=3108644 Max=31664.51 Min=3.17 Avg=12.37]
+2022-05-24 17:31:09 70 sec: 7344976 operations; [READ: Count=3671134 Max=30094.31 Min=0.99 Avg=5.59] [UPDATE: Count=3673842 Max=31664.51 Min=3.15 Avg=12.19]
+2022-05-24 17:31:19 80 sec: 8580016 operations; [READ: Count=4288117 Max=30094.31 Min=0.99 Avg=5.60] [UPDATE: Count=4291899 Max=31664.51 Min=3.15 Avg=11.78]
+2022-05-24 17:31:29 90 sec: 9547312 operations; [READ: Count=4771643 Max=30094.31 Min=0.99 Avg=5.60] [UPDATE: Count=4775669 Max=31664.51 Min=3.07 Avg=11.98]
+2022-05-24 17:31:33 93 sec: 10000000 operations; [READ: Count=4997465 Max=30094.31 Min=0.99 Avg=5.58] [UPDATE: Count=5002535 Max=31664.51 Min=3.07 Avg=11.94]
+Run runtime(sec): 93.9742
+Run operations(ops): 10000000
+Run throughput(ops/sec): 106412
+==================第 8 次测试=================
+2022-05-24 17:31:33 0 sec: 0 operations;
+2022-05-24 17:31:43 10 sec: 1001022 operations; [READ: Count=500586 Max=6107.85 Min=1.06 Avg=5.66] [UPDATE: Count=500436 Max=30527.82 Min=3.24 Avg=12.69]
+2022-05-24 17:31:53 20 sec: 2079187 operations; [READ: Count=1038511 Max=27924.21 Min=1.02 Avg=5.67] [UPDATE: Count=1040676 Max=30527.82 Min=3.24 Avg=12.13]
+2022-05-24 17:32:03 30 sec: 3045456 operations; [READ: Count=1521802 Max=27924.21 Min=1.02 Avg=5.64] [UPDATE: Count=1523654 Max=30527.82 Min=3.23 Avg=12.68]
+2022-05-24 17:32:13 40 sec: 4020725 operations; [READ: Count=2009061 Max=27924.21 Min=1.02 Avg=5.63] [UPDATE: Count=2011664 Max=30527.82 Min=3.22 Avg=12.92]
+2022-05-24 17:32:23 50 sec: 5199211 operations; [READ: Count=2598682 Max=27924.21 Min=1.02 Avg=5.59] [UPDATE: Count=2600529 Max=30527.82 Min=3.22 Avg=12.32]
+2022-05-24 17:32:33 60 sec: 6252193 operations; [READ: Count=3125426 Max=27924.21 Min=1.02 Avg=5.59] [UPDATE: Count=3126767 Max=30527.82 Min=3.21 Avg=12.30]
+2022-05-24 17:32:43 70 sec: 7263103 operations; [READ: Count=3630827 Max=27924.21 Min=1.02 Avg=5.59] [UPDATE: Count=3632276 Max=30527.82 Min=3.21 Avg=12.39]
+2022-05-24 17:32:53 80 sec: 8318182 operations; [READ: Count=4158257 Max=27924.21 Min=1.02 Avg=5.56] [UPDATE: Count=4159925 Max=30527.82 Min=3.21 Avg=12.38]
+2022-05-24 17:33:03 90 sec: 9462863 operations; [READ: Count=4730121 Max=27924.21 Min=1.02 Avg=5.56] [UPDATE: Count=4732742 Max=30527.82 Min=3.20 Avg=12.18]
+2022-05-24 17:33:09 96 sec: 10000000 operations; [READ: Count=4998844 Max=27924.21 Min=1.02 Avg=5.58] [UPDATE: Count=5001156 Max=30527.82 Min=3.20 Avg=12.41]
+Run runtime(sec): 96.5532
+Run operations(ops): 10000000
+Run throughput(ops/sec): 103570
+==================第 9 次测试=================
+2022-05-24 17:33:09 0 sec: 0 operations;
+2022-05-24 17:33:19 10 sec: 1146217 operations; [READ: Count=573114 Max=30687.40 Min=1.07 Avg=5.58] [UPDATE: Count=573103 Max=26942.78 Min=3.19 Avg=10.32]
+2022-05-24 17:33:29 20 sec: 2261620 operations; [READ: Count=1130258 Max=32762.66 Min=1.03 Avg=5.63] [UPDATE: Count=1131362 Max=27470.15 Min=3.19 Avg=10.68]
+2022-05-24 17:33:39 30 sec: 3268277 operations; [READ: Count=1633101 Max=32762.66 Min=1.03 Avg=5.62] [UPDATE: Count=1635176 Max=27470.15 Min=3.19 Avg=11.40]
+2022-05-24 17:33:49 40 sec: 4321571 operations; [READ: Count=2159241 Max=32762.66 Min=1.03 Avg=5.57] [UPDATE: Count=2162330 Max=28976.20 Min=3.19 Avg=11.62]
+2022-05-24 17:33:59 50 sec: 5416492 operations; [READ: Count=2706307 Max=32762.66 Min=1.03 Avg=5.56] [UPDATE: Count=2710185 Max=28976.20 Min=3.19 Avg=11.60]
+2022-05-24 17:34:09 60 sec: 6528102 operations; [READ: Count=3262317 Max=32762.66 Min=1.03 Avg=5.56] [UPDATE: Count=3265785 Max=28976.20 Min=3.19 Avg=11.54]
+2022-05-24 17:34:19 70 sec: 7529719 operations; [READ: Count=3763004 Max=32762.66 Min=1.03 Avg=5.60] [UPDATE: Count=3766715 Max=28976.20 Min=3.19 Avg=11.72]
+2022-05-24 17:34:29 80 sec: 8619587 operations; [READ: Count=4307587 Max=32762.66 Min=1.00 Avg=5.58] [UPDATE: Count=4312000 Max=28976.20 Min=3.19 Avg=11.72]
+2022-05-24 17:34:39 90 sec: 9722054 operations; [READ: Count=4858742 Max=32762.66 Min=1.00 Avg=5.57] [UPDATE: Count=4863312 Max=30459.89 Min=3.19 Avg=11.68]
+2022-05-24 17:34:42 92 sec: 10000000 operations; [READ: Count=4997936 Max=32762.66 Min=1.00 Avg=5.58] [UPDATE: Count=5002064 Max=30459.89 Min=3.19 Avg=11.62]
+Run runtime(sec): 92.3925
+Run operations(ops): 10000000
+Run throughput(ops/sec): 108234
+#######################################################################################
+#######################################UNIFORM模式#####################################
+#######################################################################################
+***********************This is test for workloada-uni*****************************
+2022-05-24 17:34:42 0 sec: 0 operations;
+2022-05-24 17:34:52 10 sec: 822380 operations; [INSERT: Count=822380 Max=40836.18 Min=1.96 Avg=8.72]
+2022-05-24 17:34:53 11 sec: 1000000 operations; [INSERT: Count=1000000 Max=40836.18 Min=1.96 Avg=7.85]
+Load runtime(sec): 11.2817
+Load operations(ops): 1000000
+Load throughput(ops/sec): 88639
+==================第 0 次测试=================
+2022-05-24 17:34:53 0 sec: 0 operations;
+2022-05-24 17:35:03 10 sec: 554041 operations; [UPDATE: Count=554041 Max=27509.13 Min=3.43 Avg=16.67]
+2022-05-24 17:35:13 20 sec: 920013 operations; [UPDATE: Count=920013 Max=27740.46 Min=3.43 Avg=20.59]
+2022-05-24 17:35:23 30 sec: 1339697 operations; [UPDATE: Count=1339697 Max=27740.46 Min=3.43 Avg=21.36]
+2022-05-24 17:35:33 40 sec: 1730745 operations; [UPDATE: Count=1730745 Max=27843.01 Min=3.43 Avg=22.13]
+2022-05-24 17:35:43 50 sec: 2278282 operations; [UPDATE: Count=2278282 Max=30748.54 Min=3.43 Avg=21.03]
+2022-05-24 17:35:53 60 sec: 2622295 operations; [UPDATE: Count=2622295 Max=32024.63 Min=3.43 Avg=21.97]
+2022-05-24 17:36:03 70 sec: 3160056 operations; [UPDATE: Count=3160056 Max=32024.63 Min=3.43 Avg=21.27]
+2022-05-24 17:36:13 80 sec: 3444142 operations; [UPDATE: Count=3444142 Max=32024.63 Min=3.43 Avg=22.35]
+2022-05-24 17:36:23 90 sec: 3923309 operations; [UPDATE: Count=3923309 Max=32024.63 Min=3.43 Avg=22.08]
+2022-05-24 17:36:33 100 sec: 4269939 operations; [UPDATE: Count=4269939 Max=32024.63 Min=3.43 Avg=22.56]
+2022-05-24 17:36:43 110 sec: 4728443 operations; [UPDATE: Count=4728443 Max=32024.63 Min=3.43 Avg=22.41]
+2022-05-24 17:36:53 120 sec: 5162737 operations; [UPDATE: Count=5162737 Max=32024.63 Min=3.43 Avg=22.40]
+2022-05-24 17:37:03 130 sec: 5621623 operations; [UPDATE: Count=5621623 Max=32024.63 Min=3.43 Avg=22.29]
+2022-05-24 17:37:13 140 sec: 6065981 operations; [UPDATE: Count=6065981 Max=32024.63 Min=3.43 Avg=22.25]
+2022-05-24 17:37:23 150 sec: 6507180 operations; [UPDATE: Count=6507180 Max=32024.63 Min=3.43 Avg=22.22]
+2022-05-24 17:37:33 160 sec: 6958879 operations; [UPDATE: Count=6958879 Max=32024.63 Min=3.43 Avg=22.17]
+2022-05-24 17:37:43 170 sec: 7406996 operations; [UPDATE: Count=7406996 Max=32024.63 Min=3.43 Avg=22.13]
+2022-05-24 17:37:53 180 sec: 7852493 operations; [UPDATE: Count=7852493 Max=33818.01 Min=3.43 Avg=22.10]
+2022-05-24 17:38:03 190 sec: 8291682 operations; [UPDATE: Count=8291682 Max=33818.01 Min=3.43 Avg=22.10]
+2022-05-24 17:38:13 200 sec: 8747510 operations; [UPDATE: Count=8747510 Max=33818.01 Min=3.43 Avg=22.05]
+2022-05-24 17:38:23 210 sec: 9191754 operations; [UPDATE: Count=9191754 Max=33818.01 Min=3.43 Avg=22.03]
+2022-05-24 17:38:33 220 sec: 9630805 operations; [UPDATE: Count=9630805 Max=33818.01 Min=3.43 Avg=22.03]
+2022-05-24 17:38:43 230 sec: 10000000 operations; [UPDATE: Count=10000000 Max=33818.01 Min=3.43 Avg=22.18]
+2022-05-24 17:38:43 230 sec: 10000000 operations; [UPDATE: Count=10000000 Max=33818.01 Min=3.43 Avg=22.18]
+Run runtime(sec): 230.057
+Run operations(ops): 10000000
+Run throughput(ops/sec): 43467.6
+==================第 1 次测试=================
+2022-05-24 17:38:43 0 sec: 0 operations;
+2022-05-24 17:38:53 10 sec: 426768 operations; [UPDATE: Count=426768 Max=33247.33 Min=3.54 Avg=21.68]
+2022-05-24 17:39:03 20 sec: 764790 operations; [UPDATE: Count=764790 Max=33247.33 Min=3.54 Avg=24.78]
+2022-05-24 17:39:13 30 sec: 1273043 operations; [UPDATE: Count=1273043 Max=33247.33 Min=3.54 Avg=22.41]
+2022-05-24 17:39:23 40 sec: 1631182 operations; [UPDATE: Count=1631182 Max=33247.33 Min=3.54 Avg=23.43]
+2022-05-24 17:39:33 50 sec: 2155973 operations; [UPDATE: Count=2155973 Max=33247.33 Min=3.54 Avg=22.16]
+2022-05-24 17:39:43 60 sec: 2573407 operations; [UPDATE: Count=2573407 Max=33247.33 Min=3.54 Avg=22.31]
+2022-05-24 17:39:53 70 sec: 2946051 operations; [UPDATE: Count=2946051 Max=33247.33 Min=3.54 Avg=22.77]
+2022-05-24 17:40:03 80 sec: 3421062 operations; [UPDATE: Count=3421062 Max=33247.33 Min=3.54 Avg=22.42]
+2022-05-24 17:40:13 90 sec: 3856887 operations; [UPDATE: Count=3856887 Max=33247.33 Min=3.54 Avg=22.38]
+2022-05-24 17:40:23 100 sec: 4244136 operations; [UPDATE: Count=4244136 Max=33247.33 Min=3.54 Avg=22.61]
+2022-05-24 17:40:33 110 sec: 4677336 operations; [UPDATE: Count=4677336 Max=33247.33 Min=3.54 Avg=22.58]
+2022-05-24 17:40:43 120 sec: 5101033 operations; [UPDATE: Count=5101033 Max=33247.33 Min=3.54 Avg=22.59]
+2022-05-24 17:40:53 130 sec: 5455343 operations; [UPDATE: Count=5455343 Max=33247.33 Min=3.54 Avg=22.90]
+2022-05-24 17:41:03 140 sec: 5966170 operations; [UPDATE: Count=5966170 Max=33247.33 Min=3.54 Avg=22.54]
+2022-05-24 17:41:13 150 sec: 6382917 operations; [UPDATE: Count=6382917 Max=33247.33 Min=3.54 Avg=22.58]
+2022-05-24 17:41:23 160 sec: 6931997 operations; [UPDATE: Count=6931997 Max=33247.33 Min=3.54 Avg=22.17]
+2022-05-24 17:41:33 170 sec: 7369936 operations; [UPDATE: Count=7369936 Max=33247.33 Min=3.54 Avg=22.16]
+2022-05-24 17:41:43 180 sec: 7734852 operations; [UPDATE: Count=7734852 Max=33247.33 Min=3.54 Avg=22.37]
+2022-05-24 17:41:53 190 sec: 8126863 operations; [UPDATE: Count=8126863 Max=33247.33 Min=3.54 Avg=22.48]
+2022-05-24 17:42:03 200 sec: 8604579 operations; [UPDATE: Count=8604579 Max=33961.96 Min=3.54 Avg=22.34]
+2022-05-24 17:42:13 210 sec: 9027069 operations; [UPDATE: Count=9027069 Max=33961.96 Min=3.54 Avg=22.37]
+2022-05-24 17:42:23 220 sec: 9465407 operations; [UPDATE: Count=9465407 Max=33961.96 Min=3.54 Avg=22.35]
+2022-05-24 17:42:33 230 sec: 9912406 operations; [UPDATE: Count=9912406 Max=33961.96 Min=3.54 Avg=22.31]
+2022-05-24 17:42:37 234 sec: 10000000 operations; [UPDATE: Count=10000000 Max=33961.96 Min=3.54 Avg=22.51]
+Run runtime(sec): 234.083
+Run operations(ops): 10000000
+Run throughput(ops/sec): 42719.8
+==================第 2 次测试=================
+2022-05-24 17:42:37 0 sec: 0 operations;
+2022-05-24 17:42:47 10 sec: 429660 operations; [UPDATE: Count=429660 Max=31983.71 Min=4.00 Avg=21.56]
+2022-05-24 17:42:57 20 sec: 814081 operations; [UPDATE: Count=814081 Max=31983.71 Min=3.93 Avg=23.25]
+2022-05-24 17:43:07 30 sec: 1298770 operations; [UPDATE: Count=1298770 Max=31983.71 Min=3.90 Avg=21.96]
+2022-05-24 17:43:17 40 sec: 1697820 operations; [UPDATE: Count=1697820 Max=31983.71 Min=3.84 Avg=22.49]
+2022-05-24 17:43:27 50 sec: 2146319 operations; [UPDATE: Count=2146319 Max=31983.71 Min=3.84 Avg=22.27]
+2022-05-24 17:43:37 60 sec: 2636837 operations; [UPDATE: Count=2636837 Max=33372.36 Min=3.78 Avg=21.77]
+2022-05-24 17:43:47 70 sec: 3047150 operations; [UPDATE: Count=3047150 Max=33372.36 Min=3.78 Avg=22.00]
+2022-05-24 17:43:57 80 sec: 3492346 operations; [UPDATE: Count=3492346 Max=33372.36 Min=3.78 Avg=21.95]
+2022-05-24 17:44:07 90 sec: 3936120 operations; [UPDATE: Count=3936120 Max=33372.36 Min=3.78 Avg=21.92]
+2022-05-24 17:44:17 100 sec: 4380422 operations; [UPDATE: Count=4380422 Max=39065.85 Min=3.73 Avg=21.90]
+2022-05-24 17:44:27 110 sec: 4829922 operations; [UPDATE: Count=4829922 Max=39065.85 Min=3.73 Avg=21.85]
+2022-05-24 17:44:37 120 sec: 5280714 operations; [UPDATE: Count=5280714 Max=39065.85 Min=3.73 Avg=21.81]
+2022-05-24 17:44:47 130 sec: 5731543 operations; [UPDATE: Count=5731543 Max=39065.85 Min=3.73 Avg=21.77]
+2022-05-24 17:44:57 140 sec: 6167110 operations; [UPDATE: Count=6167110 Max=39065.85 Min=3.73 Avg=21.79]
+2022-05-24 17:45:07 150 sec: 6613034 operations; [UPDATE: Count=6613034 Max=39065.85 Min=3.73 Avg=21.78]
+2022-05-24 17:45:17 160 sec: 7066323 operations; [UPDATE: Count=7066323 Max=39065.85 Min=3.73 Avg=21.74]
+2022-05-24 17:45:27 170 sec: 7510733 operations; [UPDATE: Count=7510733 Max=39065.85 Min=3.73 Avg=21.74]
+2022-05-24 17:45:37 180 sec: 7955406 operations; [UPDATE: Count=7955406 Max=39065.85 Min=3.73 Avg=21.73]
+2022-05-24 17:45:47 190 sec: 8406215 operations; [UPDATE: Count=8406215 Max=39065.85 Min=3.73 Avg=21.71]
+2022-05-24 17:45:57 200 sec: 8854761 operations; [UPDATE: Count=8854761 Max=39065.85 Min=3.73 Avg=21.70]
+2022-05-24 17:46:07 210 sec: 9295468 operations; [UPDATE: Count=9295468 Max=39065.85 Min=3.73 Avg=21.70]
+2022-05-24 17:46:17 220 sec: 9748550 operations; [UPDATE: Count=9748550 Max=39065.85 Min=3.73 Avg=21.68]
+2022-05-24 17:46:24 226 sec: 10000000 operations; [UPDATE: Count=10000000 Max=39065.85 Min=3.73 Avg=21.80]
+Run runtime(sec): 226.986
+Run operations(ops): 10000000
+Run throughput(ops/sec): 44055.6
+==================第 3 次测试=================
+2022-05-24 17:46:24 0 sec: 0 operations;
+2022-05-24 17:46:34 10 sec: 455492 operations; [UPDATE: Count=455492 Max=33744.27 Min=3.41 Avg=20.34]
+2022-05-24 17:46:44 20 sec: 779787 operations; [UPDATE: Count=779787 Max=39047.27 Min=3.41 Avg=24.34]
+2022-05-24 17:46:54 30 sec: 1249577 operations; [UPDATE: Count=1249577 Max=39047.27 Min=3.41 Avg=22.89]
+2022-05-24 17:47:04 40 sec: 1671327 operations; [UPDATE: Count=1671327 Max=39047.27 Min=3.41 Avg=22.89]
+2022-05-24 17:47:14 50 sec: 2168868 operations; [UPDATE: Count=2168868 Max=39047.27 Min=3.41 Avg=22.06]
+2022-05-24 17:47:24 60 sec: 2536263 operations; [UPDATE: Count=2536263 Max=39047.27 Min=3.41 Avg=22.69]
+2022-05-24 17:47:34 70 sec: 3030908 operations; [UPDATE: Count=3030908 Max=39047.27 Min=3.41 Avg=22.15]
+2022-05-24 17:47:44 80 sec: 3389953 operations; [UPDATE: Count=3389953 Max=39047.27 Min=3.41 Avg=22.67]
+2022-05-24 17:47:54 90 sec: 3814582 operations; [UPDATE: Count=3814582 Max=39047.27 Min=3.41 Avg=22.67]
+2022-05-24 17:48:04 100 sec: 4214919 operations; [UPDATE: Count=4214919 Max=39047.27 Min=3.41 Avg=22.81]
+2022-05-24 17:48:14 110 sec: 4675565 operations; [UPDATE: Count=4675565 Max=39047.27 Min=3.41 Avg=22.62]
+2022-05-24 17:48:24 120 sec: 5117185 operations; [UPDATE: Count=5117185 Max=39047.27 Min=3.41 Avg=22.56]
+2022-05-24 17:48:34 130 sec: 5556316 operations; [UPDATE: Count=5556316 Max=39047.27 Min=3.41 Avg=22.51]
+2022-05-24 17:48:44 140 sec: 6009242 operations; [UPDATE: Count=6009242 Max=39047.27 Min=3.41 Avg=22.42]
+2022-05-24 17:48:54 150 sec: 6451812 operations; [UPDATE: Count=6451812 Max=39047.27 Min=3.41 Avg=22.37]
+2022-05-24 17:49:04 160 sec: 6901378 operations; [UPDATE: Count=6901378 Max=39047.27 Min=3.41 Avg=22.31]
+2022-05-24 17:49:14 170 sec: 7342222 operations; [UPDATE: Count=7342222 Max=39047.27 Min=3.41 Avg=22.28]
+2022-05-24 17:49:24 180 sec: 7791125 operations; [UPDATE: Count=7791125 Max=39047.27 Min=3.41 Avg=22.24]
+2022-05-24 17:49:34 190 sec: 8245910 operations; [UPDATE: Count=8245910 Max=39047.27 Min=3.41 Avg=22.18]
+2022-05-24 17:49:44 200 sec: 8683706 operations; [UPDATE: Count=8683706 Max=39047.27 Min=3.41 Avg=22.17]
+2022-05-24 17:49:54 210 sec: 9142233 operations; [UPDATE: Count=9142233 Max=39047.27 Min=3.41 Avg=22.11]
+2022-05-24 17:50:04 220 sec: 9578667 operations; [UPDATE: Count=9578667 Max=39047.27 Min=3.41 Avg=22.11]
+2022-05-24 17:50:10 225 sec: 10000000 operations; [UPDATE: Count=10000000 Max=39047.27 Min=3.41 Avg=21.70]
+Run runtime(sec): 225.761
+Run operations(ops): 10000000
+Run throughput(ops/sec): 44294.7
+==================第 4 次测试=================
+2022-05-24 17:50:10 0 sec: 0 operations;
+2022-05-24 17:50:20 10 sec: 309286 operations; [UPDATE: Count=309286 Max=28279.33 Min=3.31 Avg=30.14]
+2022-05-24 17:50:30 20 sec: 761021 operations; [UPDATE: Count=761021 Max=34474.29 Min=3.31 Avg=24.91]
+2022-05-24 17:50:40 30 sec: 1215677 operations; [UPDATE: Count=1215677 Max=34474.29 Min=3.31 Avg=23.52]
+2022-05-24 17:50:50 40 sec: 1664113 operations; [UPDATE: Count=1664113 Max=34474.29 Min=3.31 Avg=22.97]
+2022-05-24 17:51:00 50 sec: 2075976 operations; [UPDATE: Count=2075976 Max=34474.29 Min=3.31 Avg=23.07]
+2022-05-24 17:51:10 60 sec: 2544891 operations; [UPDATE: Count=2544891 Max=34474.29 Min=3.31 Avg=22.60]
+2022-05-24 17:51:20 70 sec: 2866866 operations; [UPDATE: Count=2866866 Max=34474.29 Min=3.31 Avg=23.45]
+2022-05-24 17:51:30 80 sec: 3327284 operations; [UPDATE: Count=3327284 Max=34474.29 Min=3.31 Avg=23.10]
+2022-05-24 17:51:40 90 sec: 3703768 operations; [UPDATE: Count=3703768 Max=34474.29 Min=3.31 Avg=23.37]
+2022-05-24 17:51:50 100 sec: 4131480 operations; [UPDATE: Count=4131480 Max=34474.29 Min=3.31 Avg=23.29]
+2022-05-24 17:52:00 110 sec: 4504013 operations; [UPDATE: Count=4504013 Max=34474.29 Min=3.31 Avg=23.51]
+2022-05-24 17:52:10 120 sec: 4948851 operations; [UPDATE: Count=4948851 Max=34474.29 Min=3.31 Avg=23.35]
+2022-05-24 17:52:20 130 sec: 5395370 operations; [UPDATE: Count=5395370 Max=34474.29 Min=3.31 Avg=23.20]
+2022-05-24 17:52:30 140 sec: 5862181 operations; [UPDATE: Count=5862181 Max=41619.90 Min=3.31 Avg=22.99]
+2022-05-24 17:52:40 150 sec: 6282223 operations; [UPDATE: Count=6282223 Max=41619.90 Min=3.31 Avg=22.99]
+2022-05-24 17:52:50 160 sec: 6731959 operations; [UPDATE: Count=6731959 Max=41619.90 Min=3.31 Avg=22.89]
+2022-05-24 17:53:00 170 sec: 7174104 operations; [UPDATE: Count=7174104 Max=41619.90 Min=3.31 Avg=22.82]
+2022-05-24 17:53:10 180 sec: 7620348 operations; [UPDATE: Count=7620348 Max=41619.90 Min=3.31 Avg=22.75]
+2022-05-24 17:53:20 190 sec: 8073446 operations; [UPDATE: Count=8073446 Max=41619.90 Min=3.31 Avg=22.67]
+2022-05-24 17:53:30 200 sec: 8523748 operations; [UPDATE: Count=8523748 Max=41619.90 Min=3.31 Avg=22.60]
+2022-05-24 17:53:40 210 sec: 8963234 operations; [UPDATE: Count=8963234 Max=41619.90 Min=3.31 Avg=22.57]
+2022-05-24 17:53:50 220 sec: 9411493 operations; [UPDATE: Count=9411493 Max=41619.90 Min=3.31 Avg=22.52]
+2022-05-24 17:54:00 230 sec: 9864647 operations; [UPDATE: Count=9864647 Max=41619.90 Min=3.31 Avg=22.46]
+2022-05-24 17:54:03 232 sec: 10000000 operations; [UPDATE: Count=10000000 Max=41619.90 Min=3.31 Avg=22.42]
+Run runtime(sec): 232.903
+Run operations(ops): 10000000
+Run throughput(ops/sec): 42936.4
+==================第 5 次测试=================
+2022-05-24 17:54:03 0 sec: 0 operations;
+2022-05-24 17:54:13 10 sec: 396839 operations; [UPDATE: Count=396839 Max=23639.03 Min=3.68 Avg=23.38]
+2022-05-24 17:54:23 20 sec: 798778 operations; [UPDATE: Count=798778 Max=27773.96 Min=3.57 Avg=23.73]
+2022-05-24 17:54:33 30 sec: 1342424 operations; [UPDATE: Count=1342424 Max=31339.23 Min=3.53 Avg=21.26]
+2022-05-24 17:54:43 40 sec: 1685347 operations; [UPDATE: Count=1685347 Max=31339.23 Min=3.53 Avg=22.70]
+2022-05-24 17:54:53 50 sec: 2203018 operations; [UPDATE: Count=2203018 Max=31339.23 Min=3.53 Avg=21.72]
+2022-05-24 17:55:03 60 sec: 2540362 operations; [UPDATE: Count=2540362 Max=31339.23 Min=3.53 Avg=22.66]
+2022-05-24 17:55:13 70 sec: 2985675 operations; [UPDATE: Count=2985675 Max=31339.23 Min=3.53 Avg=22.51]
+2022-05-24 17:55:23 80 sec: 3432383 operations; [UPDATE: Count=3432383 Max=31339.23 Min=3.53 Avg=22.39]
+2022-05-24 17:55:33 90 sec: 3879178 operations; [UPDATE: Count=3879178 Max=31339.23 Min=3.53 Avg=22.30]
+2022-05-24 17:55:43 100 sec: 4326387 operations; [UPDATE: Count=4326387 Max=31339.23 Min=3.53 Avg=22.23]
+2022-05-24 17:55:53 110 sec: 4770566 operations; [UPDATE: Count=4770566 Max=31339.23 Min=3.53 Avg=22.18]
+2022-05-24 17:56:03 120 sec: 5218145 operations; [UPDATE: Count=5218145 Max=31339.23 Min=3.48 Avg=22.13]
+2022-05-24 17:56:13 130 sec: 5665333 operations; [UPDATE: Count=5665333 Max=31339.23 Min=3.48 Avg=22.08]
+2022-05-24 17:56:23 140 sec: 6126722 operations; [UPDATE: Count=6126722 Max=31339.23 Min=3.48 Avg=21.99]
+2022-05-24 17:56:33 150 sec: 6557310 operations; [UPDATE: Count=6557310 Max=31339.23 Min=3.48 Avg=22.02]
+2022-05-24 17:56:43 160 sec: 7013990 operations; [UPDATE: Count=7013990 Max=31339.23 Min=3.48 Avg=21.96]
+2022-05-24 17:56:53 170 sec: 7451516 operations; [UPDATE: Count=7451516 Max=32792.83 Min=3.48 Avg=21.97]
+2022-05-24 17:57:03 180 sec: 7910297 operations; [UPDATE: Count=7910297 Max=32792.83 Min=3.48 Avg=21.91]
+2022-05-24 17:57:13 190 sec: 8347311 operations; [UPDATE: Count=8347311 Max=32792.83 Min=3.48 Avg=21.92]
+2022-05-24 17:57:23 200 sec: 8792463 operations; [UPDATE: Count=8792463 Max=32792.83 Min=3.48 Avg=21.91]
+2022-05-24 17:57:33 210 sec: 9239578 operations; [UPDATE: Count=9239578 Max=32792.83 Min=3.48 Avg=21.89]
+2022-05-24 17:57:43 220 sec: 9693802 operations; [UPDATE: Count=9693802 Max=32792.83 Min=3.48 Avg=21.86]
+2022-05-24 17:57:50 226 sec: 10000000 operations; [UPDATE: Count=10000000 Max=33253.03 Min=3.48 Avg=21.82]
+Run runtime(sec): 226.738
+Run operations(ops): 10000000
+Run throughput(ops/sec): 44103.8
+==================第 6 次测试=================
+2022-05-24 17:57:50 0 sec: 0 operations;
+2022-05-24 17:58:00 10 sec: 350187 operations; [UPDATE: Count=350187 Max=25285.72 Min=3.55 Avg=26.43]
+2022-05-24 17:58:10 20 sec: 790522 operations; [UPDATE: Count=790522 Max=25285.72 Min=3.55 Avg=23.87]
+2022-05-24 17:58:20 30 sec: 1193217 operations; [UPDATE: Count=1193217 Max=25285.72 Min=3.55 Avg=23.90]
+2022-05-24 17:58:30 40 sec: 1637045 operations; [UPDATE: Count=1637045 Max=29009.97 Min=3.55 Avg=23.29]
+2022-05-24 17:58:40 50 sec: 2050155 operations; [UPDATE: Count=2050155 Max=29009.97 Min=3.55 Avg=23.29]
+2022-05-24 17:58:50 60 sec: 2400684 operations; [UPDATE: Count=2400684 Max=29009.97 Min=3.55 Avg=23.92]
+2022-05-24 17:59:00 70 sec: 2877229 operations; [UPDATE: Count=2877229 Max=31495.27 Min=3.55 Avg=23.29]
+2022-05-24 17:59:10 80 sec: 3316129 operations; [UPDATE: Count=3316129 Max=31495.27 Min=3.55 Avg=23.11]
+2022-05-24 17:59:20 90 sec: 3710922 operations; [UPDATE: Count=3710922 Max=31495.27 Min=3.55 Avg=23.25]
+2022-05-24 17:59:30 100 sec: 4163626 operations; [UPDATE: Count=4163626 Max=31495.27 Min=3.55 Avg=23.03]
+2022-05-24 17:59:40 110 sec: 4608973 operations; [UPDATE: Count=4608973 Max=31495.27 Min=3.52 Avg=22.89]
+2022-05-24 17:59:50 120 sec: 5056874 operations; [UPDATE: Count=5056874 Max=31495.27 Min=3.52 Avg=22.76]
+2022-05-24 18:00:00 130 sec: 5496069 operations; [UPDATE: Count=5496069 Max=31495.27 Min=3.49 Avg=22.69]
+2022-05-24 18:00:10 140 sec: 5950254 operations; [UPDATE: Count=5950254 Max=31495.27 Min=3.49 Avg=22.57]
+2022-05-24 18:00:20 150 sec: 6391039 operations; [UPDATE: Count=6391039 Max=31495.27 Min=3.49 Avg=22.52]
+2022-05-24 18:00:30 160 sec: 6845182 operations; [UPDATE: Count=6845182 Max=31495.27 Min=3.49 Avg=22.43]
+2022-05-24 18:00:40 170 sec: 7287569 operations; [UPDATE: Count=7287569 Max=31495.27 Min=3.45 Avg=22.39]
+2022-05-24 18:00:50 180 sec: 7732386 operations; [UPDATE: Count=7732386 Max=31495.27 Min=3.45 Avg=22.34]
+2022-05-24 18:01:00 190 sec: 8179377 operations; [UPDATE: Count=8179377 Max=31495.27 Min=3.45 Avg=22.30]
+2022-05-24 18:01:10 200 sec: 8627083 operations; [UPDATE: Count=8627083 Max=31495.27 Min=3.45 Avg=22.25]
+2022-05-24 18:01:20 210 sec: 9077034 operations; [UPDATE: Count=9077034 Max=31495.27 Min=3.45 Avg=22.21]
+2022-05-24 18:01:30 220 sec: 9525067 operations; [UPDATE: Count=9525067 Max=31495.27 Min=3.45 Avg=22.17]
+2022-05-24 18:01:40 230 sec: 9966135 operations; [UPDATE: Count=9966135 Max=33130.02 Min=3.45 Avg=22.16]
+2022-05-24 18:01:43 233 sec: 10000000 operations; [UPDATE: Count=10000000 Max=35378.49 Min=3.45 Avg=22.45]
+Run runtime(sec): 233.783
+Run operations(ops): 10000000
+Run throughput(ops/sec): 42774.7
+==================第 7 次测试=================
+2022-05-24 18:01:43 0 sec: 0 operations;
+2022-05-24 18:01:53 10 sec: 425480 operations; [UPDATE: Count=425480 Max=21452.87 Min=3.67 Avg=21.85]
+2022-05-24 18:02:03 20 sec: 859894 operations; [UPDATE: Count=859894 Max=26325.15 Min=3.46 Avg=22.05]
+2022-05-24 18:02:13 30 sec: 1315972 operations; [UPDATE: Count=1315972 Max=30382.75 Min=3.46 Avg=21.74]
+2022-05-24 18:02:23 40 sec: 1759150 operations; [UPDATE: Count=1759150 Max=30382.75 Min=3.46 Avg=21.76]
+2022-05-24 18:02:33 50 sec: 2208298 operations; [UPDATE: Count=2208298 Max=30382.75 Min=3.46 Avg=21.71]
+2022-05-24 18:02:43 60 sec: 2651076 operations; [UPDATE: Count=2651076 Max=30382.75 Min=3.46 Avg=21.72]
+2022-05-24 18:02:53 70 sec: 3094727 operations; [UPDATE: Count=3094727 Max=31300.40 Min=3.46 Avg=21.73]
+2022-05-24 18:03:03 80 sec: 3511308 operations; [UPDATE: Count=3511308 Max=31300.40 Min=3.46 Avg=21.91]
+2022-05-24 18:03:13 90 sec: 3988942 operations; [UPDATE: Count=3988942 Max=31300.40 Min=3.46 Avg=21.70]
+2022-05-24 18:03:23 100 sec: 4366950 operations; [UPDATE: Count=4366950 Max=31300.40 Min=3.46 Avg=22.04]
+2022-05-24 18:03:33 110 sec: 4819430 operations; [UPDATE: Count=4819430 Max=31300.40 Min=3.46 Avg=21.98]
+2022-05-24 18:03:43 120 sec: 5125785 operations; [UPDATE: Count=5125785 Max=31300.40 Min=3.46 Avg=22.56]
+2022-05-24 18:03:53 130 sec: 5615567 operations; [UPDATE: Count=5615567 Max=31300.40 Min=3.46 Avg=22.31]
+2022-05-24 18:04:03 140 sec: 5989297 operations; [UPDATE: Count=5989297 Max=31300.40 Min=3.46 Avg=22.54]
+2022-05-24 18:04:13 150 sec: 6471233 operations; [UPDATE: Count=6471233 Max=31300.40 Min=3.46 Avg=22.35]
+2022-05-24 18:04:23 160 sec: 6849373 operations; [UPDATE: Count=6849373 Max=31300.40 Min=3.46 Avg=22.53]
+2022-05-24 18:04:33 170 sec: 7352418 operations; [UPDATE: Count=7352418 Max=31363.97 Min=3.46 Avg=22.30]
+2022-05-24 18:04:43 180 sec: 7785577 operations; [UPDATE: Count=7785577 Max=31363.97 Min=3.46 Avg=22.30]
+2022-05-24 18:04:53 190 sec: 8176514 operations; [UPDATE: Count=8176514 Max=31363.97 Min=3.46 Avg=22.42]
+2022-05-24 18:05:03 200 sec: 8625659 operations; [UPDATE: Count=8625659 Max=33228.92 Min=3.46 Avg=22.37]
+2022-05-24 18:05:13 210 sec: 9000930 operations; [UPDATE: Count=9000930 Max=33228.92 Min=3.46 Avg=22.52]
+2022-05-24 18:05:23 220 sec: 9486102 operations; [UPDATE: Count=9486102 Max=33228.92 Min=3.46 Avg=22.38]
+2022-05-24 18:05:33 230 sec: 9802934 operations; [UPDATE: Count=9802934 Max=33228.92 Min=3.46 Avg=22.65]
+2022-05-24 18:05:36 232 sec: 10000000 operations; [UPDATE: Count=10000000 Max=33228.92 Min=3.46 Avg=22.41]
+Run runtime(sec): 232.324
+Run operations(ops): 10000000
+Run throughput(ops/sec): 43043.4
+==================第 8 次测试=================
+2022-05-24 18:05:36 0 sec: 0 operations;
+2022-05-24 18:05:46 10 sec: 426768 operations; [UPDATE: Count=426768 Max=41537.53 Min=3.37 Avg=21.78]
+2022-05-24 18:05:56 20 sec: 942689 operations; [UPDATE: Count=942689 Max=41537.53 Min=3.37 Avg=20.05]
+2022-05-24 18:06:06 30 sec: 1372764 operations; [UPDATE: Count=1372764 Max=41537.53 Min=3.37 Avg=20.80]
+2022-05-24 18:06:16 40 sec: 1782729 operations; [UPDATE: Count=1782729 Max=41537.53 Min=3.37 Avg=21.44]
+2022-05-24 18:06:26 50 sec: 2239850 operations; [UPDATE: Count=2239850 Max=41537.53 Min=3.37 Avg=21.36]
+2022-05-24 18:06:36 60 sec: 2633611 operations; [UPDATE: Count=2633611 Max=41537.53 Min=3.37 Avg=21.84]
+2022-05-24 18:06:46 70 sec: 3135263 operations; [UPDATE: Count=3135263 Max=41537.53 Min=3.37 Avg=21.41]
+2022-05-24 18:06:56 80 sec: 3427326 operations; [UPDATE: Count=3427326 Max=41537.53 Min=3.37 Avg=22.43]
+2022-05-24 18:07:06 90 sec: 3999348 operations; [UPDATE: Count=3999348 Max=41537.53 Min=3.37 Avg=21.61]
+2022-05-24 18:07:16 100 sec: 4308726 operations; [UPDATE: Count=4308726 Max=41537.53 Min=3.37 Avg=22.32]
+2022-05-24 18:07:26 110 sec: 4738085 operations; [UPDATE: Count=4738085 Max=41537.53 Min=3.37 Avg=22.34]
+2022-05-24 18:07:36 120 sec: 5163738 operations; [UPDATE: Count=5163738 Max=41537.53 Min=3.37 Avg=22.37]
+2022-05-24 18:07:46 130 sec: 5610082 operations; [UPDATE: Count=5610082 Max=41537.53 Min=3.37 Avg=22.31]
+2022-05-24 18:07:56 140 sec: 6057532 operations; [UPDATE: Count=6057532 Max=41537.53 Min=3.37 Avg=22.25]
+2022-05-24 18:08:06 150 sec: 6516141 operations; [UPDATE: Count=6516141 Max=41537.53 Min=3.37 Avg=22.16]
+2022-05-24 18:08:16 160 sec: 6954084 operations; [UPDATE: Count=6954084 Max=41537.53 Min=3.37 Avg=22.15]
+2022-05-24 18:08:26 170 sec: 7397396 operations; [UPDATE: Count=7397396 Max=41537.53 Min=3.37 Avg=22.13]
+2022-05-24 18:08:36 180 sec: 7845899 operations; [UPDATE: Count=7845899 Max=41537.53 Min=3.37 Avg=22.09]
+2022-05-24 18:08:46 190 sec: 8292854 operations; [UPDATE: Count=8292854 Max=41537.53 Min=3.37 Avg=22.07]
+2022-05-24 18:08:56 200 sec: 8740596 operations; [UPDATE: Count=8740596 Max=41537.53 Min=3.37 Avg=22.04]
+2022-05-24 18:09:06 210 sec: 9189014 operations; [UPDATE: Count=9189014 Max=49519.75 Min=3.37 Avg=22.01]
+2022-05-24 18:09:16 220 sec: 9632616 operations; [UPDATE: Count=9632616 Max=49519.75 Min=3.37 Avg=22.00]
+2022-05-24 18:09:21 225 sec: 10000000 operations; [UPDATE: Count=10000000 Max=49519.75 Min=3.37 Avg=21.71]
+Run runtime(sec): 225.558
+Run operations(ops): 10000000
+Run throughput(ops/sec): 44334.4
+==================第 9 次测试=================
+2022-05-24 18:09:21 0 sec: 0 operations;
+2022-05-24 18:09:31 10 sec: 338530 operations; [UPDATE: Count=338530 Max=26757.39 Min=3.62 Avg=27.59]
+2022-05-24 18:09:41 20 sec: 746271 operations; [UPDATE: Count=746271 Max=29203.00 Min=3.54 Avg=25.48]
+2022-05-24 18:09:51 30 sec: 1178668 operations; [UPDATE: Count=1178668 Max=29725.99 Min=3.47 Avg=24.32]
+2022-05-24 18:10:01 40 sec: 1612427 operations; [UPDATE: Count=1612427 Max=29725.99 Min=3.47 Avg=23.77]
+2022-05-24 18:10:11 50 sec: 2110932 operations; [UPDATE: Count=2110932 Max=30915.47 Min=3.36 Avg=22.72]
+2022-05-24 18:10:21 60 sec: 2557234 operations; [UPDATE: Count=2557234 Max=30915.47 Min=3.36 Avg=22.52]
+2022-05-24 18:10:31 70 sec: 2954506 operations; [UPDATE: Count=2954506 Max=30915.47 Min=3.36 Avg=22.76]
+2022-05-24 18:10:41 80 sec: 3438673 operations; [UPDATE: Count=3438673 Max=30915.47 Min=3.36 Avg=22.36]
+2022-05-24 18:10:51 90 sec: 3868717 operations; [UPDATE: Count=3868717 Max=30915.47 Min=3.36 Avg=22.37]
+2022-05-24 18:11:01 100 sec: 4250076 operations; [UPDATE: Count=4250076 Max=30915.47 Min=3.36 Avg=22.64]
+2022-05-24 18:11:11 110 sec: 4699139 operations; [UPDATE: Count=4699139 Max=34203.95 Min=3.36 Avg=22.53]
+2022-05-24 18:11:21 120 sec: 5151017 operations; [UPDATE: Count=5151017 Max=34203.95 Min=3.36 Avg=22.43]
+2022-05-24 18:11:31 130 sec: 5455256 operations; [UPDATE: Count=5455256 Max=34203.95 Min=3.36 Avg=22.96]
+2022-05-24 18:11:41 140 sec: 6010436 operations; [UPDATE: Count=6010436 Max=34203.95 Min=3.36 Avg=22.44]
+2022-05-24 18:11:51 150 sec: 6429616 operations; [UPDATE: Count=6429616 Max=37637.14 Min=3.36 Avg=22.48]
+2022-05-24 18:12:01 160 sec: 6962413 operations; [UPDATE: Count=6962413 Max=37637.14 Min=3.36 Avg=22.13]
+2022-05-24 18:12:11 170 sec: 7388971 operations; [UPDATE: Count=7388971 Max=37637.14 Min=3.36 Avg=22.16]
+2022-05-24 18:12:21 180 sec: 7778612 operations; [UPDATE: Count=7778612 Max=37637.14 Min=3.36 Avg=22.30]
+2022-05-24 18:12:31 190 sec: 8163088 operations; [UPDATE: Count=8163088 Max=37637.14 Min=3.36 Avg=22.44]
+2022-05-24 18:12:41 200 sec: 8648856 operations; [UPDATE: Count=8648856 Max=37637.14 Min=3.36 Avg=22.29]
+2022-05-24 18:12:51 210 sec: 9020687 operations; [UPDATE: Count=9020687 Max=37637.14 Min=3.36 Avg=22.44]
+2022-05-24 18:13:01 220 sec: 9467561 operations; [UPDATE: Count=9467561 Max=50942.54 Min=3.36 Avg=22.40]
+2022-05-24 18:13:11 230 sec: 9913579 operations; [UPDATE: Count=9913579 Max=50942.54 Min=3.36 Avg=22.37]
+2022-05-24 18:13:15 233 sec: 10000000 operations; [UPDATE: Count=10000000 Max=50942.54 Min=3.36 Avg=22.49]
+Run runtime(sec): 233.325
+Run operations(ops): 10000000
+Run throughput(ops/sec): 42858.7
+***********************This is test for workloadb-uni*****************************
+2022-05-25 00:41:01 0 sec: 0 operations;
+2022-05-25 00:41:11 10 sec: 820836 operations; [INSERT: Count=820836 Max=67092.63 Min=2.01 Avg=8.64]
+2022-05-25 00:41:13 11 sec: 1000000 operations; [INSERT: Count=1000000 Max=67092.63 Min=2.01 Avg=7.97]
+Load runtime(sec): 11.543
+Load operations(ops): 1000000
+Load throughput(ops/sec): 86632.6
+==================第 0 次测试=================
+2022-05-25 00:41:13 0 sec: 0 operations;
+2022-05-25 00:41:23 10 sec: 604750 operations; [READ: Count=60376 Max=114.03 Min=1.39 Avg=7.71] [UPDATE: Count=544374 Max=18837.44 Min=3.65 Avg=15.49]
+2022-05-25 00:41:33 20 sec: 1050796 operations; [READ: Count=104974 Max=120.79 Min=1.36 Avg=7.78] [UPDATE: Count=945822 Max=18837.44 Min=3.65 Avg=18.76]
+2022-05-25 00:41:43 30 sec: 1556262 operations; [READ: Count=155260 Max=120.79 Min=1.36 Avg=7.82] [UPDATE: Count=1401002 Max=26385.82 Min=3.65 Avg=19.26]
+2022-05-25 00:41:53 40 sec: 2032563 operations; [READ: Count=203069 Max=13938.28 Min=1.36 Avg=7.94] [UPDATE: Count=1829494 Max=29739.65 Min=3.65 Avg=19.80]
+2022-05-25 00:42:03 50 sec: 2569303 operations; [READ: Count=256303 Max=13938.28 Min=1.36 Avg=7.95] [UPDATE: Count=2313000 Max=75513.49 Min=3.58 Avg=19.63]
+2022-05-25 00:42:13 60 sec: 3035815 operations; [READ: Count=303041 Max=13938.28 Min=1.36 Avg=7.98] [UPDATE: Count=2732774 Max=75513.49 Min=3.58 Avg=20.01]
+2022-05-25 00:42:23 70 sec: 3391582 operations; [READ: Count=338765 Max=13938.28 Min=1.36 Avg=8.06] [UPDATE: Count=3052817 Max=75513.49 Min=3.58 Avg=20.99]
+2022-05-25 00:42:33 80 sec: 3907979 operations; [READ: Count=390207 Max=13938.28 Min=1.32 Avg=8.03] [UPDATE: Count=3517772 Max=75513.49 Min=3.58 Avg=20.83]
+2022-05-25 00:42:43 90 sec: 4366907 operations; [READ: Count=436279 Max=13938.28 Min=1.32 Avg=8.04] [UPDATE: Count=3930628 Max=75513.49 Min=3.58 Avg=21.01]
+2022-05-25 00:42:53 100 sec: 4775711 operations; [READ: Count=477241 Max=13938.28 Min=1.32 Avg=8.08] [UPDATE: Count=4298470 Max=75513.49 Min=3.58 Avg=21.38]
+2022-05-25 00:43:03 110 sec: 5261991 operations; [READ: Count=525774 Max=13938.28 Min=1.32 Avg=8.09] [UPDATE: Count=4736217 Max=75513.49 Min=3.58 Avg=21.36]
+2022-05-25 00:43:13 120 sec: 5744432 operations; [READ: Count=574127 Max=13938.28 Min=1.32 Avg=8.09] [UPDATE: Count=5170305 Max=75513.49 Min=3.58 Avg=21.35]
+2022-05-25 00:43:23 130 sec: 6230472 operations; [READ: Count=622827 Max=13938.28 Min=1.32 Avg=8.09] [UPDATE: Count=5607645 Max=75513.49 Min=3.58 Avg=21.34]
+2022-05-25 00:43:33 140 sec: 6734039 operations; [READ: Count=673178 Max=13938.28 Min=1.32 Avg=8.09] [UPDATE: Count=6060861 Max=75513.49 Min=3.58 Avg=21.26]
+2022-05-25 00:43:43 150 sec: 7224142 operations; [READ: Count=722282 Max=13938.28 Min=1.32 Avg=8.09] [UPDATE: Count=6501860 Max=75513.49 Min=3.58 Avg=21.24]
+2022-05-25 00:43:53 160 sec: 7721870 operations; [READ: Count=771850 Max=13938.28 Min=1.32 Avg=8.09] [UPDATE: Count=6950020 Max=75513.49 Min=3.58 Avg=21.20]
+2022-05-25 00:44:03 170 sec: 8237325 operations; [READ: Count=823314 Max=13938.28 Min=1.32 Avg=8.09] [UPDATE: Count=7414011 Max=75513.49 Min=3.58 Avg=21.11]
+2022-05-25 00:44:13 180 sec: 8719215 operations; [READ: Count=871628 Max=13938.28 Min=1.32 Avg=8.09] [UPDATE: Count=7847587 Max=75513.49 Min=3.58 Avg=21.13]
+2022-05-25 00:44:23 190 sec: 9209765 operations; [READ: Count=920938 Max=13938.28 Min=1.32 Avg=8.08] [UPDATE: Count=8288827 Max=75513.49 Min=3.58 Avg=21.12]
+2022-05-25 00:44:33 200 sec: 9712257 operations; [READ: Count=971177 Max=13938.28 Min=1.32 Avg=8.08] [UPDATE: Count=8741080 Max=75513.49 Min=3.58 Avg=21.08]
+2022-05-25 00:44:41 207 sec: 10000000 operations; [READ: Count=999937 Max=13938.28 Min=1.32 Avg=8.06] [UPDATE: Count=9000063 Max=75513.49 Min=3.58 Avg=21.25]
+Run runtime(sec): 207.578
+Run operations(ops): 10000000
+Run throughput(ops/sec): 48174.6
+==================第 1 次测试=================
+2022-05-25 00:44:41 0 sec: 0 operations;
+2022-05-25 00:44:51 10 sec: 393284 operations; [READ: Count=39294 Max=3388.39 Min=1.47 Avg=8.57] [UPDATE: Count=353990 Max=25884.44 Min=3.57 Avg=25.24]
+2022-05-25 00:45:01 20 sec: 902958 operations; [READ: Count=90533 Max=11911.35 Min=1.41 Avg=8.50] [UPDATE: Count=812425 Max=28026.03 Min=3.57 Avg=22.29]
+2022-05-25 00:45:11 30 sec: 1409285 operations; [READ: Count=140962 Max=11911.35 Min=1.38 Avg=8.47] [UPDATE: Count=1268323 Max=32248.05 Min=3.57 Avg=21.52]
+2022-05-25 00:45:21 40 sec: 1785086 operations; [READ: Count=178461 Max=11911.35 Min=1.38 Avg=8.52] [UPDATE: Count=1606625 Max=32248.05 Min=3.57 Avg=22.82]
+2022-05-25 00:45:31 50 sec: 2293363 operations; [READ: Count=229226 Max=11911.35 Min=1.38 Avg=8.41] [UPDATE: Count=2064137 Max=32248.05 Min=3.57 Avg=22.22]
+2022-05-25 00:45:41 60 sec: 2698382 operations; [READ: Count=269700 Max=11911.35 Min=1.38 Avg=8.44] [UPDATE: Count=2428682 Max=32248.05 Min=3.57 Avg=22.72]
+2022-05-25 00:45:51 70 sec: 3210060 operations; [READ: Count=320768 Max=11911.35 Min=1.38 Avg=8.37] [UPDATE: Count=2889292 Max=37939.85 Min=3.57 Avg=22.29]
+2022-05-25 00:46:01 80 sec: 3629396 operations; [READ: Count=362607 Max=11911.35 Min=1.38 Avg=8.40] [UPDATE: Count=3266789 Max=37939.85 Min=3.57 Avg=22.56]
+2022-05-25 00:46:11 90 sec: 4121914 operations; [READ: Count=412103 Max=11911.35 Min=1.38 Avg=8.37] [UPDATE: Count=3709811 Max=47232.17 Min=3.51 Avg=22.35]
+2022-05-25 00:46:21 100 sec: 4624249 operations; [READ: Count=462496 Max=11911.35 Min=1.38 Avg=8.33] [UPDATE: Count=4161753 Max=47232.17 Min=3.51 Avg=22.13]
+2022-05-25 00:46:31 110 sec: 5121222 operations; [READ: Count=512349 Max=11911.35 Min=1.38 Avg=8.31] [UPDATE: Count=4608873 Max=47232.17 Min=3.51 Avg=21.99]
+2022-05-25 00:46:41 120 sec: 5609460 operations; [READ: Count=561324 Max=11911.35 Min=1.38 Avg=8.30] [UPDATE: Count=5048136 Max=47232.17 Min=3.51 Avg=21.90]
+2022-05-25 00:46:51 130 sec: 6116148 operations; [READ: Count=611885 Max=11911.35 Min=1.38 Avg=8.29] [UPDATE: Count=5504263 Max=47232.17 Min=3.51 Avg=21.76]
+2022-05-25 00:47:01 140 sec: 6610939 operations; [READ: Count=661294 Max=11911.35 Min=1.38 Avg=8.28] [UPDATE: Count=5949645 Max=47232.17 Min=3.51 Avg=21.68]
+2022-05-25 00:47:11 150 sec: 7100724 operations; [READ: Count=710469 Max=11911.35 Min=1.38 Avg=8.27] [UPDATE: Count=6390255 Max=47232.17 Min=3.51 Avg=21.62]
+2022-05-25 00:47:21 160 sec: 7603557 operations; [READ: Count=760543 Max=11911.35 Min=1.37 Avg=8.27] [UPDATE: Count=6843014 Max=47232.17 Min=3.51 Avg=21.54]
+2022-05-25 00:47:31 170 sec: 8095013 operations; [READ: Count=809642 Max=14251.43 Min=1.37 Avg=8.28] [UPDATE: Count=7285371 Max=47232.17 Min=3.51 Avg=21.49]
+2022-05-25 00:47:41 180 sec: 8597068 operations; [READ: Count=859575 Max=20418.51 Min=1.36 Avg=8.30] [UPDATE: Count=7737493 Max=47232.17 Min=3.51 Avg=21.43]
+2022-05-25 00:47:51 190 sec: 9042123 operations; [READ: Count=904035 Max=20418.51 Min=1.36 Avg=8.29] [UPDATE: Count=8138088 Max=47232.17 Min=3.36 Avg=21.51]
+2022-05-25 00:48:01 200 sec: 9581525 operations; [READ: Count=957816 Max=20418.51 Min=1.36 Avg=8.28] [UPDATE: Count=8623709 Max=47232.17 Min=3.36 Avg=21.36]
+2022-05-25 00:48:10 209 sec: 10000000 operations; [READ: Count=999855 Max=20418.51 Min=1.36 Avg=8.27] [UPDATE: Count=9000145 Max=47232.17 Min=3.36 Avg=21.40]
+Run runtime(sec): 209.323
+Run operations(ops): 10000000
+Run throughput(ops/sec): 47773
+==================第 2 次测试=================
+2022-05-25 00:48:10 0 sec: 0 operations;
+2022-05-25 00:48:20 10 sec: 391447 operations; [READ: Count=39696 Max=165.95 Min=1.46 Avg=7.89] [UPDATE: Count=351751 Max=39622.63 Min=3.51 Avg=25.50]
+2022-05-25 00:48:30 20 sec: 925760 operations; [READ: Count=92947 Max=165.95 Min=1.41 Avg=7.94] [UPDATE: Count=832813 Max=39622.63 Min=3.51 Avg=21.77]
+2022-05-25 00:48:40 30 sec: 1439023 operations; [READ: Count=144416 Max=165.95 Min=1.41 Avg=8.01] [UPDATE: Count=1294607 Max=39622.63 Min=3.51 Avg=21.09]
+2022-05-25 00:48:50 40 sec: 1881012 operations; [READ: Count=188566 Max=165.95 Min=1.41 Avg=8.05] [UPDATE: Count=1692446 Max=42993.29 Min=3.51 Avg=21.62]
+2022-05-25 00:49:00 50 sec: 2451308 operations; [READ: Count=245486 Max=14001.35 Min=1.41 Avg=8.13] [UPDATE: Count=2205822 Max=42993.29 Min=3.51 Avg=20.70]
+2022-05-25 00:49:10 60 sec: 2852892 operations; [READ: Count=285539 Max=14001.35 Min=1.41 Avg=8.15] [UPDATE: Count=2567353 Max=42993.29 Min=3.51 Avg=21.42]
+2022-05-25 00:49:20 70 sec: 3385676 operations; [READ: Count=339064 Max=14001.35 Min=1.41 Avg=8.13] [UPDATE: Count=3046612 Max=42993.29 Min=3.51 Avg=21.06]
+2022-05-25 00:49:30 80 sec: 3759626 operations; [READ: Count=376388 Max=14001.35 Min=1.41 Avg=8.16] [UPDATE: Count=3383238 Max=42993.29 Min=3.51 Avg=21.73]
+2022-05-25 00:49:40 90 sec: 4348551 operations; [READ: Count=435288 Max=14001.35 Min=1.40 Avg=8.14] [UPDATE: Count=3913263 Max=42993.29 Min=3.47 Avg=21.11]
+2022-05-25 00:49:50 100 sec: 4777500 operations; [READ: Count=478440 Max=14001.35 Min=1.40 Avg=8.15] [UPDATE: Count=4299060 Max=42993.29 Min=3.47 Avg=21.38]
+2022-05-25 00:50:00 110 sec: 5344556 operations; [READ: Count=535161 Max=14001.35 Min=1.40 Avg=8.17] [UPDATE: Count=4809395 Max=42993.29 Min=3.47 Avg=21.00]
+2022-05-25 00:50:10 120 sec: 5719827 operations; [READ: Count=572701 Max=14001.35 Min=1.40 Avg=8.18] [UPDATE: Count=5147126 Max=42993.29 Min=3.47 Avg=21.44]
+2022-05-25 00:50:20 130 sec: 6281215 operations; [READ: Count=628825 Max=14001.35 Min=1.40 Avg=8.16] [UPDATE: Count=5652390 Max=42993.29 Min=3.47 Avg=21.14]
+2022-05-25 00:50:30 140 sec: 6698139 operations; [READ: Count=670117 Max=14001.35 Min=1.40 Avg=8.16] [UPDATE: Count=6028022 Max=42993.29 Min=3.47 Avg=21.37]
+2022-05-25 00:50:40 150 sec: 7268190 operations; [READ: Count=726995 Max=14001.35 Min=1.40 Avg=8.14] [UPDATE: Count=6541195 Max=42993.29 Min=3.47 Avg=21.08]
+2022-05-25 00:50:50 160 sec: 7694755 operations; [READ: Count=769897 Max=14001.35 Min=1.40 Avg=8.14] [UPDATE: Count=6924858 Max=42993.29 Min=3.47 Avg=21.26]
+2022-05-25 00:51:00 170 sec: 8150978 operations; [READ: Count=815345 Max=14001.35 Min=1.38 Avg=8.15] [UPDATE: Count=7335633 Max=42993.29 Min=3.47 Avg=21.33]
+2022-05-25 00:51:10 180 sec: 8548633 operations; [READ: Count=855200 Max=14001.35 Min=1.38 Avg=8.17] [UPDATE: Count=7693433 Max=44589.55 Min=3.47 Avg=21.55]
+2022-05-25 00:51:20 190 sec: 9058152 operations; [READ: Count=905826 Max=14001.35 Min=1.38 Avg=8.16] [UPDATE: Count=8152326 Max=44589.55 Min=3.47 Avg=21.46]
+2022-05-25 00:51:30 200 sec: 9461526 operations; [READ: Count=946282 Max=15066.00 Min=1.38 Avg=8.19] [UPDATE: Count=8515244 Max=44589.55 Min=3.47 Avg=21.64]
+2022-05-25 00:51:40 210 sec: 9956694 operations; [READ: Count=995703 Max=15066.00 Min=1.38 Avg=8.18] [UPDATE: Count=8960991 Max=44589.55 Min=3.47 Avg=21.59]
+2022-05-25 00:51:41 210 sec: 10000000 operations; [READ: Count=1000043 Max=15066.00 Min=1.38 Avg=8.17] [UPDATE: Count=8999957 Max=44589.55 Min=3.47 Avg=21.57]
+Run runtime(sec): 210.914
+Run operations(ops): 10000000
+Run throughput(ops/sec): 47412.8
+==================第 3 次测试=================
+2022-05-25 00:51:41 0 sec: 0 operations;
+2022-05-25 00:51:51 10 sec: 402134 operations; [READ: Count=39959 Max=5511.54 Min=1.42 Avg=8.86] [UPDATE: Count=362175 Max=32478.94 Min=3.49 Avg=24.68]
+2022-05-25 00:52:01 20 sec: 931109 operations; [READ: Count=92695 Max=5511.54 Min=1.42 Avg=8.28] [UPDATE: Count=838414 Max=32478.94 Min=3.49 Avg=21.63]
+2022-05-25 00:52:11 30 sec: 1399493 operations; [READ: Count=139369 Max=5511.54 Min=1.42 Avg=8.24] [UPDATE: Count=1260124 Max=32478.94 Min=3.49 Avg=21.74]
+2022-05-25 00:52:21 40 sec: 1928481 operations; [READ: Count=192195 Max=5511.54 Min=1.37 Avg=8.16] [UPDATE: Count=1736286 Max=32478.94 Min=3.49 Avg=21.07]
+2022-05-25 00:52:31 50 sec: 2390350 operations; [READ: Count=238577 Max=5511.54 Min=1.37 Avg=8.16] [UPDATE: Count=2151773 Max=32478.94 Min=3.49 Avg=21.31]
+2022-05-25 00:52:41 60 sec: 2915880 operations; [READ: Count=291244 Max=5511.54 Min=1.37 Avg=8.10] [UPDATE: Count=2624636 Max=32478.94 Min=3.49 Avg=20.97]
+2022-05-25 00:52:51 70 sec: 3381869 operations; [READ: Count=337753 Max=5511.54 Min=1.37 Avg=8.11] [UPDATE: Count=3044116 Max=32478.94 Min=3.49 Avg=21.13]
+2022-05-25 00:53:01 80 sec: 3879536 operations; [READ: Count=387875 Max=5511.54 Min=1.35 Avg=8.09] [UPDATE: Count=3491661 Max=32478.94 Min=3.49 Avg=21.06]
+2022-05-25 00:53:11 90 sec: 4373454 operations; [READ: Count=437241 Max=20453.55 Min=1.35 Avg=8.13] [UPDATE: Count=3936213 Max=32478.94 Min=3.49 Avg=21.02]
+2022-05-25 00:53:21 100 sec: 4865718 operations; [READ: Count=486258 Max=20453.55 Min=1.35 Avg=8.12] [UPDATE: Count=4379460 Max=32478.94 Min=3.49 Avg=21.00]
+2022-05-25 00:53:31 110 sec: 5366950 operations; [READ: Count=536170 Max=20453.55 Min=1.35 Avg=8.12] [UPDATE: Count=4830780 Max=32478.94 Min=3.49 Avg=20.95]
+2022-05-25 00:53:41 120 sec: 5868845 operations; [READ: Count=585796 Max=20453.55 Min=1.35 Avg=8.11] [UPDATE: Count=5283049 Max=32478.94 Min=3.49 Avg=20.90]
+2022-05-25 00:53:51 130 sec: 6360322 operations; [READ: Count=635026 Max=20453.55 Min=1.35 Avg=8.10] [UPDATE: Count=5725296 Max=32478.94 Min=3.49 Avg=20.90]
+2022-05-25 00:54:01 140 sec: 6849250 operations; [READ: Count=683771 Max=20453.55 Min=1.35 Avg=8.10] [UPDATE: Count=6165479 Max=32478.94 Min=3.49 Avg=20.91]
+2022-05-25 00:54:11 150 sec: 7356295 operations; [READ: Count=734361 Max=20453.55 Min=1.35 Avg=8.09] [UPDATE: Count=6621934 Max=32478.94 Min=3.49 Avg=20.86]
+2022-05-25 00:54:21 160 sec: 7845132 operations; [READ: Count=783030 Max=20453.55 Min=1.35 Avg=8.08] [UPDATE: Count=7062102 Max=32478.94 Min=3.49 Avg=20.87]
+2022-05-25 00:54:31 170 sec: 8321170 operations; [READ: Count=830774 Max=20453.55 Min=1.35 Avg=8.07] [UPDATE: Count=7490396 Max=32478.94 Min=3.49 Avg=20.91]
+2022-05-25 00:54:41 180 sec: 8770669 operations; [READ: Count=875493 Max=20453.55 Min=1.35 Avg=8.07] [UPDATE: Count=7895176 Max=32478.94 Min=3.49 Avg=21.01]
+2022-05-25 00:54:51 190 sec: 9262909 operations; [READ: Count=924548 Max=20453.55 Min=1.35 Avg=8.06] [UPDATE: Count=8338361 Max=32478.94 Min=3.49 Avg=21.01]
+2022-05-25 00:55:01 200 sec: 9705621 operations; [READ: Count=968805 Max=20453.55 Min=1.35 Avg=8.05] [UPDATE: Count=8736816 Max=32478.94 Min=3.49 Avg=21.11]
+2022-05-25 00:55:08 206 sec: 10000000 operations; [READ: Count=998202 Max=20453.55 Min=1.35 Avg=8.07] [UPDATE: Count=9001798 Max=33086.57 Min=3.49 Avg=21.17]
+Run runtime(sec): 206.944
+Run operations(ops): 10000000
+Run throughput(ops/sec): 48322.2
+==================第 4 次测试=================
+2022-05-25 00:55:08 0 sec: 0 operations;
+2022-05-25 00:55:18 10 sec: 273369 operations; [READ: Count=27493 Max=3280.67 Min=1.46 Avg=9.73] [UPDATE: Count=245876 Max=29586.86 Min=3.67 Avg=36.76]
+2022-05-25 00:55:28 20 sec: 868650 operations; [READ: Count=87123 Max=3280.67 Min=1.32 Avg=8.25] [UPDATE: Count=781527 Max=32175.59 Min=3.63 Avg=23.22]
+2022-05-25 00:55:38 30 sec: 1278589 operations; [READ: Count=128353 Max=4055.38 Min=1.32 Avg=8.42] [UPDATE: Count=1150236 Max=32175.59 Min=3.63 Avg=23.87]
+2022-05-25 00:55:48 40 sec: 1776869 operations; [READ: Count=178270 Max=4055.38 Min=1.32 Avg=8.35] [UPDATE: Count=1598599 Max=40943.09 Min=3.63 Avg=22.93]
+2022-05-25 00:55:58 50 sec: 2259069 operations; [READ: Count=226581 Max=4055.38 Min=1.32 Avg=8.29] [UPDATE: Count=2032488 Max=40943.09 Min=3.63 Avg=22.58]
+2022-05-25 00:56:08 60 sec: 2757724 operations; [READ: Count=276385 Max=4055.38 Min=1.32 Avg=8.23] [UPDATE: Count=2481339 Max=40943.09 Min=3.63 Avg=22.21]
+2022-05-25 00:56:18 70 sec: 3263021 operations; [READ: Count=326765 Max=4055.38 Min=1.32 Avg=8.19] [UPDATE: Count=2936256 Max=40943.09 Min=3.63 Avg=21.91]
+2022-05-25 00:56:28 80 sec: 3750076 operations; [READ: Count=375151 Max=17730.97 Min=1.32 Avg=8.22] [UPDATE: Count=3374925 Max=40943.09 Min=3.63 Avg=21.79]
+2022-05-25 00:56:38 90 sec: 4258555 operations; [READ: Count=426211 Max=17730.97 Min=1.32 Avg=8.19] [UPDATE: Count=3832344 Max=40943.09 Min=3.46 Avg=21.59]
+2022-05-25 00:56:48 100 sec: 4750826 operations; [READ: Count=475301 Max=17730.97 Min=1.32 Avg=8.19] [UPDATE: Count=4275525 Max=40943.09 Min=3.46 Avg=21.51]
+2022-05-25 00:56:58 110 sec: 5247436 operations; [READ: Count=524988 Max=17730.97 Min=1.32 Avg=8.18] [UPDATE: Count=4722448 Max=40943.09 Min=3.46 Avg=21.42]
+2022-05-25 00:57:08 120 sec: 5732899 operations; [READ: Count=573274 Max=17730.97 Min=1.32 Avg=8.16] [UPDATE: Count=5159625 Max=40943.09 Min=3.46 Avg=21.40]
+2022-05-25 00:57:18 130 sec: 6242615 operations; [READ: Count=624338 Max=17730.97 Min=1.32 Avg=8.14] [UPDATE: Count=5618277 Max=40943.09 Min=3.46 Avg=21.29]
+2022-05-25 00:57:28 140 sec: 6730954 operations; [READ: Count=673474 Max=17730.97 Min=1.32 Avg=8.12] [UPDATE: Count=6057480 Max=40943.09 Min=3.46 Avg=21.27]
+2022-05-25 00:57:38 150 sec: 7236001 operations; [READ: Count=724143 Max=17730.97 Min=1.32 Avg=8.12] [UPDATE: Count=6511858 Max=40943.09 Min=3.46 Avg=21.20]
+2022-05-25 00:57:48 160 sec: 7720708 operations; [READ: Count=772908 Max=17730.97 Min=1.32 Avg=8.11] [UPDATE: Count=6947800 Max=40943.09 Min=3.46 Avg=21.20]
+2022-05-25 00:57:58 170 sec: 8225441 operations; [READ: Count=823259 Max=17730.97 Min=1.32 Avg=8.10] [UPDATE: Count=7402182 Max=40943.09 Min=3.46 Avg=21.14]
+2022-05-25 00:58:08 180 sec: 8700602 operations; [READ: Count=870776 Max=17730.97 Min=1.32 Avg=8.09] [UPDATE: Count=7829826 Max=40943.09 Min=3.46 Avg=21.17]
+2022-05-25 00:58:18 190 sec: 9209009 operations; [READ: Count=921600 Max=17730.97 Min=1.32 Avg=8.10] [UPDATE: Count=8287409 Max=40943.09 Min=3.46 Avg=21.11]
+2022-05-25 00:58:28 200 sec: 9590566 operations; [READ: Count=959835 Max=17730.97 Min=1.32 Avg=8.08] [UPDATE: Count=8630731 Max=40943.09 Min=3.46 Avg=21.36]
+2022-05-25 00:58:36 208 sec: 10000000 operations; [READ: Count=1000624 Max=17730.97 Min=1.32 Avg=8.09] [UPDATE: Count=8999376 Max=40943.09 Min=3.46 Avg=21.29]
+Run runtime(sec): 208.042
+Run operations(ops): 10000000
+Run throughput(ops/sec): 48067.3
+==================第 5 次测试=================
+2022-05-25 00:58:36 0 sec: 0 operations;
+2022-05-25 00:58:46 10 sec: 290509 operations; [READ: Count=29158 Max=3428.19 Min=1.47 Avg=9.33] [UPDATE: Count=261351 Max=31008.53 Min=3.63 Avg=34.65]
+2022-05-25 00:58:56 20 sec: 893267 operations; [READ: Count=89341 Max=4579.55 Min=1.47 Avg=8.33] [UPDATE: Count=803926 Max=31008.53 Min=3.63 Avg=22.57]
+2022-05-25 00:59:06 30 sec: 1310909 operations; [READ: Count=130970 Max=4579.55 Min=1.47 Avg=8.33] [UPDATE: Count=1179939 Max=31008.53 Min=3.63 Avg=23.29]
+2022-05-25 00:59:16 40 sec: 1776888 operations; [READ: Count=177314 Max=4579.55 Min=1.43 Avg=8.30] [UPDATE: Count=1599574 Max=31008.53 Min=3.63 Avg=22.97]
+2022-05-25 00:59:26 50 sec: 2212326 operations; [READ: Count=221131 Max=4579.55 Min=1.43 Avg=8.29] [UPDATE: Count=1991195 Max=31008.53 Min=3.63 Avg=23.12]
+2022-05-25 00:59:36 60 sec: 2766056 operations; [READ: Count=276646 Max=4579.55 Min=1.43 Avg=8.18] [UPDATE: Count=2489410 Max=31008.53 Min=3.63 Avg=22.17]
+2022-05-25 00:59:46 70 sec: 3167827 operations; [READ: Count=317066 Max=4579.55 Min=1.43 Avg=8.23] [UPDATE: Count=2850761 Max=31008.53 Min=3.63 Avg=22.64]
+2022-05-25 00:59:56 80 sec: 3631771 operations; [READ: Count=363589 Max=4579.55 Min=1.42 Avg=8.22] [UPDATE: Count=3268182 Max=31008.53 Min=3.48 Avg=22.58]
+2022-05-25 01:00:06 90 sec: 4126997 operations; [READ: Count=413598 Max=4579.55 Min=1.42 Avg=8.22] [UPDATE: Count=3713399 Max=32272.02 Min=3.48 Avg=22.35]
+2022-05-25 01:00:16 100 sec: 4624222 operations; [READ: Count=463075 Max=4579.55 Min=1.42 Avg=8.18] [UPDATE: Count=4161147 Max=32272.02 Min=3.48 Avg=22.17]
+2022-05-25 01:00:26 110 sec: 5119468 operations; [READ: Count=512470 Max=4579.55 Min=1.42 Avg=8.16] [UPDATE: Count=4606998 Max=32272.02 Min=3.48 Avg=22.03]
+2022-05-25 01:00:36 120 sec: 5609853 operations; [READ: Count=561415 Max=4579.55 Min=1.42 Avg=8.14] [UPDATE: Count=5048438 Max=32272.02 Min=3.48 Avg=21.93]
+2022-05-25 01:00:46 130 sec: 6120029 operations; [READ: Count=612277 Max=4579.55 Min=1.42 Avg=8.13] [UPDATE: Count=5507752 Max=32272.02 Min=3.48 Avg=21.77]
+2022-05-25 01:00:56 140 sec: 6603362 operations; [READ: Count=660757 Max=10039.41 Min=1.42 Avg=8.14] [UPDATE: Count=5942605 Max=32272.02 Min=3.48 Avg=21.73]
+2022-05-25 01:01:06 150 sec: 7113687 operations; [READ: Count=711626 Max=10039.41 Min=1.42 Avg=8.14] [UPDATE: Count=6402061 Max=32272.02 Min=3.48 Avg=21.61]
+2022-05-25 01:01:16 160 sec: 7596079 operations; [READ: Count=759859 Max=10039.41 Min=1.42 Avg=8.14] [UPDATE: Count=6836220 Max=32272.02 Min=3.48 Avg=21.59]
+2022-05-25 01:01:26 170 sec: 8093454 operations; [READ: Count=809742 Max=10039.41 Min=1.42 Avg=8.14] [UPDATE: Count=7283712 Max=32272.02 Min=3.48 Avg=21.53]
+2022-05-25 01:01:36 180 sec: 8592489 operations; [READ: Count=859806 Max=10039.41 Min=1.42 Avg=8.13] [UPDATE: Count=7732683 Max=32272.02 Min=3.48 Avg=21.47]
+2022-05-25 01:01:46 190 sec: 9086903 operations; [READ: Count=909201 Max=18755.69 Min=1.42 Avg=8.14] [UPDATE: Count=8177702 Max=32272.02 Min=3.48 Avg=21.43]
+2022-05-25 01:01:56 200 sec: 9583785 operations; [READ: Count=959036 Max=18755.69 Min=1.42 Avg=8.15] [UPDATE: Count=8624749 Max=32272.02 Min=3.48 Avg=21.39]
+2022-05-25 01:02:04 208 sec: 10000000 operations; [READ: Count=1000463 Max=18755.69 Min=1.42 Avg=8.13] [UPDATE: Count=8999537 Max=32272.02 Min=3.48 Avg=21.32]
+Run runtime(sec): 208.135
+Run operations(ops): 10000000
+Run throughput(ops/sec): 48045.6
+==================第 6 次测试=================
+2022-05-25 01:02:04 0 sec: 0 operations;
+2022-05-25 01:02:14 10 sec: 193618 operations; [READ: Count=19294 Max=156.29 Min=1.36 Avg=8.65] [UPDATE: Count=174324 Max=48842.04 Min=3.64 Avg=52.71]
+2022-05-25 01:02:24 20 sec: 799466 operations; [READ: Count=80009 Max=4992.45 Min=1.36 Avg=8.03] [UPDATE: Count=719457 Max=48842.04 Min=3.62 Avg=25.41]
+2022-05-25 01:02:34 30 sec: 1207040 operations; [READ: Count=120987 Max=11921.60 Min=1.36 Avg=8.21] [UPDATE: Count=1086053 Max=48842.04 Min=3.62 Avg=25.43]
+2022-05-25 01:02:44 40 sec: 1628382 operations; [READ: Count=162636 Max=11921.60 Min=1.36 Avg=8.27] [UPDATE: Count=1465746 Max=48842.04 Min=3.62 Avg=25.20]
+2022-05-25 01:02:54 50 sec: 2182265 operations; [READ: Count=218040 Max=11921.60 Min=1.36 Avg=8.20] [UPDATE: Count=1964225 Max=48842.04 Min=3.59 Avg=23.46]
+2022-05-25 01:03:04 60 sec: 2710389 operations; [READ: Count=270571 Max=11921.60 Min=1.36 Avg=8.14] [UPDATE: Count=2439818 Max=48842.04 Min=3.59 Avg=22.66]
+2022-05-25 01:03:14 70 sec: 3151431 operations; [READ: Count=314685 Max=19850.99 Min=1.36 Avg=8.21] [UPDATE: Count=2836746 Max=48842.04 Min=3.59 Avg=22.76]
+2022-05-25 01:03:24 80 sec: 3647113 operations; [READ: Count=364046 Max=19850.99 Min=1.36 Avg=8.20] [UPDATE: Count=3283067 Max=48842.04 Min=3.59 Avg=22.48]
+2022-05-25 01:03:34 90 sec: 4068778 operations; [READ: Count=406264 Max=19850.99 Min=1.36 Avg=8.21] [UPDATE: Count=3662514 Max=48842.04 Min=3.59 Avg=22.70]
+2022-05-25 01:03:44 100 sec: 4605308 operations; [READ: Count=460015 Max=19850.99 Min=1.36 Avg=8.16] [UPDATE: Count=4145293 Max=48842.04 Min=3.59 Avg=22.27]
+2022-05-25 01:03:54 110 sec: 4995009 operations; [READ: Count=499229 Max=19850.99 Min=1.36 Avg=8.20] [UPDATE: Count=4495780 Max=48842.04 Min=3.59 Avg=22.62]
+2022-05-25 01:04:04 120 sec: 5493469 operations; [READ: Count=548960 Max=19850.99 Min=1.36 Avg=8.18] [UPDATE: Count=4944509 Max=48842.04 Min=3.55 Avg=22.43]
+2022-05-25 01:04:14 130 sec: 5986705 operations; [READ: Count=598420 Max=19850.99 Min=1.36 Avg=8.17] [UPDATE: Count=5388285 Max=48842.04 Min=3.55 Avg=22.30]
+2022-05-25 01:04:24 140 sec: 6487060 operations; [READ: Count=648517 Max=19850.99 Min=1.36 Avg=8.16] [UPDATE: Count=5838543 Max=48842.04 Min=3.55 Avg=22.16]
+2022-05-25 01:04:34 150 sec: 6976553 operations; [READ: Count=697413 Max=19850.99 Min=1.36 Avg=8.15] [UPDATE: Count=6279140 Max=48842.04 Min=3.55 Avg=22.08]
+2022-05-25 01:04:44 160 sec: 7472502 operations; [READ: Count=746800 Max=19850.99 Min=1.36 Avg=8.14] [UPDATE: Count=6725702 Max=48842.04 Min=3.55 Avg=21.98]
+2022-05-25 01:04:54 170 sec: 7977552 operations; [READ: Count=797632 Max=19850.99 Min=1.35 Avg=8.13] [UPDATE: Count=7179920 Max=48842.04 Min=3.55 Avg=21.88]
+2022-05-25 01:05:04 180 sec: 8485487 operations; [READ: Count=848644 Max=19850.99 Min=1.35 Avg=8.12] [UPDATE: Count=7636843 Max=48842.04 Min=3.55 Avg=21.77]
+2022-05-25 01:05:14 190 sec: 8975590 operations; [READ: Count=897591 Max=19850.99 Min=1.35 Avg=8.12] [UPDATE: Count=8077999 Max=48842.04 Min=3.55 Avg=21.73]
+2022-05-25 01:05:24 200 sec: 9458958 operations; [READ: Count=945777 Max=19850.99 Min=1.35 Avg=8.11] [UPDATE: Count=8513181 Max=48842.04 Min=3.55 Avg=21.70]
+2022-05-25 01:05:34 210 sec: 9965944 operations; [READ: Count=996482 Max=19850.99 Min=1.35 Avg=8.11] [UPDATE: Count=8969462 Max=48842.04 Min=3.55 Avg=21.63]
+2022-05-25 01:05:36 212 sec: 10000000 operations; [READ: Count=999853 Max=19850.99 Min=1.35 Avg=8.11] [UPDATE: Count=9000147 Max=48842.04 Min=3.55 Avg=21.76]
+Run runtime(sec): 212.184
+Run operations(ops): 10000000
+Run throughput(ops/sec): 47128.9
+==================第 7 次测试=================
+2022-05-25 01:05:36 0 sec: 0 operations;
+2022-05-25 01:05:46 10 sec: 395893 operations; [READ: Count=39693 Max=3617.49 Min=1.41 Avg=8.67] [UPDATE: Count=356200 Max=23964.72 Min=3.65 Avg=25.09]
+2022-05-25 01:05:56 20 sec: 899441 operations; [READ: Count=90048 Max=3617.49 Min=1.40 Avg=8.35] [UPDATE: Count=809393 Max=23964.72 Min=3.65 Avg=22.41]
+2022-05-25 01:06:06 30 sec: 1403855 operations; [READ: Count=140347 Max=3617.49 Min=1.40 Avg=8.27] [UPDATE: Count=1263508 Max=23964.72 Min=3.55 Avg=21.64]
+2022-05-25 01:06:16 40 sec: 1884798 operations; [READ: Count=188254 Max=3617.49 Min=1.35 Avg=8.20] [UPDATE: Count=1696544 Max=27375.84 Min=3.55 Avg=21.56]
+2022-05-25 01:06:26 50 sec: 2392599 operations; [READ: Count=239364 Max=3617.49 Min=1.35 Avg=8.16] [UPDATE: Count=2153235 Max=27375.84 Min=3.55 Avg=21.26]
+2022-05-25 01:06:36 60 sec: 2878416 operations; [READ: Count=288020 Max=4667.35 Min=1.35 Avg=8.16] [UPDATE: Count=2590396 Max=29646.31 Min=3.55 Avg=21.23]
+2022-05-25 01:06:46 70 sec: 3374323 operations; [READ: Count=337390 Max=4667.35 Min=1.35 Avg=8.12] [UPDATE: Count=3036933 Max=29646.31 Min=3.55 Avg=21.15]
+2022-05-25 01:06:56 80 sec: 3886579 operations; [READ: Count=388587 Max=4667.35 Min=1.35 Avg=8.10] [UPDATE: Count=3497992 Max=29646.31 Min=3.55 Avg=20.99]
+2022-05-25 01:07:06 90 sec: 4389110 operations; [READ: Count=438718 Max=4667.35 Min=1.35 Avg=8.11] [UPDATE: Count=3950392 Max=29646.31 Min=3.55 Avg=20.92]
+2022-05-25 01:07:16 100 sec: 4866752 operations; [READ: Count=486460 Max=4667.35 Min=1.35 Avg=8.11] [UPDATE: Count=4380292 Max=29646.31 Min=3.55 Avg=20.97]
+2022-05-25 01:07:26 110 sec: 5360728 operations; [READ: Count=535750 Max=4667.35 Min=1.35 Avg=8.10] [UPDATE: Count=4824978 Max=29646.31 Min=3.55 Avg=20.95]
+2022-05-25 01:07:36 120 sec: 5868632 operations; [READ: Count=586781 Max=4667.35 Min=1.35 Avg=8.10] [UPDATE: Count=5281851 Max=29646.31 Min=3.55 Avg=20.88]
+2022-05-25 01:07:46 130 sec: 6357494 operations; [READ: Count=635987 Max=4667.35 Min=1.35 Avg=8.09] [UPDATE: Count=5721507 Max=38108.52 Min=3.55 Avg=20.89]
+2022-05-25 01:07:56 140 sec: 6848751 operations; [READ: Count=685280 Max=4667.35 Min=1.35 Avg=8.08] [UPDATE: Count=6163471 Max=38108.52 Min=3.55 Avg=20.89]
+2022-05-25 01:08:06 150 sec: 7354938 operations; [READ: Count=735856 Max=4667.35 Min=1.35 Avg=8.08] [UPDATE: Count=6619082 Max=38108.52 Min=3.55 Avg=20.84]
+2022-05-25 01:08:16 160 sec: 7809113 operations; [READ: Count=781378 Max=4667.35 Min=1.35 Avg=8.07] [UPDATE: Count=7027735 Max=38108.52 Min=3.55 Avg=20.95]
+2022-05-25 01:08:26 170 sec: 8298194 operations; [READ: Count=830808 Max=4667.35 Min=1.35 Avg=8.07] [UPDATE: Count=7467386 Max=38108.52 Min=3.55 Avg=20.95]
+2022-05-25 01:08:36 180 sec: 8787584 operations; [READ: Count=879621 Max=4667.35 Min=1.35 Avg=8.07] [UPDATE: Count=7907963 Max=38108.52 Min=3.55 Avg=20.95]
+2022-05-25 01:08:46 190 sec: 9209592 operations; [READ: Count=921978 Max=4667.35 Min=1.35 Avg=8.06] [UPDATE: Count=8287614 Max=38108.52 Min=3.55 Avg=21.12]
+2022-05-25 01:08:56 200 sec: 9721678 operations; [READ: Count=972864 Max=4667.35 Min=1.35 Avg=8.07] [UPDATE: Count=8748814 Max=38108.52 Min=3.55 Avg=21.05]
+2022-05-25 01:09:05 209 sec: 10000000 operations; [READ: Count=1000873 Max=4667.35 Min=1.35 Avg=8.08] [UPDATE: Count=8999127 Max=38108.52 Min=3.55 Avg=21.42]
+Run runtime(sec): 209.191
+Run operations(ops): 10000000
+Run throughput(ops/sec): 47803.3
+==================第 8 次测试=================
+2022-05-25 01:09:05 0 sec: 0 operations;
+2022-05-25 01:09:15 10 sec: 507167 operations; [READ: Count=50856 Max=108.44 Min=1.59 Avg=8.00] [UPDATE: Count=456311 Max=35744.40 Min=3.55 Avg=19.41]
+2022-05-25 01:09:25 20 sec: 911254 operations; [READ: Count=91131 Max=117.82 Min=1.41 Avg=8.20] [UPDATE: Count=820123 Max=35744.40 Min=3.50 Avg=22.19]
+2022-05-25 01:09:35 30 sec: 1382479 operations; [READ: Count=138157 Max=119.84 Min=1.40 Avg=8.19] [UPDATE: Count=1244322 Max=35744.40 Min=3.50 Avg=22.07]
+2022-05-25 01:09:45 40 sec: 1788360 operations; [READ: Count=178617 Max=3657.64 Min=1.40 Avg=8.28] [UPDATE: Count=1609743 Max=35744.40 Min=3.50 Avg=22.86]
+2022-05-25 01:09:55 50 sec: 2362250 operations; [READ: Count=236282 Max=3657.64 Min=1.40 Avg=8.11] [UPDATE: Count=2125968 Max=35744.40 Min=3.50 Avg=21.61]
+2022-05-25 01:10:05 60 sec: 2788555 operations; [READ: Count=279055 Max=24467.57 Min=1.40 Avg=8.26] [UPDATE: Count=2509500 Max=35744.40 Min=3.50 Avg=22.01]
+2022-05-25 01:10:15 70 sec: 3374947 operations; [READ: Count=337328 Max=24467.57 Min=1.40 Avg=8.17] [UPDATE: Count=3037619 Max=35744.40 Min=3.50 Avg=21.19]
+2022-05-25 01:10:25 80 sec: 3804467 operations; [READ: Count=380682 Max=24467.57 Min=1.40 Avg=8.21] [UPDATE: Count=3423785 Max=35744.40 Min=3.50 Avg=21.51]
+2022-05-25 01:10:35 90 sec: 4364108 operations; [READ: Count=436743 Max=24467.57 Min=1.40 Avg=8.18] [UPDATE: Count=3927365 Max=35744.40 Min=3.50 Avg=21.08]
+2022-05-25 01:10:45 100 sec: 4790997 operations; [READ: Count=479713 Max=24467.57 Min=1.40 Avg=8.18] [UPDATE: Count=4311284 Max=35744.40 Min=3.50 Avg=21.37]
+2022-05-25 01:10:55 110 sec: 5240734 operations; [READ: Count=524561 Max=24467.57 Min=1.40 Avg=8.22] [UPDATE: Count=4716173 Max=35744.40 Min=3.50 Avg=21.50]
+2022-05-25 01:11:05 120 sec: 5800017 operations; [READ: Count=580414 Max=24467.57 Min=1.37 Avg=8.17] [UPDATE: Count=5219603 Max=35744.40 Min=3.50 Avg=21.18]
+2022-05-25 01:11:15 130 sec: 6233535 operations; [READ: Count=623802 Max=24467.57 Min=1.37 Avg=8.18] [UPDATE: Count=5609733 Max=35744.40 Min=3.50 Avg=21.37]
+2022-05-25 01:11:25 140 sec: 6728251 operations; [READ: Count=672967 Max=24467.57 Min=1.37 Avg=8.17] [UPDATE: Count=6055284 Max=35744.40 Min=3.50 Avg=21.32]
+2022-05-25 01:11:35 150 sec: 7229657 operations; [READ: Count=722973 Max=24467.57 Min=1.37 Avg=8.16] [UPDATE: Count=6506684 Max=35744.40 Min=3.50 Avg=21.26]
+2022-05-25 01:11:45 160 sec: 7725375 operations; [READ: Count=772706 Max=24467.57 Min=1.37 Avg=8.17] [UPDATE: Count=6952669 Max=35744.40 Min=3.50 Avg=21.22]
+2022-05-25 01:11:55 170 sec: 8230651 operations; [READ: Count=823338 Max=24467.57 Min=1.37 Avg=8.17] [UPDATE: Count=7407313 Max=35744.40 Min=3.50 Avg=21.17]
+2022-05-25 01:12:05 180 sec: 8714546 operations; [READ: Count=871895 Max=24467.57 Min=1.37 Avg=8.16] [UPDATE: Count=7842651 Max=35744.40 Min=3.50 Avg=21.17]
+2022-05-25 01:12:15 190 sec: 9214984 operations; [READ: Count=921725 Max=24467.57 Min=1.37 Avg=8.16] [UPDATE: Count=8293259 Max=35744.40 Min=3.50 Avg=21.13]
+2022-05-25 01:12:25 200 sec: 9708001 operations; [READ: Count=971252 Max=24467.57 Min=1.37 Avg=8.14] [UPDATE: Count=8736749 Max=35744.40 Min=3.50 Avg=21.12]
+2022-05-25 01:12:31 205 sec: 10000000 operations; [READ: Count=1000790 Max=24467.57 Min=1.37 Avg=8.11] [UPDATE: Count=8999210 Max=35744.40 Min=3.50 Avg=20.99]
+Run runtime(sec): 205.081
+Run operations(ops): 10000000
+Run throughput(ops/sec): 48761.3
+==================第 9 次测试=================
+2022-05-25 01:12:31 0 sec: 0 operations;
+2022-05-25 01:12:41 10 sec: 301962 operations; [READ: Count=30017 Max=218.09 Min=1.39 Avg=9.07] [UPDATE: Count=271945 Max=28934.38 Min=3.62 Avg=33.24]
+2022-05-25 01:12:51 20 sec: 853260 operations; [READ: Count=85020 Max=218.09 Min=1.39 Avg=8.27] [UPDATE: Count=768240 Max=36876.03 Min=3.54 Avg=23.69]
+2022-05-25 01:13:01 30 sec: 1337681 operations; [READ: Count=133237 Max=218.09 Min=1.39 Avg=8.20] [UPDATE: Count=1204444 Max=36876.03 Min=3.54 Avg=22.78]
+2022-05-25 01:13:11 40 sec: 1835012 operations; [READ: Count=182984 Max=218.09 Min=1.39 Avg=8.15] [UPDATE: Count=1652028 Max=36876.03 Min=3.54 Avg=22.19]
+2022-05-25 01:13:21 50 sec: 2319496 operations; [READ: Count=231340 Max=16330.04 Min=1.39 Avg=8.21] [UPDATE: Count=2088156 Max=36876.03 Min=3.54 Avg=21.96]
+2022-05-25 01:13:31 60 sec: 2683577 operations; [READ: Count=267661 Max=16330.04 Min=1.39 Avg=8.29] [UPDATE: Count=2415916 Max=36876.03 Min=3.54 Avg=22.87]
+2022-05-25 01:13:41 70 sec: 3242676 operations; [READ: Count=323388 Max=16330.04 Min=1.39 Avg=8.18] [UPDATE: Count=2919288 Max=36876.03 Min=3.54 Avg=22.06]
+2022-05-25 01:13:51 80 sec: 3766686 operations; [READ: Count=375973 Max=16330.04 Min=1.39 Avg=8.14] [UPDATE: Count=3390713 Max=36876.03 Min=3.54 Avg=21.71]
+2022-05-25 01:14:01 90 sec: 4284647 operations; [READ: Count=427490 Max=16330.04 Min=1.39 Avg=8.11] [UPDATE: Count=3857157 Max=36876.03 Min=3.54 Avg=21.47]
+2022-05-25 01:14:11 100 sec: 4754060 operations; [READ: Count=474785 Max=16330.04 Min=1.39 Avg=8.12] [UPDATE: Count=4279275 Max=36876.03 Min=3.54 Avg=21.51]
+2022-05-25 01:14:21 110 sec: 5148465 operations; [READ: Count=514205 Max=16330.04 Min=1.39 Avg=8.16] [UPDATE: Count=4634260 Max=36876.03 Min=3.54 Avg=21.88]
+2022-05-25 01:14:31 120 sec: 5745014 operations; [READ: Count=573862 Max=16330.04 Min=1.39 Avg=8.11] [UPDATE: Count=5171152 Max=36876.03 Min=3.54 Avg=21.37]
+2022-05-25 01:14:41 130 sec: 6177243 operations; [READ: Count=616856 Max=16330.04 Min=1.39 Avg=8.14] [UPDATE: Count=5560387 Max=36876.03 Min=3.54 Avg=21.54]
+2022-05-25 01:14:51 140 sec: 6751712 operations; [READ: Count=674492 Max=16330.04 Min=1.39 Avg=8.11] [UPDATE: Count=6077220 Max=36876.03 Min=3.54 Avg=21.21]
+2022-05-25 01:15:01 150 sec: 7115965 operations; [READ: Count=710904 Max=16330.04 Min=1.39 Avg=8.15] [UPDATE: Count=6405061 Max=36876.03 Min=3.54 Avg=21.59]
+2022-05-25 01:15:11 160 sec: 7676348 operations; [READ: Count=766703 Max=16330.04 Min=1.39 Avg=8.13] [UPDATE: Count=6909645 Max=36876.03 Min=3.54 Avg=21.34]
+2022-05-25 01:15:21 170 sec: 8107228 operations; [READ: Count=809510 Max=16330.04 Min=1.39 Avg=8.15] [UPDATE: Count=7297718 Max=36876.03 Min=3.54 Avg=21.48]
+2022-05-25 01:15:31 180 sec: 8597664 operations; [READ: Count=858613 Max=16330.04 Min=1.36 Avg=8.14] [UPDATE: Count=7739051 Max=36876.03 Min=3.54 Avg=21.45]
+2022-05-25 01:15:41 190 sec: 9089468 operations; [READ: Count=907739 Max=16330.04 Min=1.36 Avg=8.13] [UPDATE: Count=8181729 Max=36876.03 Min=3.53 Avg=21.41]
+2022-05-25 01:15:51 200 sec: 9582700 operations; [READ: Count=957173 Max=16330.04 Min=1.36 Avg=8.12] [UPDATE: Count=8625527 Max=36876.03 Min=3.53 Avg=21.38]
+2022-05-25 01:15:56 205 sec: 10000000 operations; [READ: Count=998804 Max=16330.04 Min=1.36 Avg=8.10] [UPDATE: Count=9001196 Max=36876.03 Min=3.53 Avg=21.03]
+Run runtime(sec): 205.762
+Run operations(ops): 10000000
+Run throughput(ops/sec): 48599.8
+***********************This is test for workloadc-uni*****************************
+2022-05-25 01:15:57 0 sec: 0 operations;
+2022-05-25 01:16:07 10 sec: 824998 operations; [INSERT: Count=824998 Max=32088.59 Min=2.02 Avg=8.58]
+2022-05-25 01:16:08 11 sec: 1000000 operations; [INSERT: Count=1000000 Max=32088.59 Min=2.02 Avg=8.02]
+Load runtime(sec): 11.6916
+Load operations(ops): 1000000
+Load throughput(ops/sec): 85531.8
+==================第 0 次测试=================
+2022-05-25 01:16:08 0 sec: 0 operations;
+2022-05-25 01:16:18 10 sec: 846828 operations; [READ: Count=423064 Max=18043.08 Min=1.25 Avg=7.06] [UPDATE: Count=423764 Max=31127.85 Min=3.61 Avg=14.62]
+2022-05-25 01:16:28 20 sec: 1726549 operations; [READ: Count=864016 Max=18043.08 Min=1.24 Avg=7.10] [UPDATE: Count=862533 Max=31127.85 Min=3.60 Avg=14.55]
+2022-05-25 01:16:38 30 sec: 2535867 operations; [READ: Count=1268243 Max=18043.08 Min=1.24 Avg=7.19] [UPDATE: Count=1267624 Max=31127.85 Min=3.60 Avg=15.08]
+2022-05-25 01:16:48 40 sec: 3387706 operations; [READ: Count=1693268 Max=18043.08 Min=1.24 Avg=7.23] [UPDATE: Count=1694438 Max=31127.85 Min=3.60 Avg=15.05]
+2022-05-25 01:16:58 50 sec: 4193314 operations; [READ: Count=2095737 Max=18043.08 Min=1.24 Avg=7.26] [UPDATE: Count=2097577 Max=31127.85 Min=3.60 Avg=15.30]
+2022-05-25 01:17:08 60 sec: 4981872 operations; [READ: Count=2490853 Max=18043.08 Min=1.24 Avg=7.30] [UPDATE: Count=2491019 Max=31127.85 Min=3.60 Avg=15.52]
+2022-05-25 01:17:18 70 sec: 5848513 operations; [READ: Count=2924237 Max=18563.34 Min=1.24 Avg=7.29] [UPDATE: Count=2924276 Max=31127.85 Min=3.60 Avg=15.40]
+2022-05-25 01:17:28 80 sec: 6747105 operations; [READ: Count=3373777 Max=18563.34 Min=1.24 Avg=7.27] [UPDATE: Count=3373328 Max=32205.59 Min=3.60 Avg=15.22]
+2022-05-25 01:17:38 90 sec: 7595462 operations; [READ: Count=3797934 Max=18563.34 Min=1.23 Avg=7.27] [UPDATE: Count=3797528 Max=32205.59 Min=3.47 Avg=15.21]
+2022-05-25 01:17:48 100 sec: 8521972 operations; [READ: Count=4261070 Max=20602.03 Min=1.23 Avg=7.26] [UPDATE: Count=4260902 Max=32205.59 Min=3.41 Avg=15.01]
+2022-05-25 01:17:58 110 sec: 9370070 operations; [READ: Count=4685634 Max=20602.03 Min=1.23 Avg=7.26] [UPDATE: Count=4684436 Max=32205.59 Min=3.41 Avg=15.02]
+2022-05-25 01:18:04 116 sec: 10000000 operations; [READ: Count=5001407 Max=20602.03 Min=1.23 Avg=7.26] [UPDATE: Count=4998593 Max=32205.59 Min=3.41 Avg=14.75]
+Run runtime(sec): 116.049
+Run operations(ops): 10000000
+Run throughput(ops/sec): 86170.7
+==================第 1 次测试=================
+2022-05-25 01:18:04 0 sec: 0 operations;
+2022-05-25 01:18:14 10 sec: 691504 operations; [READ: Count=345448 Max=18644.50 Min=1.34 Avg=7.06] [UPDATE: Count=346056 Max=40105.72 Min=3.69 Avg=20.11]
+2022-05-25 01:18:24 20 sec: 1566593 operations; [READ: Count=783770 Max=26694.93 Min=1.34 Avg=7.41] [UPDATE: Count=782823 Max=40105.72 Min=3.69 Avg=16.74]
+2022-05-25 01:18:34 30 sec: 2389345 operations; [READ: Count=1195246 Max=26694.93 Min=1.34 Avg=7.32] [UPDATE: Count=1194099 Max=40105.72 Min=3.36 Avg=16.50]
+2022-05-25 01:18:44 40 sec: 3226726 operations; [READ: Count=1614732 Max=26694.93 Min=1.34 Avg=7.27] [UPDATE: Count=1611994 Max=40105.72 Min=3.36 Avg=16.27]
+2022-05-25 01:18:54 50 sec: 4098443 operations; [READ: Count=2051215 Max=26694.93 Min=1.33 Avg=7.30] [UPDATE: Count=2047228 Max=40105.72 Min=3.36 Avg=15.88]
+2022-05-25 01:19:04 60 sec: 4927058 operations; [READ: Count=2466025 Max=26815.28 Min=1.32 Avg=7.29] [UPDATE: Count=2461033 Max=40105.72 Min=3.36 Avg=15.86]
+2022-05-25 01:19:14 70 sec: 5784246 operations; [READ: Count=2894303 Max=26815.28 Min=1.32 Avg=7.28] [UPDATE: Count=2889943 Max=40105.72 Min=3.36 Avg=15.74]
+2022-05-25 01:19:24 80 sec: 6542931 operations; [READ: Count=3273945 Max=26815.28 Min=1.32 Avg=7.28] [UPDATE: Count=3268986 Max=40105.72 Min=3.36 Avg=15.99]
+2022-05-25 01:19:34 90 sec: 7395662 operations; [READ: Count=3699990 Max=26815.28 Min=1.32 Avg=7.27] [UPDATE: Count=3695672 Max=40105.72 Min=3.36 Avg=15.88]
+2022-05-25 01:19:44 100 sec: 8267251 operations; [READ: Count=4136124 Max=26815.28 Min=1.32 Avg=7.29] [UPDATE: Count=4131127 Max=40105.72 Min=3.36 Avg=15.73]
+2022-05-25 01:19:54 110 sec: 9132782 operations; [READ: Count=4569010 Max=26815.28 Min=1.30 Avg=7.31] [UPDATE: Count=4563772 Max=40105.72 Min=3.36 Avg=15.61]
+2022-05-25 01:20:04 120 sec: 9978267 operations; [READ: Count=4991501 Max=26815.28 Min=1.14 Avg=7.32] [UPDATE: Count=4986766 Max=40105.72 Min=3.36 Avg=15.57]
+2022-05-25 01:20:05 120 sec: 10000000 operations; [READ: Count=5002270 Max=26815.28 Min=1.14 Avg=7.32] [UPDATE: Count=4997730 Max=40105.72 Min=3.36 Avg=15.56]
+Run runtime(sec): 120.448
+Run operations(ops): 10000000
+Run throughput(ops/sec): 83023.6
+==================第 2 次测试=================
+2022-05-25 01:20:05 0 sec: 0 operations;
+2022-05-25 01:20:15 10 sec: 786740 operations; [READ: Count=393219 Max=25782.38 Min=1.33 Avg=7.64] [UPDATE: Count=393521 Max=26634.50 Min=3.44 Avg=16.16]
+2022-05-25 01:20:25 20 sec: 1612803 operations; [READ: Count=806174 Max=25782.38 Min=1.26 Avg=7.49] [UPDATE: Count=806629 Max=26634.50 Min=3.44 Avg=15.94]
+2022-05-25 01:20:35 30 sec: 2457557 operations; [READ: Count=1228099 Max=25782.38 Min=1.25 Avg=7.41] [UPDATE: Count=1229458 Max=31461.69 Min=3.44 Avg=15.72]
+2022-05-25 01:20:45 40 sec: 3298901 operations; [READ: Count=1649138 Max=25782.38 Min=1.25 Avg=7.39] [UPDATE: Count=1649763 Max=31461.69 Min=3.44 Avg=15.62]
+2022-05-25 01:20:55 50 sec: 4170058 operations; [READ: Count=2084478 Max=25782.38 Min=1.25 Avg=7.38] [UPDATE: Count=2085580 Max=31461.69 Min=3.44 Avg=15.39]
+2022-05-25 01:21:05 60 sec: 4994128 operations; [READ: Count=2496970 Max=28168.55 Min=1.24 Avg=7.40] [UPDATE: Count=2497158 Max=31461.69 Min=3.44 Avg=15.43]
+2022-05-25 01:21:15 70 sec: 5868087 operations; [READ: Count=2933902 Max=28168.55 Min=1.24 Avg=7.38] [UPDATE: Count=2934185 Max=31461.69 Min=3.44 Avg=15.29]
+2022-05-25 01:21:25 80 sec: 6737240 operations; [READ: Count=3368716 Max=28168.55 Min=1.24 Avg=7.36] [UPDATE: Count=3368524 Max=31461.69 Min=3.44 Avg=15.21]
+2022-05-25 01:21:35 90 sec: 7590682 operations; [READ: Count=3795530 Max=28168.55 Min=1.24 Avg=7.36] [UPDATE: Count=3795152 Max=31461.69 Min=3.44 Avg=15.19]
+2022-05-25 01:21:45 100 sec: 8418417 operations; [READ: Count=4209505 Max=28168.55 Min=1.24 Avg=7.37] [UPDATE: Count=4208912 Max=31461.69 Min=3.44 Avg=15.23]
+2022-05-25 01:21:55 110 sec: 9300920 operations; [READ: Count=4650460 Max=28168.55 Min=1.24 Avg=7.36] [UPDATE: Count=4650460 Max=31461.69 Min=3.44 Avg=15.14]
+2022-05-25 01:22:02 117 sec: 10000000 operations; [READ: Count=5000053 Max=28168.55 Min=1.24 Avg=7.32] [UPDATE: Count=4999947 Max=31461.69 Min=3.44 Avg=14.98]
+Run runtime(sec): 117.462
+Run operations(ops): 10000000
+Run throughput(ops/sec): 85133.8
+==================第 3 次测试=================
+2022-05-25 01:22:02 0 sec: 0 operations;
+2022-05-25 01:22:12 10 sec: 834023 operations; [READ: Count=417631 Max=9196.39 Min=1.34 Avg=7.41] [UPDATE: Count=416392 Max=30566.40 Min=3.82 Avg=14.91]
+2022-05-25 01:22:22 20 sec: 1652227 operations; [READ: Count=826381 Max=10869.12 Min=1.31 Avg=7.37] [UPDATE: Count=825846 Max=30566.40 Min=3.73 Avg=15.39]
+2022-05-25 01:22:32 30 sec: 2398932 operations; [READ: Count=1199439 Max=27271.88 Min=1.31 Avg=7.40] [UPDATE: Count=1199493 Max=30566.40 Min=3.68 Avg=16.22]
+2022-05-25 01:22:42 40 sec: 3255161 operations; [READ: Count=1627824 Max=27271.88 Min=1.31 Avg=7.37] [UPDATE: Count=1627337 Max=30661.20 Min=3.68 Avg=15.87]
+2022-05-25 01:22:52 50 sec: 4076089 operations; [READ: Count=2038195 Max=27271.88 Min=1.31 Avg=7.40] [UPDATE: Count=2037894 Max=30661.20 Min=3.66 Avg=15.82]
+2022-05-25 01:23:02 60 sec: 4923509 operations; [READ: Count=2461913 Max=27271.88 Min=1.29 Avg=7.41] [UPDATE: Count=2461596 Max=30661.20 Min=3.66 Avg=15.66]
+2022-05-25 01:23:12 70 sec: 5755751 operations; [READ: Count=2877677 Max=27271.88 Min=1.29 Avg=7.40] [UPDATE: Count=2878074 Max=30661.20 Min=3.66 Avg=15.63]
+2022-05-25 01:23:22 80 sec: 6602545 operations; [READ: Count=3300737 Max=27271.88 Min=1.29 Avg=7.41] [UPDATE: Count=3301808 Max=30661.20 Min=3.55 Avg=15.54]
+2022-05-25 01:23:32 90 sec: 7445862 operations; [READ: Count=3722616 Max=27271.88 Min=1.29 Avg=7.41] [UPDATE: Count=3723246 Max=30661.20 Min=3.55 Avg=15.50]
+2022-05-25 01:23:42 100 sec: 8305220 operations; [READ: Count=4152573 Max=27271.88 Min=1.29 Avg=7.41] [UPDATE: Count=4152647 Max=30661.20 Min=3.55 Avg=15.41]
+2022-05-25 01:23:52 110 sec: 9123680 operations; [READ: Count=4561758 Max=27271.88 Min=1.24 Avg=7.42] [UPDATE: Count=4561922 Max=30661.20 Min=3.55 Avg=15.43]
+2022-05-25 01:24:02 120 sec: 9973639 operations; [READ: Count=4985999 Max=27271.88 Min=1.24 Avg=7.42] [UPDATE: Count=4987640 Max=30661.20 Min=3.55 Avg=15.39]
+2022-05-25 01:24:03 120 sec: 10000000 operations; [READ: Count=4999084 Max=27271.88 Min=1.24 Avg=7.41] [UPDATE: Count=5000916 Max=30661.20 Min=3.55 Avg=15.37]
+Run runtime(sec): 120.277
+Run operations(ops): 10000000
+Run throughput(ops/sec): 83141.7
+==================第 4 次测试=================
+2022-05-25 01:24:03 0 sec: 0 operations;
+2022-05-25 01:24:13 10 sec: 859020 operations; [READ: Count=429413 Max=35673.35 Min=1.27 Avg=7.41] [UPDATE: Count=429607 Max=29486.26 Min=3.61 Avg=14.29]
+2022-05-25 01:24:23 20 sec: 1657579 operations; [READ: Count=828036 Max=35673.35 Min=1.26 Avg=7.47] [UPDATE: Count=829543 Max=29486.26 Min=3.58 Avg=15.28]
+2022-05-25 01:24:33 30 sec: 2574508 operations; [READ: Count=1286221 Max=35673.35 Min=1.26 Avg=7.40] [UPDATE: Count=1288287 Max=29486.26 Min=3.58 Avg=14.62]
+2022-05-25 01:24:43 40 sec: 3389907 operations; [READ: Count=1694414 Max=35673.35 Min=1.26 Avg=7.48] [UPDATE: Count=1695493 Max=29486.26 Min=3.58 Avg=14.88]
+2022-05-25 01:24:53 50 sec: 4278234 operations; [READ: Count=2137951 Max=35673.35 Min=1.26 Avg=7.45] [UPDATE: Count=2140283 Max=29486.26 Min=3.58 Avg=14.71]
+2022-05-25 01:25:03 60 sec: 5106264 operations; [READ: Count=2552608 Max=35673.35 Min=1.26 Avg=7.45] [UPDATE: Count=2553656 Max=29486.26 Min=3.57 Avg=14.85]
+2022-05-25 01:25:13 70 sec: 6016120 operations; [READ: Count=3007043 Max=35673.35 Min=1.26 Avg=7.44] [UPDATE: Count=3009077 Max=29486.26 Min=3.51 Avg=14.64]
+2022-05-25 01:25:23 80 sec: 6885403 operations; [READ: Count=3440843 Max=35673.35 Min=1.26 Avg=7.43] [UPDATE: Count=3444560 Max=29702.50 Min=3.51 Avg=14.63]
+2022-05-25 01:25:33 90 sec: 7660024 operations; [READ: Count=3828678 Max=35673.35 Min=1.21 Avg=7.45] [UPDATE: Count=3831346 Max=30650.30 Min=3.51 Avg=14.87]
+2022-05-25 01:25:43 100 sec: 8522980 operations; [READ: Count=4259911 Max=35673.35 Min=1.21 Avg=7.45] [UPDATE: Count=4263069 Max=30650.30 Min=3.51 Avg=14.84]
+2022-05-25 01:25:53 110 sec: 9383754 operations; [READ: Count=4690508 Max=35673.35 Min=1.21 Avg=7.44] [UPDATE: Count=4693246 Max=31761.70 Min=3.51 Avg=14.84]
+2022-05-25 01:25:58 115 sec: 10000000 operations; [READ: Count=4999483 Max=35673.35 Min=1.21 Avg=7.41] [UPDATE: Count=5000517 Max=31761.70 Min=3.39 Avg=14.56]
+Run runtime(sec): 115.742
+Run operations(ops): 10000000
+Run throughput(ops/sec): 86398.8
+==================第 5 次测试=================
+2022-05-25 01:25:58 0 sec: 0 operations;
+2022-05-25 01:26:08 10 sec: 749148 operations; [READ: Count=373740 Max=5986.85 Min=1.19 Avg=7.31] [UPDATE: Count=375408 Max=36713.67 Min=3.52 Avg=17.75]
+2022-05-25 01:26:18 20 sec: 1571939 operations; [READ: Count=785465 Max=16919.50 Min=1.19 Avg=7.28] [UPDATE: Count=786474 Max=36713.67 Min=3.52 Avg=16.79]
+2022-05-25 01:26:28 30 sec: 2465115 operations; [READ: Count=1232031 Max=18921.58 Min=1.19 Avg=7.40] [UPDATE: Count=1233084 Max=36713.67 Min=3.52 Avg=15.66]
+2022-05-25 01:26:38 40 sec: 3315039 operations; [READ: Count=1658362 Max=19384.31 Min=1.19 Avg=7.40] [UPDATE: Count=1656677 Max=36713.67 Min=3.52 Avg=15.50]
+2022-05-25 01:26:48 50 sec: 4176126 operations; [READ: Count=2087827 Max=19384.31 Min=1.19 Avg=7.36] [UPDATE: Count=2088299 Max=36713.67 Min=3.52 Avg=15.37]
+2022-05-25 01:26:58 60 sec: 5019116 operations; [READ: Count=2508921 Max=19384.31 Min=1.19 Avg=7.35] [UPDATE: Count=2510195 Max=36713.67 Min=3.50 Avg=15.35]
+2022-05-25 01:27:08 70 sec: 5852644 operations; [READ: Count=2925809 Max=19384.31 Min=1.19 Avg=7.35] [UPDATE: Count=2926835 Max=36713.67 Min=3.50 Avg=15.38]
+2022-05-25 01:27:18 80 sec: 6724377 operations; [READ: Count=3361809 Max=19384.31 Min=1.19 Avg=7.34] [UPDATE: Count=3362568 Max=36713.67 Min=3.50 Avg=15.27]
+2022-05-25 01:27:28 90 sec: 7555808 operations; [READ: Count=3777325 Max=19384.31 Min=1.19 Avg=7.35] [UPDATE: Count=3778483 Max=36713.67 Min=3.50 Avg=15.29]
+2022-05-25 01:27:38 100 sec: 8392941 operations; [READ: Count=4196257 Max=22141.07 Min=1.19 Avg=7.35] [UPDATE: Count=4196684 Max=36713.67 Min=3.50 Avg=15.31]
+2022-05-25 01:27:48 110 sec: 9271865 operations; [READ: Count=4635914 Max=22141.07 Min=1.19 Avg=7.35] [UPDATE: Count=4635951 Max=36713.67 Min=3.50 Avg=15.21]
+2022-05-25 01:27:57 118 sec: 10000000 operations; [READ: Count=5000619 Max=22141.07 Min=1.19 Avg=7.36] [UPDATE: Count=4999381 Max=36713.67 Min=3.50 Avg=15.23]
+Run runtime(sec): 118.927
+Run operations(ops): 10000000
+Run throughput(ops/sec): 84085
+==================第 6 次测试=================
+2022-05-25 01:27:57 0 sec: 0 operations;
+2022-05-25 01:28:07 10 sec: 705278 operations; [READ: Count=352451 Max=3674.29 Min=1.31 Avg=7.99] [UPDATE: Count=352827 Max=26537.06 Min=3.46 Avg=18.68]
+2022-05-25 01:28:17 20 sec: 1588696 operations; [READ: Count=794490 Max=25063.18 Min=1.29 Avg=7.60] [UPDATE: Count=794206 Max=26537.06 Min=3.46 Avg=16.20]
+2022-05-25 01:28:27 30 sec: 2485945 operations; [READ: Count=1243184 Max=25063.18 Min=1.29 Avg=7.45] [UPDATE: Count=1242761 Max=29935.50 Min=3.46 Avg=15.40]
+2022-05-25 01:28:37 40 sec: 3389983 operations; [READ: Count=1694765 Max=25063.18 Min=1.28 Avg=7.39] [UPDATE: Count=1695218 Max=31387.62 Min=3.46 Avg=14.96]
+2022-05-25 01:28:47 50 sec: 4272080 operations; [READ: Count=2136000 Max=25063.18 Min=1.26 Avg=7.36] [UPDATE: Count=2136080 Max=31387.62 Min=3.46 Avg=14.82]
+2022-05-25 01:28:57 60 sec: 5141515 operations; [READ: Count=2570883 Max=25063.18 Min=1.26 Avg=7.36] [UPDATE: Count=2570632 Max=31387.62 Min=3.46 Avg=14.76]
+2022-05-25 01:29:07 70 sec: 5974717 operations; [READ: Count=2987104 Max=25063.18 Min=1.26 Avg=7.33] [UPDATE: Count=2987613 Max=40659.04 Min=3.46 Avg=14.89]
+2022-05-25 01:29:17 80 sec: 6851449 operations; [READ: Count=3424562 Max=25063.18 Min=1.26 Avg=7.32] [UPDATE: Count=3426887 Max=40659.04 Min=3.46 Avg=14.83]
+2022-05-25 01:29:27 90 sec: 7710052 operations; [READ: Count=3853387 Max=25063.18 Min=1.26 Avg=7.31] [UPDATE: Count=3856665 Max=40659.04 Min=3.46 Avg=14.84]
+2022-05-25 01:29:37 100 sec: 8537722 operations; [READ: Count=4267656 Max=25063.18 Min=1.26 Avg=7.28] [UPDATE: Count=4270066 Max=40659.04 Min=3.46 Avg=14.95]
+2022-05-25 01:29:47 110 sec: 9385403 operations; [READ: Count=4691912 Max=25063.18 Min=1.26 Avg=7.31] [UPDATE: Count=4693491 Max=40659.04 Min=3.46 Avg=14.95]
+2022-05-25 01:29:54 117 sec: 10000000 operations; [READ: Count=4999101 Max=25063.18 Min=1.26 Avg=7.32] [UPDATE: Count=5000899 Max=40659.04 Min=3.46 Avg=14.90]
+Run runtime(sec): 117.22
+Run operations(ops): 10000000
+Run throughput(ops/sec): 85309.5
+==================第 7 次测试=================
+2022-05-25 01:29:54 0 sec: 0 operations;
+2022-05-25 01:30:04 10 sec: 796019 operations; [READ: Count=397325 Max=23850.43 Min=1.20 Avg=7.37] [UPDATE: Count=398694 Max=28185.27 Min=3.55 Avg=16.07]
+2022-05-25 01:30:14 20 sec: 1662985 operations; [READ: Count=831223 Max=28433.76 Min=1.20 Avg=7.35] [UPDATE: Count=831762 Max=29191.29 Min=3.53 Avg=15.32]
+2022-05-25 01:30:24 30 sec: 2528992 operations; [READ: Count=1263881 Max=28433.76 Min=1.20 Avg=7.35] [UPDATE: Count=1265111 Max=29937.13 Min=3.53 Avg=15.08]
+2022-05-25 01:30:34 40 sec: 3376959 operations; [READ: Count=1687786 Max=28433.76 Min=1.20 Avg=7.34] [UPDATE: Count=1689173 Max=29937.13 Min=3.53 Avg=15.10]
+2022-05-25 01:30:44 50 sec: 4231980 operations; [READ: Count=2115237 Max=28433.76 Min=1.20 Avg=7.32] [UPDATE: Count=2116743 Max=29937.13 Min=3.53 Avg=15.08]
+2022-05-25 01:30:54 60 sec: 5132537 operations; [READ: Count=2565300 Max=28433.76 Min=1.20 Avg=7.35] [UPDATE: Count=2567237 Max=29937.13 Min=3.53 Avg=14.83]
+2022-05-25 01:31:04 70 sec: 5970908 operations; [READ: Count=2984386 Max=28433.76 Min=1.20 Avg=7.39] [UPDATE: Count=2986522 Max=29937.13 Min=3.53 Avg=14.86]
+2022-05-25 01:31:14 80 sec: 6791239 operations; [READ: Count=3393983 Max=28433.76 Min=1.20 Avg=7.38] [UPDATE: Count=3397256 Max=29937.13 Min=3.53 Avg=14.99]
+2022-05-25 01:31:24 90 sec: 7664269 operations; [READ: Count=3829967 Max=28433.76 Min=1.20 Avg=7.37] [UPDATE: Count=3834302 Max=30815.49 Min=3.53 Avg=14.93]
+2022-05-25 01:31:34 100 sec: 8473099 operations; [READ: Count=4234082 Max=28433.76 Min=1.17 Avg=7.36] [UPDATE: Count=4239017 Max=30815.49 Min=3.53 Avg=15.07]
+2022-05-25 01:31:44 110 sec: 9251419 operations; [READ: Count=4623586 Max=28433.76 Min=1.17 Avg=7.37] [UPDATE: Count=4627833 Max=30815.49 Min=3.53 Avg=15.24]
+2022-05-25 01:31:54 119 sec: 10000000 operations; [READ: Count=4998180 Max=28433.76 Min=1.17 Avg=7.38] [UPDATE: Count=5001820 Max=31968.38 Min=3.53 Avg=15.30]
+Run runtime(sec): 119.342
+Run operations(ops): 10000000
+Run throughput(ops/sec): 83793
+==================第 8 次测试=================
+2022-05-25 01:31:54 0 sec: 0 operations;
+2022-05-25 01:32:04 10 sec: 723722 operations; [READ: Count=361047 Max=35832.16 Min=1.31 Avg=7.89] [UPDATE: Count=362675 Max=32281.12 Min=3.63 Avg=17.89]
+2022-05-25 01:32:14 20 sec: 1587101 operations; [READ: Count=791933 Max=35832.16 Min=1.30 Avg=7.53] [UPDATE: Count=795168 Max=32281.12 Min=3.63 Avg=16.20]
+2022-05-25 01:32:24 30 sec: 2480931 operations; [READ: Count=1239071 Max=35832.16 Min=1.30 Avg=7.43] [UPDATE: Count=1241860 Max=32281.12 Min=3.50 Avg=15.40]
+2022-05-25 01:32:34 40 sec: 3278958 operations; [READ: Count=1638385 Max=35832.16 Min=1.30 Avg=7.49] [UPDATE: Count=1640573 Max=32281.12 Min=3.50 Avg=15.60]
+2022-05-25 01:32:44 50 sec: 4158640 operations; [READ: Count=2077571 Max=35832.16 Min=1.29 Avg=7.43] [UPDATE: Count=2081069 Max=32281.12 Min=3.50 Avg=15.34]
+2022-05-25 01:32:54 60 sec: 5051191 operations; [READ: Count=2523748 Max=35832.16 Min=1.29 Avg=7.40] [UPDATE: Count=2527443 Max=32281.12 Min=3.50 Avg=15.10]
+2022-05-25 01:33:04 70 sec: 5940548 operations; [READ: Count=2967589 Max=35832.16 Min=1.24 Avg=7.38] [UPDATE: Count=2972959 Max=32281.12 Min=3.50 Avg=14.94]
+2022-05-25 01:33:14 80 sec: 6726497 operations; [READ: Count=3361037 Max=35832.16 Min=1.24 Avg=7.41] [UPDATE: Count=3365460 Max=32281.12 Min=3.50 Avg=15.14]
+2022-05-25 01:33:24 90 sec: 7619806 operations; [READ: Count=3807440 Max=35832.16 Min=1.24 Avg=7.39] [UPDATE: Count=3812366 Max=40964.69 Min=3.50 Avg=15.01]
+2022-05-25 01:33:34 100 sec: 8520493 operations; [READ: Count=4257820 Max=35832.16 Min=1.24 Avg=7.38] [UPDATE: Count=4262673 Max=40964.69 Min=3.50 Avg=14.88]
+2022-05-25 01:33:44 110 sec: 9307710 operations; [READ: Count=4651062 Max=35832.16 Min=1.24 Avg=7.41] [UPDATE: Count=4656648 Max=40964.69 Min=3.50 Avg=15.02]
+2022-05-25 01:33:51 117 sec: 10000000 operations; [READ: Count=4997443 Max=35832.16 Min=1.24 Avg=7.37] [UPDATE: Count=5002557 Max=40964.69 Min=3.50 Avg=14.85]
+Run runtime(sec): 117.272
+Run operations(ops): 10000000
+Run throughput(ops/sec): 85271.8
+==================第 9 次测试=================
+2022-05-25 01:33:51 0 sec: 0 operations;
+2022-05-25 01:34:01 10 sec: 780995 operations; [READ: Count=391042 Max=10368.20 Min=1.25 Avg=7.19] [UPDATE: Count=389953 Max=39253.40 Min=3.58 Avg=16.67]
+2022-05-25 01:34:11 20 sec: 1655639 operations; [READ: Count=827429 Max=21444.10 Min=1.25 Avg=7.26] [UPDATE: Count=828210 Max=39253.40 Min=3.57 Avg=15.45]
+2022-05-25 01:34:21 30 sec: 2492523 operations; [READ: Count=1246084 Max=21444.10 Min=1.25 Avg=7.27] [UPDATE: Count=1246439 Max=39253.40 Min=3.57 Avg=15.44]
+2022-05-25 01:34:31 40 sec: 3327088 operations; [READ: Count=1663507 Max=21444.10 Min=1.25 Avg=7.27] [UPDATE: Count=1663581 Max=39253.40 Min=3.57 Avg=15.46]
+2022-05-25 01:34:41 50 sec: 4097429 operations; [READ: Count=2048240 Max=26214.21 Min=1.25 Avg=7.30] [UPDATE: Count=2049189 Max=39253.40 Min=3.57 Avg=15.80]
+2022-05-25 01:34:51 60 sec: 4884447 operations; [READ: Count=2441887 Max=26214.21 Min=1.25 Avg=7.33] [UPDATE: Count=2442560 Max=39253.40 Min=3.57 Avg=15.96]
+2022-05-25 01:35:01 70 sec: 5725048 operations; [READ: Count=2861469 Max=26214.21 Min=1.25 Avg=7.32] [UPDATE: Count=2863579 Max=39253.40 Min=3.57 Avg=15.86]
+2022-05-25 01:35:11 80 sec: 6640513 operations; [READ: Count=3319687 Max=26214.21 Min=1.25 Avg=7.32] [UPDATE: Count=3320826 Max=39253.40 Min=3.56 Avg=15.51]
+2022-05-25 01:35:21 90 sec: 7504983 operations; [READ: Count=3752633 Max=26214.21 Min=1.25 Avg=7.32] [UPDATE: Count=3752350 Max=39253.40 Min=3.56 Avg=15.42]
+2022-05-25 01:35:31 100 sec: 8370252 operations; [READ: Count=4184684 Max=26214.21 Min=1.25 Avg=7.32] [UPDATE: Count=4185568 Max=39253.40 Min=3.56 Avg=15.33]
+2022-05-25 01:35:41 110 sec: 9214406 operations; [READ: Count=4606994 Max=26214.21 Min=1.25 Avg=7.30] [UPDATE: Count=4607412 Max=39253.40 Min=3.56 Avg=15.34]
+2022-05-25 01:35:51 119 sec: 10000000 operations; [READ: Count=4999908 Max=26214.21 Min=1.23 Avg=7.31] [UPDATE: Count=5000092 Max=39253.40 Min=3.49 Avg=15.40]
+Run runtime(sec): 119.923
+Run operations(ops): 10000000
+Run throughput(ops/sec): 83386.7
